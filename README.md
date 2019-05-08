@@ -2,6 +2,8 @@
 
 ### *Designed for handling big amounts of data from the financial markets, capable of importing, exporting and analyzing your data in all kinds of ways*
 
+# Warning: this project is not finished yet!
+
 ## Features
  - Chain style based queries
  - Low memory footprint
