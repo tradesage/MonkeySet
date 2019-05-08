@@ -5,8 +5,9 @@
 ## Features
  - Chain style based queries
  - Low memory footprint
- - Max Performance (3,582 adds per ms, 5,714 lookups per ms)
- - Chain style based queries
+ - Max Performance (3,582 adds per ms, 5,714 lookups per ms for 10,000,000 sets)
+ - Capable of technical analyse of candles (trend analyse, machine learning pattern detections)
+ - Technical indicators (RSI, SMA, etc)
 
 ## Example
 
