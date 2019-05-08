@@ -1,0 +1,21 @@
+{
+  "name": "monkeyset",
+  "version": "1.0.0",
+  "description": "",
+  "main": "monkeyset.js",
+  "scripts": {
+    "test": "mocha test/index",
+    "test:speed": "mocha test/speed"
+  },
+  "author": {
+    "name": "Ashley de Groot",
+    "email": "specamps@gmail.com"
+  },
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "mocha-logger": "^1.0.6",
+    "moment": "^2.24.0",
+    "object-sizeof": "^1.3.1"
+  }
+}
