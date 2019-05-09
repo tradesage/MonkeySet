@@ -20,8 +20,13 @@
 
  ```javascript
 const MonkeySet = require('monkeyset')
+// Create a Monkeyset
 const monkeyset = new MonkeySet([
+  // Add sets to the monkeyset
   [new Date(), 120, 125, 130, 100, 20356],
+
+  // Data structure set:
+  // [time (unix), open (float/int), high (float/int), low (float/int), close (float/int), volume (float/int)]
   [new Date(), 125, 127, 139, 105, 21252],
   [new Date(), 115, 117, 119, 105, 21352],
   [new Date(), 115, 117, 119, 105, 21552],
