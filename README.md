@@ -11,7 +11,7 @@
 [![Npm bundle size](https://img.shields.io/bundlephobia/min/monkeyset.svg)](https://www.npmjs.com/package/monkeyset)
 [![Repo size](https://img.shields.io/github/repo-size/michaeldegroot/monkeyset.svg)](https://github.com/michaeldegroot/MonkeySet)
 [![Downloads per week](https://img.shields.io/npm/dw/monkeyset.svg)](https://www.npmjs.com/package/monkeyset)
-[![Node version >= 12.1.0](https://img.shields.io/badge/node-%3E=12.1.0-green.svg)](https://github.com/michaeldegroot/MonkeySet)
+[![Node version](https://img.shields.io/node/v/monkeyset.svg)](https://www.npmjs.com/package/monkeyset)
 [![Top language of repo](https://img.shields.io/github/languages/top/badges/shields.svg)](https://github.com/michaeldegroot/MonkeySet)
 [![Help us and star this project](https://img.shields.io/github/stars/michaeldegroot/monkeyset.svg?style=social)](https://github.com/michaeldegroot/MonkeySet)
 
