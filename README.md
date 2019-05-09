@@ -17,8 +17,7 @@
  - Data integrity and validation (save/load HMAC, ensuring validity of sets during inserts)
 
 ## Documentation
- - [Sweet html docs here](https://htmlpreview.github.io/?https://github.com/michaeldegroot/MonkeySet/blob/master/out/index.html)
- - [Simple markdown docs here](./monkeyset.md)
+ Check out the docs [here](https://htmlpreview.github.io/?https://github.com/michaeldegroot/MonkeySet/blob/master/out/index.html)
 
 
 ## Getting Started
