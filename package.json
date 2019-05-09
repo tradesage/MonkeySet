@@ -24,7 +24,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm test && npx nyc check-coverage && docs:create"
+      "pre-commit": "npm test"
     }
   },
   "nyc": {
