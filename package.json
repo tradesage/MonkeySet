@@ -7,8 +7,7 @@
     "test": "mocha test/index",
     "test:benchmark": "mocha test/speed",
     "test:coverage:export": "node ./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha -- -R spec ./test/index.js && node node_modules/coveralls/bin/coveralls.js < coverage/lcov.info",
-    "test:coverage": "node ./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha -- -R spec ./test/index.js",
-    "test:coverage:ensure": "node ./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha -- -R spec ./test/index.js"
+    "test:coverage": "node ./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha -- -R spec ./test/index.js"
   },
   "author": {
     "name": "Ashley de Groot",
