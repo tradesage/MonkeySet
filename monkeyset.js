@@ -5,9 +5,6 @@ const zlib = require('zlib')
 
 class MonkeySet {
   constructor(...initialSets) {
-    if (!initialSets) {
-      initialSets = []
-    }
     this.reset()
 
     if (initialSets.length >= 1) {
@@ -16,10 +13,8 @@ class MonkeySet {
   }
 
   file(filename = 'monkeyset') {
-    let defaultFilePath
-    if (require.main === module) {
-      defaultFilePath = path.resolve('../')
-    } else {
+    let defaultFilePath = path.resolve('../')
+    if (require.main !== module) {
       defaultFilePath = path.resolve(path.dirname(require.main.filename))
     }
     return {
@@ -125,18 +120,12 @@ class MonkeySet {
     loop1:
     for (let set of this.chainSetOld) {
       if (typeof set == 'object') {
-        if (set.length != 6) continue loop1
-
         loop2:
         for(let i = 0; i < 6; i++) {
-          if (typeof set[i] != 'number') continue loop1
           if (isNaN(set[i])) continue loop1
-          if (isFinite(set[i]) == false) continue loop1
         }
       } else {
-        if (typeof set != 'number') continue loop1
         if (isNaN(set)) continue loop1
-        if (isFinite(set) == false) continue loop1
       }
 
       this.chainSet[chainIndex] = set
