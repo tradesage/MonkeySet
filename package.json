@@ -1,7 +1,7 @@
 {
   "name": "monkeyset",
   "version": "0.0.1",
-  "description": "",
+  "description": "A lightweight and performance based OHLCV data manager",
   "main": "monkeyset.js",
   "scripts": {
     "test": "mocha test/*.js",
