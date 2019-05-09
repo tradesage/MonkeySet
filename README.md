@@ -6,6 +6,8 @@
 [![Dependencies](https://david-dm.org/michaeldegroot/monkeyset/status.svg)](https://david-dm.org/michaeldegroot/monkeyset)
 [![Dev Dependencies](https://david-dm.org/michaeldegroot/monkeyset/dev-status.svg)](https://david-dm.org/michaeldegroot/monkeyset?type=dev)
 [![Repo size](https://img.shields.io/github/repo-size/michaeldegroot/monkeyset.svg)](https://github.com/michaeldegroot/MonkeySet)
+[![Commit Activity](https://img.shields.io/github/commit-activity/m/michaeldegroot/MonkeySet.svg)](https://github.com/michaeldegroot/MonkeySet/pulse/monthly)
+[![Last Commit](https://img.shields.io/github/last-commit/michaeldegroot/MonkeySet.svg)](https://github.com/michaeldegroot/MonkeySet/commits/master)
 [![Npm bundle size](https://img.shields.io/bundlephobia/min/monkeyset.svg)](https://www.npmjs.com/package/monkeyset)
 [![NPM Version](https://img.shields.io/npm/v/monkeyset.svg)](https://www.npmjs.com/package/monkeyset)
 [![Downloads per week](https://img.shields.io/npm/dw/monkeyset.svg)](https://www.npmjs.com/package/monkeyset)
