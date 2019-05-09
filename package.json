@@ -8,7 +8,7 @@
   },
   "scripts": {
     "test": "npx nyc mocha tests/mocha/**/*.js",
-    "test:benchmark": "mocha tests/benchmark/**/*.js",
+    "benchmark:save": "node tests/benchmark/save.js",
     "coveralls:export": "nyc report --reporter=text-lcov | coveralls",
     "coverage:report": "nyc report --reporter=html",
     "docs:create": "jsdoc -c docs.json",
@@ -37,6 +37,7 @@
   "license": "MIT",
   "dependencies": {},
   "devDependencies": {
+    "benchmark": "^2.1.4",
     "coveralls": "^3.0.3",
     "husky": "^2.2.0",
     "jsdoc": "^3.6.1",

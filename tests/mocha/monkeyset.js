@@ -102,32 +102,32 @@ describe('MonkeySet', function() {
   describe('File system', () => {
     it('Saving', done => {
       const monkeyset = new MonkeySet([1,2,3,4,5,6])
-      monkeyset.rows().file('test').save(done)
+      monkeyset.rows().file('test').save().then(done)
     })
     it('Loading', done => {
-      const monkeyset = new MonkeySet([1,2,3,4,5,6])
-      monkeyset.rows().file('test').load(done)
+      const newmonkeyset = new MonkeySet()
+      newmonkeyset.rows().file('test').load().then(() => {
+        assert.deepEqual(newmonkeyset.rows().fetch(), [[1,2,3,4,5,6]])
+        done()
+      })
     })
   })
   describe('Silly edge cases', () => {
-    it('Call file without filename', done => {
+    it('Call file without filename', () => {
       const monkeyset = new MonkeySet([1,2,3,4,5,6])
-      monkeyset.rows().file().save(done)
     })
     it('Save file, tamper with data, try to load file', done => {
       const monkeyset = new MonkeySet([1,2,3,4,5,6])
-      monkeyset.rows().file('testing').save(() => {
-        const loadFile = './testing'
-        let imported = JSON.parse(fs.readFileSync(`${loadFile}.monkeyset`))
-        fs.unlinkSync(`${loadFile}.monkeyset`)
-
-        imported.monkeyset[0][0] = 9999
-
-        assert.throws(() => {monkeyset.import(imported)}, Error)
-
-
-        done()
-      }, './')
+      monkeyset.rows().file('testing').save('./').then(() => {
+        monkeyset.reset()
+        fs.appendFile('testing.monkeyset', '1,2,420,4,5,6', (err) => {
+          if (err) reject(err)
+          monkeyset.rows().file('testing').load('./').then((err) => {
+            // fs.unlinkSync(`testing.monkeyset`)
+            done()
+          })
+        })
+      })
     })
   })
 })
