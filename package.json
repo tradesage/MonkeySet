@@ -2,7 +2,7 @@
   "name": "monkeyset",
   "version": "0.0.2",
   "description": "A lightweight and performance based OHLCV data manager",
-  "main": "src/monkeyset.js",
+  "main": "src",
   "engines": {
     "node": ">=12.1.0"
   },
@@ -24,8 +24,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm test",
-      "pre-push": "npx nyc check-coverage"
+      "pre-commit": "npm test && npx nyc check-coverage && docs:create"
     }
   },
   "nyc": {

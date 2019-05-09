@@ -2,14 +2,6 @@ const path = require('path')
 const fs = require('fs')
 const crypto = require('crypto')
 
-/**
- * @module michaeldegroot/monkeyset
- * @desc A lightweight and performance based OHLCV data manager/analyzer
- */
-
- /**
-  * A Monkeyset.
-  */
 class MonkeySet {
   /**
     * @summary Represents a MonkeySet containing sets.

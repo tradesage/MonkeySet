@@ -14,10 +14,6 @@
         "monospaceLinks": true,
         "name": " ",
         "useCollapsibles": true,
-        "tabNames": {
-            "api": "API",
-            "tutorials": "Examples"
-        },
         "logo": {
             "url": "https://i.imgur.com/hcLIful.png",
             "width": "250px",
