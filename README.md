@@ -1,4 +1,4 @@
-![MonkeySet Logo](https://i.imgur.com/eganiA2.png)
+[![MonkeySet Logo](https://i.imgur.com/eganiA2.png)](https://github.com/michaeldegroot/MonkeySet)
 
 [![NPM Version](https://img.shields.io/npm/v/monkeyset.svg)](https://www.npmjs.com/package/monkeyset)
 [![Build Status](https://travis-ci.org/michaeldegroot/MonkeySet.png?branch=master)](https://travis-ci.org/michaeldegroot/MonkeySet)
@@ -16,17 +16,19 @@
 [![Help us and star this project](https://img.shields.io/github/stars/michaeldegroot/monkeyset.svg?style=social)](https://github.com/michaeldegroot/MonkeySet)
 
 # MonkeySet
-*Designed for handling big amounts of data from the financial markets, capable of importing, exporting and analyzing your data in all kinds of ways*
+*Designed for handling big amounts of data (time, open, high, low, close, volume) from any financial markets, capable of importing, exporting, csv parsing, special select queries and analyzes for your data in all kinds of ways*
 
 ## Warning
 **Warning: this project is not finished yet, do not use it in your project**
 
 ## Features
- - Chain style based queries
+ - Chain style based queries: ```monkeyset.rows().sort('ascending', 'open').analyze('RSI', { period: 5}).fetch()```
  - Low memory footprint
  - Max Performance (3,582 adds m/s, 5,714 lookups m/s for 10,000,000 sets)
  - Capable of technical analyze of candles (trend analyze, machine learning pattern detections, etc.)
  - Technical indicators (RSI, SMA, etc.)
+ - Can parse OHLCV data in CSV, json, txt, etc. files to a MonkeySet
+ - Selecting your data between time column: ```monkeyset.rows().between('1 day dago').and('now').fetch()```
  - Data integrity and validation (save/load HMAC, ensuring validity of sets during inserts)
 
 ## Documentation

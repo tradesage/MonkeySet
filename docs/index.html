@@ -34,7 +34,7 @@
         <ul></ul>
     </div>
     
-    <div class="lnb-api hidden"><h3>Modules</h3><ul><li><a href="module-michaeldegroot_monkeyset.html">michaeldegroot/monkeyset</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="module:michaeldegroot/monkeyset_sub"></div></li></ul></div><div class="lnb-api hidden"><h3>Classes</h3><ul><li><a href="module-michaeldegroot_monkeyset-MonkeySet.html">MonkeySet</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="module:michaeldegroot/monkeyset~MonkeySet_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="module-michaeldegroot_monkeyset-MonkeySet.html#add">add</a></li><li><a href="module-michaeldegroot_monkeyset-MonkeySet.html#export">export</a></li><li><a href="module-michaeldegroot_monkeyset-MonkeySet.html#fetch">fetch</a></li><li><a href="module-michaeldegroot_monkeyset-MonkeySet.html#file">file</a></li><li><a href="module-michaeldegroot_monkeyset-MonkeySet.html#first">first</a></li><li><a href="module-michaeldegroot_monkeyset-MonkeySet.html#import">import</a></li><li><a href="module-michaeldegroot_monkeyset-MonkeySet.html#last">last</a></li><li><a href="module-michaeldegroot_monkeyset-MonkeySet.html#load">load</a></li><li><a href="module-michaeldegroot_monkeyset-MonkeySet.html#reset">reset</a></li><li><a href="module-michaeldegroot_monkeyset-MonkeySet.html#row">row</a></li><li><a href="module-michaeldegroot_monkeyset-MonkeySet.html#rows">rows</a></li><li><a href="module-michaeldegroot_monkeyset-MonkeySet.html#save">save</a></li><li><a href="module-michaeldegroot_monkeyset-MonkeySet.html#sort">sort</a></li><li><a href="module-michaeldegroot_monkeyset-MonkeySet.html#validate">validate</a></li></ul></div></li></ul></div>
+    <div class="lnb-api hidden"><h3>Classes</h3><ul><li><a href="MonkeySet.html">MonkeySet</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="MonkeySet_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="MonkeySet.html#add">add</a></li><li><a href="MonkeySet.html#export">export</a></li><li><a href="MonkeySet.html#fetch">fetch</a></li><li><a href="MonkeySet.html#file">file</a></li><li><a href="MonkeySet.html#first">first</a></li><li><a href="MonkeySet.html#import">import</a></li><li><a href="MonkeySet.html#last">last</a></li><li><a href="MonkeySet.html#load">load</a></li><li><a href="MonkeySet.html#reset">reset</a></li><li><a href="MonkeySet.html#row">row</a></li><li><a href="MonkeySet.html#rows">rows</a></li><li><a href="MonkeySet.html#save">save</a></li><li><a href="MonkeySet.html#sort">sort</a></li><li><a href="MonkeySet.html#validate">validate</a></li></ul></div></li></ul></div>
 </nav>
 <div id="resizer"></div>
 
@@ -57,7 +57,7 @@
 
 
     <section>
-        <article class="readme"><p><img src="https://i.imgur.com/eganiA2.png" alt="MonkeySet Logo"></p>
+        <article class="readme"><p><a href="https://github.com/michaeldegroot/MonkeySet"><img src="https://i.imgur.com/eganiA2.png" alt="MonkeySet Logo"></a></p>
 <p><a href="https://www.npmjs.com/package/monkeyset"><img src="https://img.shields.io/npm/v/monkeyset.svg" alt="NPM Version"></a>
 <a href="https://travis-ci.org/michaeldegroot/MonkeySet"><img src="https://travis-ci.org/michaeldegroot/MonkeySet.png?branch=master" alt="Build Status"></a>
 <a href="https://coveralls.io/github/michaeldegroot/MonkeySet?branch=master"><img src="https://coveralls.io/repos/github/michaeldegroot/MonkeySet/badge.svg?branch=master" alt="Coverage Status"></a>
@@ -73,16 +73,18 @@
 <a href="https://github.com/michaeldegroot/MonkeySet"><img src="https://img.shields.io/github/languages/top/badges/shields.svg" alt="Top language of repo"></a>
 <a href="https://github.com/michaeldegroot/MonkeySet"><img src="https://img.shields.io/github/stars/michaeldegroot/monkeyset.svg?style=social" alt="Help us and star this project"></a></p>
 <h1>MonkeySet</h1>
-<p><em>Designed for handling big amounts of data from the financial markets, capable of importing, exporting and analyzing your data in all kinds of ways</em></p>
+<p><em>Designed for handling big amounts of data (time, open, high, low, close, volume) from any financial markets, capable of importing, exporting, csv parsing, special select queries and analyzes for your data in all kinds of ways</em></p>
 <h2>Warning</h2>
 <p><strong>Warning: this project is not finished yet, do not use it in your project</strong></p>
 <h2>Features</h2>
 <ul>
-<li>Chain style based queries</li>
+<li>Chain style based queries: <code>monkeyset.rows().sort('ascending', 'open').analyze('RSI', { period: 5}).fetch()</code></li>
 <li>Low memory footprint</li>
 <li>Max Performance (3,582 adds m/s, 5,714 lookups m/s for 10,000,000 sets)</li>
 <li>Capable of technical analyze of candles (trend analyze, machine learning pattern detections, etc.)</li>
 <li>Technical indicators (RSI, SMA, etc.)</li>
+<li>Can parse OHLCV data in CSV, json, txt, etc. files to a MonkeySet</li>
+<li>Selecting your data between time column: <code>monkeyset.rows().between('1 day dago').and('now').fetch()</code></li>
 <li>Data integrity and validation (save/load HMAC, ensuring validity of sets during inserts)</li>
 </ul>
 <h2>Documentation</h2>
