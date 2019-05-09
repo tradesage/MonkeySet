@@ -11,12 +11,15 @@
 ## Features
  - Chain style based queries
  - Low memory footprint
- - Max Performance (3,582 adds per ms, 5,714 lookups per ms for 10,000,000 sets)
- - Capable of technical analyse of candles (trend analyse, machine learning pattern detections, etc)
- - Technical indicators (RSI, SMA, etc)
+ - Max Performance (3,582 adds m/s, 5,714 lookups m/s for 10,000,000 sets)
+ - Capable of technical analyze of candles (trend analyze, machine learning pattern detections, etc.)
+ - Technical indicators (RSI, SMA, etc.)
  - Data integrity and validation (save/load HMAC, ensuring validity of sets during inserts)
 
-## Example
+## Documentation
+[Check out the documentation here](./monkeyset.md)
+
+## Getting Started
 
  ```javascript
 const MonkeySet = require('monkeyset')

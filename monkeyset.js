@@ -4,45 +4,73 @@ const crypto = require('crypto')
 const zlib = require('zlib')
 
 class MonkeySet {
+  /**
+    * @summary Represents a MonkeySet containing sets.
+    * @param {array} sets - Initial sets to add to the MonkeySet
+    * @constructor
+  */
   constructor(...initialSets) {
     this.reset()
+
+    this.defaultFilePath = path.resolve('../')
+    if (require.main !== module) {
+      this.defaultFilePath = path.resolve(path.dirname(require.main.filename))
+    }
 
     if (initialSets.length >= 1) {
       this.add(...initialSets)
     }
   }
 
+  /**
+    * @summary Set a filename to work with
+    * @param {string} - filename
+  */
   file(filename = 'monkeyset') {
-    let defaultFilePath = path.resolve('../')
-    if (require.main !== module) {
-      defaultFilePath = path.resolve(path.dirname(require.main.filename))
-    }
-    return {
-      save: (cb, savePath = defaultFilePath) => {
-        const saveFile = path.join(savePath + `/${filename}`)
-        fs.writeFile(`${saveFile}.json`, JSON.stringify(this.export()), err => {
-          const zip = zlib.createGzip()
-          const read = fs.createReadStream(`${saveFile}.json`)
-          const write = fs.createWriteStream(`${saveFile}.monkeyset`)
-          const stream = read.pipe(zip).pipe(write)
-          fs.unlink(`${saveFile}.json`, () => {})
-          stream.on('finish', cb.bind(this))
-        })
-      },
-      load: (cb, loadPath = defaultFilePath) => {
-        const loadFile = path.join(loadPath + `/${filename}`)
-        const fileContents = fs.createReadStream(`${loadFile}.monkeyset`)
-        const writeStream = fs.createWriteStream(`${loadFile}.json`)
-        const unzip = zlib.createGunzip()
-        const stream = fileContents.pipe(unzip).pipe(writeStream)
-        stream.on('finish', () => {
-          this.import(JSON.parse(fs.readFileSync(`${loadFile}.json`)))
-          fs.unlink(`${loadFile}.json`, cb.bind(this))
-        })
-      }
-    }
+    this.filename = filename
+    return this
   }
 
+
+  /**
+    * @summary Saves a MonkeySet to filename
+    * @param {callback} - callback
+    * @param {string} - Folder to save to
+  */
+  save (cb, savePath = this.defaultFilePath) {
+    const saveFile = path.join(savePath + `/${this.filename}`)
+    fs.writeFile(`${saveFile}.json`, JSON.stringify(this.export()), err => {
+      const zip = zlib.createGzip()
+      const read = fs.createReadStream(`${saveFile}.json`)
+      const write = fs.createWriteStream(`${saveFile}.monkeyset`)
+      const stream = read.pipe(zip).pipe(write)
+      fs.unlink(`${saveFile}.json`, () => {})
+      stream.on('finish', cb.bind(this))
+    })
+  }
+
+  /**
+    * @summary Loads a MonkeySet from filename
+    * @param {callback} - callback
+    * @param {string} - Folder to load from
+  */
+  load (cb, loadPath = this.defaultFilePath) {
+    const loadFile = path.join(loadPath + `/${this.filename}`)
+    const fileContents = fs.createReadStream(`${loadFile}.monkeyset`)
+    const writeStream = fs.createWriteStream(`${loadFile}.json`)
+    const unzip = zlib.createGunzip()
+    const stream = fileContents.pipe(unzip).pipe(writeStream)
+    stream.on('finish', () => {
+      this.import(JSON.parse(fs.readFileSync(`${loadFile}.json`)))
+      fs.unlink(`${loadFile}.json`, cb.bind(this))
+    })
+  }
+
+  /**
+    * @summary Exports a MonkeySet data format
+    * @param {callback} - callback
+    * @param {string} - Folder to save to
+  */
   export() {
     this.validate()
     const monkeyset = this.chainSet
@@ -57,6 +85,10 @@ class MonkeySet {
     return contents
   }
 
+  /**
+    * @summary Imports a exported MonkeySet data format
+    * @param {data} - MonkeySet data format to import
+  */
   import(data) {
     const contents = {
       created: data.created,
@@ -70,16 +102,29 @@ class MonkeySet {
     return true
   }
 
+  /**
+    * @summary Grabs the last amount of sets of a MonkeySet
+    * @param {number} - Amount to grab
+  */
   last(amount = 1) {
     this.chainSet = this.chainSet.slice(Math.max(this.chainSet.length - amount, 1))
     return this
   }
 
+  /**
+    * @summary Grabs the first amount of sets of a MonkeySet
+    * @param {number} - Amount to grab
+  */
   first(amount = 1) {
     this.chainSet = this.chainSet.slice(0, amount)
     return this
   }
 
+  /**
+    * @summary Sorts a MonkeySet based on order and column specified
+    * @param {string} - Order to sort by
+    * @param {string} - Column to sort on
+  */
   sort(order = 'ascending', column = 'time') {
     // We are dealing with a array in array
     if (typeof this.chainSet[0] == 'object') {
@@ -112,6 +157,10 @@ class MonkeySet {
     return this
   }
 
+  /**
+    * @summary Validates a MonkeySet
+    * @param {number} - Amount to grab
+  */
   validate() {
     this.chainSetOld = this.chainSet
     this.chainSet = []
@@ -135,6 +184,9 @@ class MonkeySet {
     return this
   }
 
+  /**
+    * @summary Resets a MonkeySet object, clearing all data.
+  */
   reset() {
     this.time = []
     this.open = []
@@ -147,6 +199,10 @@ class MonkeySet {
     return this
   }
 
+  /**
+    * @summary Usually called at the end of a chain method
+    * @returns {array[]} The Monkey chain set that was worked with
+  */
   fetch() {
     return this.chainSet
   }
