@@ -1,6 +1,6 @@
 {
   "name": "monkeyset",
-  "version": "0.0.13",
+  "version": "0.0.12",
   "description": "A lightweight and performance based OHLCV data manager",
   "main": "monkeyset.js",
   "engines": {
@@ -11,7 +11,8 @@
     "test:benchmark": "mocha benchmark/**/*.js",
     "coveralls:export": "nyc report --reporter=text-lcov | coveralls",
     "coverage:report": "nyc report --reporter=html",
-    "docs": "node ./node_modules/jsdox/bin/jsdox monkeyset.js --output . && jsdoc -t ./node_modules/ink-docstrap/template -R README.md -r monkeyset.js && git add README.md out && git commit -m \"docs update\" && git push"
+    "docs": "node ./node_modules/jsdox/bin/jsdox monkeyset.js --output . && jsdoc -t ./node_modules/ink-docstrap/template -R README.md -r monkeyset.js && git add README.md out && git commit -m \"docs update\" && git push",
+    "bump": "git add -A && git commit -m \"Version update\" && npm version patch git add -A"
   },
   "author": {
     "name": "GiveMeAllYourCats",
