@@ -1,6 +1,6 @@
 {
   "name": "monkeyset",
-  "version": "0.0.18",
+  "version": "0.0.19",
   "description": "A lightweight and performance based OHLCV data manager",
   "main": "monkeyset.js",
   "engines": {
