@@ -114,22 +114,15 @@ describe('MonkeySet', function() {
       const monkeyset = new MonkeySet([1,2,3,4,5,6])
       monkeyset.rows().file('testing').save(() => {
         const loadFile = './testing'
-        const fileContents = fs.createReadStream(`${loadFile}.monkeyset`)
-        const writeStream = fs.createWriteStream(`${loadFile}.json`)
-        const unzip = zlib.createGunzip()
-        const stream = fileContents.pipe(unzip).pipe(writeStream)
-        stream.on('finish', () => {
-          let imported = JSON.parse(fs.readFileSync(`${loadFile}.json`))
-          fs.unlinkSync(`${loadFile}.json`)
-          fs.unlinkSync(`${loadFile}.monkeyset`)
+        let imported = JSON.parse(fs.readFileSync(`${loadFile}.monkeyset`))
+        fs.unlinkSync(`${loadFile}.monkeyset`)
 
-          imported.monkeyset[0][0] = 9999
+        imported.monkeyset[0][0] = 9999
 
-          assert.throws(() => {monkeyset.import(imported)}, Error)
+        assert.throws(() => {monkeyset.import(imported)}, Error)
 
 
-          done()
-        })
+        done()
       }, './')
     })
   })

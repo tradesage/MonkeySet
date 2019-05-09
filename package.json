@@ -11,7 +11,7 @@
     "test:benchmark": "mocha benchmark/**/*.js",
     "coveralls:export": "nyc report --reporter=text-lcov | coveralls",
     "coverage:report": "nyc report --reporter=html",
-    "docs": "jsdoc -t ./node_modules/ink-docstrap/template -R README.md -r monkeyset.js && git add README.md out && git commit -m \"docs update\" && git push",
+    "docs": "jsdoc --destination ./docs -R README.md -r monkeyset.js && git add README.md out && git commit -m \"docs update\" && git push origin development",
     "release:major": "git add -A && git commit -m \"Version bump\" && npm version major && git tag \"%npm_package_version%\" && git push --tags && npm publish",
     "release:minor": "git add -A && git commit -m \"Version bump\" && npm version minor && git tag \"%npm_package_version%\" && git push --tags && npm publish",
     "release:patch": "git add -A && git commit -m \"Version bump\" && npm version patch && git tag \"%npm_package_version%\" && git push --tags && npm publish",
