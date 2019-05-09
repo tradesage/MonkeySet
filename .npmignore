@@ -1,0 +1,7 @@
+benchmark
+test
+out
+coverage
+.nyc_output
+.git
+package-lock.json
