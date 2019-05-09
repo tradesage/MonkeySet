@@ -1,9 +1,11 @@
 {
   "name": "monkeyset",
-  "version": "0.0.12",
+  "version": "0.1.0",
   "description": "A lightweight and performance based OHLCV data manager",
   "main": "monkeyset.js",
-  "engines" : { "node" : ">=12.1.0" },
+  "engines": {
+    "node": ">=12.1.0"
+  },
   "scripts": {
     "test": "npx nyc mocha test/**/*.js",
     "test:benchmark": "mocha benchmark/**/*.js",
