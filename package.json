@@ -3,12 +3,13 @@
   "version": "0.0.1",
   "description": "A lightweight and performance based OHLCV data manager",
   "main": "monkeyset.js",
+  "engines" : { "node" : ">=12.0.1" },
   "scripts": {
     "test": "npx nyc mocha test/**/*.js",
     "test:benchmark": "mocha benchmark/**/*.js",
     "coveralls:export": "nyc report --reporter=text-lcov | coveralls",
     "coverage:report": "nyc report --reporter=html",
-    "docs": "node ./node_modules/jsdox/bin/jsdox monkeyset.js --output . && jsdoc -t ./node_modules/ink-docstrap/template -R README.md -r monkeyset.js"
+    "docs": "node ./node_modules/jsdox/bin/jsdox monkeyset.js --output . && jsdoc -t ./node_modules/ink-docstrap/template -R README.md -r monkeyset.js && git add README.md out && git commit -m \"docs update\" && git push"
   },
   "author": {
     "name": "GiveMeAllYourCats",
