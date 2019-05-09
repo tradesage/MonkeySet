@@ -2,6 +2,14 @@ const path = require('path')
 const fs = require('fs')
 const crypto = require('crypto')
 
+/**
+ * @module michaeldegroot/monkeyset
+ * @desc A lightweight and performance based OHLCV data manager/analyzer
+ */
+
+ /**
+  * A Monkeyset.
+  */
 class MonkeySet {
   /**
     * @summary Represents a MonkeySet containing sets.
@@ -11,10 +19,7 @@ class MonkeySet {
   constructor(...initialSets) {
     this.reset()
 
-    this.defaultFilePath = path.resolve('../')
-    if (require.main !== module) {
-      this.defaultFilePath = path.resolve(path.dirname(require.main.filename))
-    }
+    this.defaultFilePath = path.resolve(path.dirname(require.main.filename))
 
     if (initialSets.length >= 1) {
       this.add(...initialSets)
@@ -78,6 +83,7 @@ class MonkeySet {
   /**
     * @summary Imports a exported MonkeySet data format
     * @param {data} - MonkeySet data format to import
+    * @throws Will throw an error if .monkeyset file has been tampered with (failed HMAC authentication)
     * @returns {boolean} returns true if success
   */
   import(data) {
@@ -132,8 +138,7 @@ class MonkeySet {
       this.chainSet = this.chainSet.sort((a, b) => {
         if (order == 'ascending') {
             return a[columnIndex] - b[columnIndex]
-        }
-        if (order == 'descending') {
+        } else {
           return b[columnIndex] - a[columnIndex]
         }
       })
@@ -141,9 +146,8 @@ class MonkeySet {
       this.chainSet = this.chainSet.sort((a, b) => {
         if (order == 'ascending') {
             return a - b
-        }
-        if (order == 'descending') {
-          return b - a
+        } else {
+            return b - a
         }
       })
     }
@@ -230,6 +234,7 @@ class MonkeySet {
   /**
     * @summary Starts the initial data feed for the chain methods, this gets sets as a whole
     * @param {array[]} - A set or a array of sets
+    * @returns {class} MonkeySet class
   */
   add(...newSet) {
     for (let set of newSet) {
@@ -242,6 +247,8 @@ class MonkeySet {
       this.volume[this.index] = parseFloat(set[5])
       this.index++
     }
+
+    return this
   }
 }
 

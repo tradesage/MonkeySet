@@ -1,0 +1,34 @@
+{
+    "tags": {
+        "allowUnknownTags": true,
+        "dictionaries": ["jsdoc","closure"]
+    },
+    "source": {
+        "include": ["src"]
+    },
+    "plugins": [
+        "plugins/markdown"
+    ],
+    "templates": {
+        "cleverLinks": true,
+        "monospaceLinks": true,
+        "name": " ",
+        "useCollapsibles": true,
+        "tabNames": {
+            "api": "API",
+            "tutorials": "Examples"
+        },
+        "logo": {
+            "url": "https://i.imgur.com/hcLIful.png",
+            "width": "250px",
+            "height": "120px",
+            "link": "index.html"
+        }
+    },
+    "opts": {
+        "destination": "docs",
+        "recurse": true,
+        "template": "node_modules/tui-jsdoc-template",
+        "readme": "README.md"
+    }
+}
