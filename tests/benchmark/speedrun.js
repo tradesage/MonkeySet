@@ -1,6 +1,6 @@
 const assert = require('assert')
 const fs = require('fs')
-const MonkeySet = require('../../monkeyset')
+const MonkeySet = require('../../src/monkeyset')
 const mlog = require('mocha-logger')
 const moment = require('moment')
 
@@ -24,14 +24,11 @@ describe('MonkeySet SpeedRun Performance Test', function() {
   })
   it(`Speedrun: Save ${toAdd.toLocaleString()} monkeysets`, function(done) {
     console.log('\n')
-    const usedstart = process.memoryUsage().heapUsed / 1024 / 1024
     this.timeout(90000)
     const startTime = moment()
     monkeyset.rows().file('testing').save(() => {
       const diff = moment().diff(startTime)
       mlog.log(`${(Math.round(toAdd / diff)).toLocaleString() } sets saved m/s`)
-      const used = process.memoryUsage().heapUsed / 1024 / 1024 - usedstart
-      mlog.log(`Saving took ${Math.round(used * 100) / 100} MB of memory`)
       fs.unlinkSync('testing.monkeyset')
       done()
     }, './')
@@ -76,14 +73,11 @@ describe('MonkeySet SpeedRun Performance Test', function() {
   })
   it(`Speedrun: Validate ${toAdd.toLocaleString()} monkeysets`, function() {
     console.log('\n')
-    const usedstart = process.memoryUsage().heapUsed / 1024 / 1024
     this.timeout(90000)
     const startTime = moment()
     monkeyset.rows().validate().fetch()
     const diff = moment().diff(startTime)
     mlog.log(`${(Math.round(toAdd / diff)).toLocaleString() } sets validated m/s`)
-    const used = process.memoryUsage().heapUsed / 1024 / 1024 - usedstart
-    mlog.log(`Validating took ${Math.round(used * 100) / 100} MB of memory`)
   })
   after(function(){
     console.log('\n')

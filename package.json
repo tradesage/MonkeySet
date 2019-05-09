@@ -7,8 +7,8 @@
     "node": ">=12.1.0"
   },
   "scripts": {
-    "test": "npx nyc mocha test/**/*.js",
-    "test:benchmark": "mocha benchmark/**/*.js",
+    "test": "npx nyc mocha tests/mocha/**/*.js",
+    "test:benchmark": "mocha tests/benchmark/**/*.js",
     "coveralls:export": "nyc report --reporter=text-lcov | coveralls",
     "coverage:report": "nyc report --reporter=html",
     "docs:create": "jsdoc -c docs.json",
@@ -42,6 +42,7 @@
     "jsdoc": "^3.6.1",
     "mocha": "^6.1.4",
     "mocha-lcov-reporter": "^1.3.0",
+    "mocha-logger": "^1.0.6",
     "moment": "^2.24.0",
     "nyc": "^14.1.0",
     "tui-jsdoc-template": "^1.2.2"
