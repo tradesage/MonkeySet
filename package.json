@@ -12,7 +12,10 @@
     "coveralls:export": "nyc report --reporter=text-lcov | coveralls",
     "coverage:report": "nyc report --reporter=html",
     "docs": "node ./node_modules/jsdox/bin/jsdox monkeyset.js --output . && jsdoc -t ./node_modules/ink-docstrap/template -R README.md -r monkeyset.js && git add README.md out && git commit -m \"docs update\" && git push",
-    "bump": "git add -A && git commit -m \"Version update\" && npm version patch && git push && npm publish"
+    "release:major": "git add -A && git commit -m \"Version update\" && npm version major && git push && npm publish",
+    "release:minor": "git add -A && git commit -m \"Version update\" && npm version minor && git push && npm publish",
+    "release:patch": "git add -A && git commit -m \"Version update\" && npm version patch && git push && npm publish",
+    "release": "npm run release:patch"
   },
   "author": {
     "name": "GiveMeAllYourCats",
