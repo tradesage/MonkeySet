@@ -1,4 +1,4 @@
-![MonkeySet Logo](https://i.imgur.com/xulpNjs.png)
+![MonkeySet Logo](https://i.imgur.com/eganiA2.png)
 
 [![NPM Version](https://img.shields.io/npm/v/monkeyset.svg)](https://www.npmjs.com/package/monkeyset)
 [![Build Status](https://travis-ci.org/michaeldegroot/MonkeySet.png?branch=master)](https://travis-ci.org/michaeldegroot/MonkeySet)
