@@ -1,7 +1,7 @@
 language: node_js
 node_js:
   - '12'
-after_script: istanbul cover ./node_modules/mocha/bin/_mocha -- -R spec ./test/index.js && node node_modules/coveralls/bin/coveralls.js < coverage/lcov.info
+after_script: node ./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha -- -R spec ./test/index.js && node node_modules/coveralls/bin/coveralls.js < coverage/lcov.info
 before_install:
   - nvm install stable
   - nvm use stable
