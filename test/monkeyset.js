@@ -1,8 +1,7 @@
 const assert = require('assert')
 const fs = require('fs')
-const MonkeySet = require('../monkeyset')
+const MonkeySet = require('../src/monkeyset')
 const zlib = require('zlib')
-const console = require('mocha-logger')
 
 describe('MonkeySet', function() {
   describe('Sanity checks', function() {
@@ -66,6 +65,7 @@ describe('MonkeySet', function() {
 
       assert.deepEqual(monkeyset.row('time').sort('ascending').fetch(), [dataset[0][0], dataset[2][0], dataset[1][0]])
       assert.deepEqual(monkeyset.row('time').sort('descending').fetch(), [dataset[1][0], dataset[2][0], dataset[0][0]])
+      assert.deepEqual(monkeyset.rows().sort().fetch(), [[1,7,6,5,3,2],[2,8,7,6,4,3],[3,9,8,7,5,4]])
     })
     it('Can first chain', () => {
       const monkeyset = new MonkeySet([1,2,3,4,5,6], [3,2,3,4,5,6], [2,2,3,4,5,6])
@@ -110,6 +110,10 @@ describe('MonkeySet', function() {
     })
   })
   describe('Silly edge cases', () => {
+    it('Call file without filename', done => {
+      const monkeyset = new MonkeySet([1,2,3,4,5,6])
+      monkeyset.rows().file().save(done)
+    })
     it('Save file, tamper with data, try to load file', done => {
       const monkeyset = new MonkeySet([1,2,3,4,5,6])
       monkeyset.rows().file('testing').save(() => {
