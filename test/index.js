@@ -110,9 +110,6 @@ describe('MonkeySet', function() {
     })
   })
   describe('Silly edge cases', () => {
-    it('Create monkeyset without defining one', () => {
-      const monkeyset = new MonkeySet()
-    })
     it('Save file, tamper with data, try to load file', done => {
       const monkeyset = new MonkeySet([1,2,3,4,5,6])
       monkeyset.rows().file('testing').save(() => {

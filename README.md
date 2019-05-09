@@ -1,9 +1,6 @@
 ![MonkeySet Logo](https://i.imgur.com/xulpNjs.png)
 
-[![Build Status](https://api.travis-ci.org/michaeldegroot/MonkeySet.svg?branch=master)](https://travis-ci.org/michaeldegroot/MonkeySet) [![Coverage Status](https://coveralls.io/repos/github/michaeldegroot/MonkeySet/badge.svg?branch=master)](https://coveralls.io/github/michaeldegroot/MonkeySet)
-[![Repo size](https://img.shields.io/github/repo-size/michaeldegroot/monkeyset.svg)](https://img.shields.io/github/repo-size/michaeldegroot/monkeyset.svg) [![Node version >= 12.1.0](https://img.shields.io/badge/node-%3E=12.1.0-green.svg)](https://github.com/michaeldegroot/MonkeySet)
-
-[![Licensing](https://img.shields.io/github/license/michaeldegroot/monkeyset.svg)](https://raw.githubusercontent.com/michaeldegroot/MonkeySet/master/.LICENSE) [![NPM Version](https://img.shields.io/npm/v/monkeyset.svg)](https://www.npmjs.com/package/monkeyset) [![Help us and star this project](https://img.shields.io/github/stars/michaeldegroot/monkeyset.svg?style=social)](https://github.com/michaeldegroot/MonkeySet)
+[![Build Status](https://api.travis-ci.org/michaeldegroot/MonkeySet.svg?branch=master)](https://travis-ci.org/michaeldegroot/MonkeySet) [![Coverage Status](https://coveralls.io/repos/github/michaeldegroot/MonkeySet/badge.svg?branch=master)](https://coveralls.io/github/michaeldegroot/MonkeySet) [![Licensing](https://img.shields.io/github/license/michaeldegroot/monkeyset.svg)](https://raw.githubusercontent.com/michaeldegroot/MonkeySet/master/.LICENSE) [![NPM Version](https://img.shields.io/npm/v/monkeyset.svg)](https://www.npmjs.com/package/monkeyset)
 
 # MonkeySet
 *Designed for handling big amounts of data from the financial markets, capable of importing, exporting and analyzing your data in all kinds of ways*
