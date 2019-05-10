@@ -1,6 +1,7 @@
 const component = require('../classes/component')
 const fs = require('fs')
 const path = require('path')
+const crypto = require('crypto')
 const readline = require('readline')
 
 class File extends component {
