@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Class: MonkeySet |  </title>
+    <title>Class: Analyzer |  </title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -48,7 +48,8 @@
 
 <header>
     
-        <h2><span class="attribs"><span class="type-signature"></span></span>MonkeySet<span class="signature">(sets)</span><span class="type-signature"></span></h2>
+        <h2><span class="attribs"><span class="type-signature"></span></span>
+            <span class="ancestors"><a href="MonkeySet.html">MonkeySet</a>.</span>Analyzer</h2>
         
     
 </header>
@@ -61,38 +62,26 @@
 
 <dt>
     
-        <h4 class="name" id="MonkeySet">
+        <h4 class="name" id="Analyzer">
             
-                new <span class="type-signature"></span>MonkeySet<span class="signature">(sets)</span><span class="type-signature"></span>
+                Analyzer
                 
             
             <div class="container-source members">
-                <code><a href="monkeyset.js.html">monkeyset.js</a></code>,
-                <code><a href="monkeyset.js.html#line30">line 30</a></code>
+                <code><a href="components_Analyzer.js.html">components/Analyzer.js</a></code>,
+                <code><a href="components_Analyzer.js.html#line11">line 11</a></code>
             </div>
             
         </h4>
 
         
-        <p class="summary"><p>Represents a MonkeySet containing sets.</p></p>
+        <p class="summary"><p>General analyzer component for composing interesting analyze sets from a MonkeySet</p></p>
         
     
 </dt>
 <dd>
 
     
-    <div class="description">
-        <p>A MonkeySet is a class object that holds OHLC data (a set) in the most important form which is:</p>
-<ul>
-<li>MonkeySet.time: (int) The time in UNIX time stamp when this candle was created</li>
-<li>MonkeySet.open: (float) Opening price</li>
-<li>MonkeySet.high: (float) Highest price</li>
-<li>MonkeySet.low: (float) Lowest price</li>
-<li>MonkeySet.close: (float) Closing price</li>
-<li>MonkeySet.volume: (float) Volume</li>
-</ul>
-    </div>
-    
 
     
 
@@ -100,56 +89,6 @@
 
     
 
-    
-    <div class="container-params">
-        <h5>Parameters:</h5>
-        
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>sets</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Array.&lt;array></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>Initial sets to add to the MonkeySet</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    </div>
     
 
     
@@ -202,11 +141,6 @@
 
 
     
-        <h5>Example</h5>
-        
-    <pre class="prettyprint"><code>const MonkeySet = require('monkeyset')// Create only one setconst monkeyset = new MonkeySet([1,2,3,4,5,6])// Or create a monkeyset with more setsconst monkeyset = new MonkeySet( [1,2,3,4,5,6], [1,2,3,4,5,6], [1,2,3,4,5,6],)</code></pre>
-
-    
 
 </dd>
 
@@ -215,66 +149,21 @@
     
 
     
+        <h3 class="subsection-title">Extends</h3>
+
+        
+
+
+    <ul>
+        <li>component</li>
+    
+        <li>Analyzer</li>
+    </ul>
+
 
     
 
     
-            <h3 class="subsection-title">Classes</h3>
-            
-
-<dl>
-    
-        <dt>
-            <h4 class="name">
-                <a href="MonkeySet.Analyzer.html">Analyzer</a>
-                <div class="container-source members">
-                    <code><a href="MonkeySet.Analyzer.html">MonkeySet.Analyzer</a></code>
-                </div>
-            </h4>
-        </dt>
-        <dd><p>General analyzer component for composing interesting analyze sets from a MonkeySet</p></dd>
-    
-        <dt>
-            <h4 class="name">
-                <a href="MonkeySet.File.html">File</a>
-                <div class="container-source members">
-                    <code><a href="MonkeySet.File.html">MonkeySet.File</a></code>
-                </div>
-            </h4>
-        </dt>
-        <dd><p>General file operations component for reading/writing MonkeySet data files</p></dd>
-    
-        <dt>
-            <h4 class="name">
-                <a href="MonkeySet.Filter.html">Filter</a>
-                <div class="container-source members">
-                    <code><a href="MonkeySet.Filter.html">MonkeySet.Filter</a></code>
-                </div>
-            </h4>
-        </dt>
-        <dd><p>For selecting data from a MonkeySet</p></dd>
-    
-        <dt>
-            <h4 class="name">
-                <a href="MonkeySet.Operation.html">Operation</a>
-                <div class="container-source members">
-                    <code><a href="MonkeySet.Operation.html">MonkeySet.Operation</a></code>
-                </div>
-            </h4>
-        </dt>
-        <dd><p>For doing operations on data from a MonkeySet</p></dd>
-    
-        <dt>
-            <h4 class="name">
-                <a href="MonkeySet.Random.html">Random</a>
-                <div class="container-source members">
-                    <code><a href="MonkeySet.Random.html">MonkeySet.Random</a></code>
-                </div>
-            </h4>
-        </dt>
-        <dd><p>For creating random data in a MonkeySet</p></dd>
-    
-</dl>
 
     
 
@@ -310,7 +199,7 @@
 <script src="scripts/linenumber.js"></script>
 
     <script>
-        var id = 'MonkeySet_sub'.replace(/"/g, '_');
+        var id = 'MonkeySet.Analyzer_sub'.replace(/"/g, '_');
         var selectedApi = document.getElementById(id); // do not use jquery selector
         var $selectedApi = $(selectedApi);
 

@@ -36,7 +36,7 @@
         <ul></ul>
     </div>
     
-    <div class="lnb-api hidden"><h3>Classes</h3><ul><li><a href="MonkeySet.html">MonkeySet</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="MonkeySet_sub"></div></li><li><a href="MonkeySet.File.html">File</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="MonkeySet.File_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="MonkeySet.File.html#export">export</a></li><li><a href="MonkeySet.File.html#import">import</a></li><li><a href="MonkeySet.File.html#load">load</a></li><li><a href="MonkeySet.File.html#save">save</a></li></ul></div></li><li><a href="MonkeySet.Filter.html">Filter</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="MonkeySet.Filter_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="MonkeySet.Filter.html#end">end</a></li><li><a href="MonkeySet.Filter.html#first">first</a></li><li><a href="MonkeySet.Filter.html#get">get</a></li><li><a href="MonkeySet.Filter.html#last">last</a></li><li><a href="MonkeySet.Filter.html#sort">sort</a></li></ul></div></li><li><a href="MonkeySet.Operation.html">Operation</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="MonkeySet.Operation_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="MonkeySet.Operation.html#add">add</a></li><li><a href="MonkeySet.Operation.html#clear">clear</a></li></ul></div></li><li><a href="MonkeySet.Random.html">Random</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="MonkeySet.Random_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="MonkeySet.Random.html#setsFill">setsFill</a></li></ul></div></li></ul></div>
+    <div class="lnb-api hidden"><h3>Classes</h3><ul><li><a href="MonkeySet.html">MonkeySet</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="MonkeySet_sub"></div></li><li><a href="MonkeySet.Analyzer.html">Analyzer</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="MonkeySet.Analyzer_sub"></div></li><li><a href="MonkeySet.File.html">File</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="MonkeySet.File_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="MonkeySet.File.html#export">export</a></li><li><a href="MonkeySet.File.html#import">import</a></li><li><a href="MonkeySet.File.html#load">load</a></li><li><a href="MonkeySet.File.html#save">save</a></li></ul></div></li><li><a href="MonkeySet.Filter.html">Filter</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="MonkeySet.Filter_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="MonkeySet.Filter.html#end">end</a></li><li><a href="MonkeySet.Filter.html#first">first</a></li><li><a href="MonkeySet.Filter.html#get">get</a></li><li><a href="MonkeySet.Filter.html#last">last</a></li><li><a href="MonkeySet.Filter.html#sort">sort</a></li></ul></div></li><li><a href="MonkeySet.Operation.html">Operation</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="MonkeySet.Operation_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="MonkeySet.Operation.html#add">add</a></li><li><a href="MonkeySet.Operation.html#clear">clear</a></li></ul></div></li><li><a href="MonkeySet.Random.html">Random</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="MonkeySet.Random_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="MonkeySet.Random.html#setsFill">setsFill</a></li></ul></div></li></ul></div>
 </nav>
 <div id="resizer"></div>
 
@@ -75,10 +75,8 @@ class File extends component {
 	 * await monkeyset.File.save('./afile')
 	 */
 	save(saveFile = path.join(this.projectRoot, 'export.monkeyset')) {
-		return new Promise(async (resolve, reject) => {
-			const monkeysetExport = await this.export()
-
-			console.log('yeet')
+		return new Promise((resolve, reject) => {
+			const monkeysetExport = this.export()
 
 			const stream = fs.createWriteStream(saveFile, { flags: 'w' })
 			stream.write(`${monkeysetExport.created}:${monkeysetExport.signature}\n`)
@@ -145,15 +143,13 @@ class File extends component {
 	 * const monkeySetExport = await monkeyset.File.export()
 	 */
 	export() {
-		return new Promise(async (resolve, reject) => {
-			const created = +new Date()
+		const created = +new Date()
 
-			const contents = {
-				created,
-				monkeyset: this.monkeyset.Filter.get('sets').end()
-			}
-			resolve(contents)
-		})
+		const contents = {
+			created,
+			monkeyset: this.monkeyset.Filter.get('sets').end()
+		}
+		return contents
 	}
 
 	/**
@@ -167,19 +163,20 @@ class File extends component {
 	 * monkeyset.File.import(monkeySetExport)
 	 */
 	import(data) {
-		return new Promise((resolve, reject) => {
-			const contents = {
-				created: data.created,
-				monkeyset: data.monkeyset
-			}
-			// TODO: instead of contents hmac, create a crc32 of file
-			// const signature = crypto.createHmac('sha256', data.created.toString()).update(JSON.stringify(contents)).digest('hex')
-			// if (signature != data.signature) {
-			//   return reject('HMAC not verified for this import, monkeyset file has been tampered with')
-			// }
-			this.add(...contents.monkeyset)
-			resolve()
-		})
+		const contents = {
+			created: data.created,
+			monkeyset: data.monkeyset
+		}
+		// TODO: instead of contents hmac, create a crc32 of file
+		const signature = crypto
+			.createHmac('sha256', data.created.toString())
+			.update(JSON.stringify(contents))
+			.digest('hex')
+		if (signature != data.signature) {
+			return 'HMAC not verified for this import, monkeyset file has been tampered with'
+		}
+		this.monkeyset.Operation.add(...contents.monkeyset)
+		return true
 	}
 }
 

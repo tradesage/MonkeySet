@@ -19,7 +19,9 @@ suite.add({
     console.log(e)
     throw new Error(e)
   },
-  onComplete: () => {}
+  onComplete: () => {
+    console.log(monkeyset.Filter.get('sets').end().length)
+  }
 })
 
 suite.add({

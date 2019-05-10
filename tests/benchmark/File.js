@@ -10,10 +10,8 @@ const suite = new Benchmark.Suite('app')
 // TODO: MEMORY ALLOCATION ERRORS :c EVEN WITH LOW AMOUNT OF SETS AND IDK WHY IM STILL HOLDING SHIFT TO TYPE THIS
 suite.add({
   name: 'monkeyset.File.save',
-  fn: done => {
-    monkeyset.File.save('./myfile').then(() => {
-      done()
-    })
+  fn: async () => {
+    await monkeyset.File.save('./myfile')
   },
   onStart: () => {},
   onError: e => {
@@ -24,10 +22,8 @@ suite.add({
 
 suite.add({
   name: 'monkeyset.File.load',
-  fn: done => {
-    monkeyset.File.load('./myfile').then(() => {
-      done()
-    })
+  fn: async () => {
+    await monkeyset.File.load('./myfile')
   },
   onStart: () => {},
   onError: e => {
@@ -38,6 +34,9 @@ suite.add({
 
 // called when the suite starts running
 suite.on('start', () => {
+  console.log('Generating garbage')
+  monkeyset = new MonkeySet()
+  monkeyset.Random.setsFill(2000000)
   console.log('Starting File component benchmark')
 })
 
@@ -58,4 +57,4 @@ suite.on('error', e => {
 
 suite.on('complete', () => {})
 
-// suite.run({ async: false })
+suite.run({ async: false })

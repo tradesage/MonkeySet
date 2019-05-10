@@ -25,10 +25,8 @@ class File extends component {
 	 * await monkeyset.File.save('./afile')
 	 */
 	save(saveFile = path.join(this.projectRoot, 'export.monkeyset')) {
-		return new Promise(async (resolve, reject) => {
-			const monkeysetExport = await this.export()
-
-			console.log('yeet')
+		return new Promise((resolve, reject) => {
+			const monkeysetExport = this.export()
 
 			const stream = fs.createWriteStream(saveFile, { flags: 'w' })
 			stream.write(`${monkeysetExport.created}:${monkeysetExport.signature}\n`)
@@ -95,15 +93,13 @@ class File extends component {
 	 * const monkeySetExport = await monkeyset.File.export()
 	 */
 	export() {
-		return new Promise(async (resolve, reject) => {
-			const created = +new Date()
+		const created = +new Date()
 
-			const contents = {
-				created,
-				monkeyset: this.monkeyset.Filter.get('sets').end()
-			}
-			resolve(contents)
-		})
+		const contents = {
+			created,
+			monkeyset: this.monkeyset.Filter.get('sets').end()
+		}
+		return contents
 	}
 
 	/**
@@ -117,19 +113,20 @@ class File extends component {
 	 * monkeyset.File.import(monkeySetExport)
 	 */
 	import(data) {
-		return new Promise((resolve, reject) => {
-			const contents = {
-				created: data.created,
-				monkeyset: data.monkeyset
-			}
-			// TODO: instead of contents hmac, create a crc32 of file
-			// const signature = crypto.createHmac('sha256', data.created.toString()).update(JSON.stringify(contents)).digest('hex')
-			// if (signature != data.signature) {
-			//   return reject('HMAC not verified for this import, monkeyset file has been tampered with')
-			// }
-			this.add(...contents.monkeyset)
-			resolve()
-		})
+		const contents = {
+			created: data.created,
+			monkeyset: data.monkeyset
+		}
+		// TODO: instead of contents hmac, create a crc32 of file
+		const signature = crypto
+			.createHmac('sha256', data.created.toString())
+			.update(JSON.stringify(contents))
+			.digest('hex')
+		if (signature != data.signature) {
+			return 'HMAC not verified for this import, monkeyset file has been tampered with'
+		}
+		this.monkeyset.Operation.add(...contents.monkeyset)
+		return true
 	}
 }
 

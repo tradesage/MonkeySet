@@ -42,7 +42,7 @@ class MonkeySet {
     this.Operation.clear()
 
     if (initialSets.length >= 1) {
-      this.add(...initialSets)
+      this.Operation.add(...initialSets)
     }
   }
 
