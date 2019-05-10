@@ -36,7 +36,7 @@
         <ul></ul>
     </div>
     
-    <div class="lnb-api hidden"><h3>Classes</h3><ul><li><a href="MonkeySet.html">MonkeySet</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="MonkeySet_sub"></div></li><li><a href="MonkeySet.File.html">File</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="MonkeySet.File_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="MonkeySet.File.html#export">export</a></li><li><a href="MonkeySet.File.html#import">import</a></li><li><a href="MonkeySet.File.html#load">load</a></li><li><a href="MonkeySet.File.html#save">save</a></li></ul></div></li><li><a href="MonkeySet.Operation.html">Operation</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="MonkeySet.Operation_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="MonkeySet.Operation.html#add">add</a></li><li><a href="MonkeySet.Operation.html#clear">clear</a></li><li><a href="MonkeySet.Operation.html#validate">validate</a></li></ul></div></li><li><a href="MonkeySet.Random.html">Random</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="MonkeySet.Random_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="MonkeySet.Random.html#setsFill">setsFill</a></li></ul></div></li><li><a href="MonkeySet.Select.html">Select</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="MonkeySet.Select_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="MonkeySet.Select.html#fetch">fetch</a></li><li><a href="MonkeySet.Select.html#first">first</a></li><li><a href="MonkeySet.Select.html#get">get</a></li><li><a href="MonkeySet.Select.html#last">last</a></li><li><a href="MonkeySet.Select.html#sort">sort</a></li></ul></div></li></ul></div>
+    <div class="lnb-api hidden"><h3>Classes</h3><ul><li><a href="MonkeySet.html">MonkeySet</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="MonkeySet_sub"></div></li><li><a href="MonkeySet.File.html">File</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="MonkeySet.File_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="MonkeySet.File.html#export">export</a></li><li><a href="MonkeySet.File.html#import">import</a></li><li><a href="MonkeySet.File.html#load">load</a></li><li><a href="MonkeySet.File.html#save">save</a></li></ul></div></li><li><a href="MonkeySet.Filter.html">Filter</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="MonkeySet.Filter_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="MonkeySet.Filter.html#end">end</a></li><li><a href="MonkeySet.Filter.html#first">first</a></li><li><a href="MonkeySet.Filter.html#get">get</a></li><li><a href="MonkeySet.Filter.html#last">last</a></li><li><a href="MonkeySet.Filter.html#sort">sort</a></li></ul></div></li><li><a href="MonkeySet.Operation.html">Operation</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="MonkeySet.Operation_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="MonkeySet.Operation.html#add">add</a></li><li><a href="MonkeySet.Operation.html#clear">clear</a></li></ul></div></li><li><a href="MonkeySet.Random.html">Random</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="MonkeySet.Random_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="MonkeySet.Random.html#setsFill">setsFill</a></li></ul></div></li></ul></div>
 </nav>
 <div id="resizer"></div>
 
@@ -64,6 +64,8 @@ class Operation extends component {
 
   /**
    * @summary Adds OHLC data to the MonkeySet
+   * @param {array[]} - A set or a array of sets
+   * @returns {object} MonkeySet class reference
    * @example
    * // One add
    * monkeyset.Operation.add([1,2,3,4,5,6])
@@ -74,48 +76,21 @@ class Operation extends component {
    *  [1,2,3,4,5,6],
    *  [1,2,3,4,5,6],
    * )
-   * @param {array[]} - A set or a array of sets
-   * @returns {object} MonkeySet class reference
    */
   add(...newSet) {
     for (let set of newSet) {
       if (set.length != 6) continue
-      this.monkeyset.time[this.monkeyset.index] = parseInt(set[0])
-      this.monkeyset.open[this.monkeyset.index] = parseFloat(set[1])
-      this.monkeyset.high[this.monkeyset.index] = parseFloat(set[2])
-      this.monkeyset.low[this.monkeyset.index] = parseFloat(set[3])
-      this.monkeyset.close[this.monkeyset.index] = parseFloat(set[4])
-      this.monkeyset.volume[this.monkeyset.index] = parseFloat(set[5])
-      this.monkeyset.index++
+      if (isNaN(set[0]) || isNaN(set[1]) || isNaN(set[2]) || isNaN(set[3]) || isNaN(set[4]) || isNaN(set[5])) continue
+      this.monkeyset.sets.time[this.monkeyset.sets.index] = parseInt(set[0])
+      this.monkeyset.sets.open[this.monkeyset.sets.index] = parseFloat(set[1])
+      this.monkeyset.sets.high[this.monkeyset.sets.index] = parseFloat(set[2])
+      this.monkeyset.sets.low[this.monkeyset.sets.index] = parseFloat(set[3])
+      this.monkeyset.sets.close[this.monkeyset.sets.index] = parseFloat(set[4])
+      this.monkeyset.sets.volume[this.monkeyset.sets.index] = parseFloat(set[5])
+      this.monkeyset.sets.index++
     }
 
     return this.monkeyset
-  }
-
-  /**
-   * @summary Validates a MonkeySet
-   * @example
-   * monkeyset.Operation.validate()
-   * // All sets are validated now
-   * @returns {object} MonkeySet class reference
-   */
-  validate() {
-    // TODO: this will not work on chain, it will work with the real data
-    // this.chainSetOld = this.chainSet
-    // this.chainSet = []
-    // let chainIndex = 0
-    // loop1: for (let set of this.chainSetOld) {
-    //   if (typeof set == 'object') {
-    //     loop2: for (let i = 0; i &lt; 6; i++) {
-    //       if (isNaN(set[i])) continue loop1
-    //     }
-    //   } else {
-    //     if (isNaN(set)) continue loop1
-    //   }
-    //   this.chainSet[chainIndex] = set
-    //   chainIndex++
-    // }
-    // return this
   }
 
   /**
@@ -126,13 +101,13 @@ class Operation extends component {
    * @returns {object} MonkeySet class reference
    */
   clear() {
-    this.monkeyset.time = []
-    this.monkeyset.open = []
-    this.monkeyset.high = []
-    this.monkeyset.low = []
-    this.monkeyset.close = []
-    this.monkeyset.volume = []
-    this.monkeyset.index = []
+    this.monkeyset.sets.time = []
+    this.monkeyset.sets.open = []
+    this.monkeyset.sets.high = []
+    this.monkeyset.sets.low = []
+    this.monkeyset.sets.close = []
+    this.monkeyset.sets.volume = []
+    this.monkeyset.sets.index = 0
 
     return this.monkeyset
   }

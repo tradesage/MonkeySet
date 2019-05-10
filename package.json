@@ -8,7 +8,11 @@
   },
   "scripts": {
     "test": "npx nyc mocha tests/mocha/**/*.js",
-    "benchmark:save": "node tests/benchmark/save.js",
+    "benchmark:file": "node tests/benchmark/File.js",
+    "benchmark:filter": "node tests/benchmark/Filter.js",
+    "benchmark:operation": "node tests/benchmark/Operation.js",
+    "benchmark:random": "node tests/benchmark/Random.js",
+    "benchmark": "node tests/benchmark/File.js && node tests/benchmark/Filter.js && node tests/benchmark/Operation.js && node tests/benchmark/Random.js",
     "coveralls:export": "nyc report --reporter=text-lcov | coveralls",
     "coverage:report": "nyc report --reporter=html",
     "docs:create": "del docs /Q && jsdoc -c docs.json",

@@ -36,7 +36,7 @@
         <ul></ul>
     </div>
     
-    <div class="lnb-api hidden"><h3>Classes</h3><ul><li><a href="MonkeySet.html">MonkeySet</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="MonkeySet_sub"></div></li><li><a href="MonkeySet.File.html">File</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="MonkeySet.File_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="MonkeySet.File.html#export">export</a></li><li><a href="MonkeySet.File.html#import">import</a></li><li><a href="MonkeySet.File.html#load">load</a></li><li><a href="MonkeySet.File.html#save">save</a></li></ul></div></li><li><a href="MonkeySet.Operation.html">Operation</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="MonkeySet.Operation_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="MonkeySet.Operation.html#add">add</a></li><li><a href="MonkeySet.Operation.html#clear">clear</a></li><li><a href="MonkeySet.Operation.html#validate">validate</a></li></ul></div></li><li><a href="MonkeySet.Random.html">Random</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="MonkeySet.Random_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="MonkeySet.Random.html#setsFill">setsFill</a></li></ul></div></li><li><a href="MonkeySet.Select.html">Select</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="MonkeySet.Select_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="MonkeySet.Select.html#fetch">fetch</a></li><li><a href="MonkeySet.Select.html#first">first</a></li><li><a href="MonkeySet.Select.html#get">get</a></li><li><a href="MonkeySet.Select.html#last">last</a></li><li><a href="MonkeySet.Select.html#sort">sort</a></li></ul></div></li></ul></div>
+    <div class="lnb-api hidden"><h3>Classes</h3><ul><li><a href="MonkeySet.html">MonkeySet</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="MonkeySet_sub"></div></li><li><a href="MonkeySet.File.html">File</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="MonkeySet.File_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="MonkeySet.File.html#export">export</a></li><li><a href="MonkeySet.File.html#import">import</a></li><li><a href="MonkeySet.File.html#load">load</a></li><li><a href="MonkeySet.File.html#save">save</a></li></ul></div></li><li><a href="MonkeySet.Filter.html">Filter</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="MonkeySet.Filter_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="MonkeySet.Filter.html#end">end</a></li><li><a href="MonkeySet.Filter.html#first">first</a></li><li><a href="MonkeySet.Filter.html#get">get</a></li><li><a href="MonkeySet.Filter.html#last">last</a></li><li><a href="MonkeySet.Filter.html#sort">sort</a></li></ul></div></li><li><a href="MonkeySet.Operation.html">Operation</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="MonkeySet.Operation_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="MonkeySet.Operation.html#add">add</a></li><li><a href="MonkeySet.Operation.html#clear">clear</a></li></ul></div></li><li><a href="MonkeySet.Random.html">Random</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="MonkeySet.Random_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="MonkeySet.Random.html#setsFill">setsFill</a></li></ul></div></li></ul></div>
 </nav>
 <div id="resizer"></div>
 
@@ -65,11 +65,11 @@ class Random extends component {
 	/**
 	 * Completely fills specified amount of sets in a MonkeySet
 	 * @summary Sets a components data
+	 * @param {number} - Amount of sets to create randomly
+	 * @returns {object} MonkeySet
 	 * @example
 	 * const monkeyset = new MonkeySet()
 	 * monkeyset.Random.setsFill(200)
-	 * @param {number} - Amount of sets to create randomly
-	 * @returns {object} MonkeySet
 	 */
 	setsFill(amount) {
 		const startDate = new Date()
@@ -98,7 +98,7 @@ class Random extends component {
 			const close = (price + closeModifier).toFixed(2)
 			volume += parseFloat(volumeModifer)
 
-			this.monkeyset.Operation.add([startDate.setDate(startDate.getDate() + 0.1 * i), open, high, low, close, volume.toFixed(2)])
+			this.monkeyset.Operation.add([startDate.setDate(startDate.getDate() + 1 * i), open, high, low, close, volume.toFixed(2)])
 		}
 
 		return this.monkeyset
