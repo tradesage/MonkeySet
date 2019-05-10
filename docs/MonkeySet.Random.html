@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Class: MonkeySet |  </title>
+    <title>Class: Random |  </title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -48,7 +48,8 @@
 
 <header>
     
-        <h2><span class="attribs"><span class="type-signature"></span></span>MonkeySet<span class="signature">(sets)</span><span class="type-signature"></span></h2>
+        <h2><span class="attribs"><span class="type-signature"></span></span>
+            <span class="ancestors"><a href="MonkeySet.html">MonkeySet</a>.</span>Random</h2>
         
     
 </header>
@@ -61,38 +62,26 @@
 
 <dt>
     
-        <h4 class="name" id="MonkeySet">
+        <h4 class="name" id="Random">
             
-                new <span class="type-signature"></span>MonkeySet<span class="signature">(sets)</span><span class="type-signature"></span>
+                Random
                 
             
             <div class="container-source members">
-                <code><a href="monkeyset.js.html">monkeyset.js</a></code>,
-                <code><a href="monkeyset.js.html#line30">line 30</a></code>
+                <code><a href="components_Random.js.html">components/Random.js</a></code>,
+                <code><a href="components_Random.js.html#line11">line 11</a></code>
             </div>
             
         </h4>
 
         
-        <p class="summary"><p>Represents a MonkeySet containing sets.</p></p>
+        <p class="summary"><p>For creating random data in a MonkeySet</p></p>
         
     
 </dt>
 <dd>
 
     
-    <div class="description">
-        <p>A MonkeySet is a class object that holds OHLC data (a set) in the most important form which is:</p>
-<ul>
-<li>MonkeySet.time: (int) The time in UNIX time stamp when this candle was created</li>
-<li>MonkeySet.open: (float) Opening price</li>
-<li>MonkeySet.high: (float) Highest price</li>
-<li>MonkeySet.low: (float) Lowest price</li>
-<li>MonkeySet.close: (float) Closing price</li>
-<li>MonkeySet.volume: (float) Volume</li>
-</ul>
-    </div>
-    
 
     
 
@@ -100,56 +89,6 @@
 
     
 
-    
-    <div class="container-params">
-        <h5>Parameters:</h5>
-        
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>sets</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Array.&lt;array></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>Initial sets to add to the MonkeySet</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    </div>
     
 
     
@@ -202,11 +141,6 @@
 
 
     
-        <h5>Example</h5>
-        
-    <pre class="prettyprint"><code>const MonkeySet = require('monkeyset')// Create only one setconst monkeyset = new MonkeySet([1,2,3,4,5,6])// Or create a monkeyset with more setsconst monkeyset = new MonkeySet( [1,2,3,4,5,6], [1,2,3,4,5,6], [1,2,3,4,5,6],)</code></pre>
-
-    
 
 </dd>
 
@@ -215,67 +149,208 @@
     
 
     
+        <h3 class="subsection-title">Extends</h3>
+
+        
+
+
+    <ul>
+        <li>component</li>
+    
+        <li><a href="Random.html">Random</a></li>
+    </ul>
+
 
     
 
     
-            <h3 class="subsection-title">Classes</h3>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        <dl>
+                
+
+<dt>
+    
+        <h4 class="name" id="setsFill">
+            
+                <span class="type-signature"></span>setsFill<span class="signature">(amount)</span><span class="type-signature"> &rarr; {object}</span>
+                
+            
+            <div class="container-source members">
+                <code><a href="components_Random.js.html">components/Random.js</a></code>,
+                <code><a href="components_Random.js.html#line24">line 24</a></code>
+            </div>
+            
+        </h4>
+
+        
+        <p class="summary"><p>Sets a components data</p></p>
+        
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Completely fills specified amount of sets in a MonkeySet</p>
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-params">
+        <h5>Parameters:</h5>
+        
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>amount</code></td>
             
 
-<dl>
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Amount of sets to create randomly</p></td>
+        </tr>
+
     
-        <dt>
-            <h4 class="name">
-                <a href="MonkeySet.File.html">File</a>
-                <div class="container-source members">
-                    <code><a href="MonkeySet.File.html">MonkeySet.File</a></code>
-                </div>
-            </h4>
-        </dt>
-        <dd><p>General file operations component for reading/writing MonkeySet data files</p></dd>
+    </tbody>
+</table>
+
+    </div>
     
-        <dt>
-            <h4 class="name">
-                <a href="MonkeySet.Operation.html">Operation</a>
-                <div class="container-source members">
-                    <code><a href="MonkeySet.Operation.html">MonkeySet.Operation</a></code>
-                </div>
-            </h4>
-        </dt>
-        <dd><p>For doing operations on data from a MonkeySet</p></dd>
+
     
-        <dt>
-            <h4 class="name">
-                <a href="MonkeySet.Random.html">Random</a>
-                <div class="container-source members">
-                    <code><a href="MonkeySet.Random.html">MonkeySet.Random</a></code>
-                </div>
-            </h4>
-        </dt>
-        <dd><p>For creating random data in a MonkeySet</p></dd>
+
     
-        <dt>
-            <h4 class="name">
-                <a href="MonkeySet.Select.html">Select</a>
-                <div class="container-source members">
-                    <code><a href="MonkeySet.Select.html">MonkeySet.Select</a></code>
-                </div>
-            </h4>
-        </dt>
-        <dd><p>For selecting data from a MonkeySet</p></dd>
+
+    
+
+    
+
+    
+
+    
+    <div class="container-returns">
+        <h5>Returns:</h5>
+        
+                
+
+
+
+<span class="param-type">object</span>
+
+
+
+
+
+- <p>MonkeySet</p>
+
+
+
+
+            
+    </div>
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="Random.html#setsFill">Random#setsFill</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
     
 </dl>
 
+
     
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>const monkeyset = new MonkeySet()monkeyset.Random.setsFill(200)</code></pre>
 
     
 
-    
+</dd>
 
-    
-
-    
-
+            </dl>
     
 
     
@@ -300,7 +375,7 @@
 <script src="scripts/linenumber.js"></script>
 
     <script>
-        var id = 'MonkeySet_sub'.replace(/"/g, '_');
+        var id = 'MonkeySet.Random_sub'.replace(/"/g, '_');
         var selectedApi = document.getElementById(id); // do not use jquery selector
         var $selectedApi = $(selectedApi);
 

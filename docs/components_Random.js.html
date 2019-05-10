@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Source: monkeyset.js |  </title>
+    <title>Source: components/Random.js |  </title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -48,73 +48,64 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>const path = require('path')
-const fs = require('fs')
+            <pre class="prettyprint source linenums"><code>const component = require('../classes/component')
 
-class MonkeySet {
-  /**
-   * A MonkeySet is a class object that holds OHLC data (a set) in the most important form which is:
-   *  - MonkeySet.time: (int) The time in UNIX time stamp when this candle was created
-   *  - MonkeySet.open: (float) Opening price
-   *  - MonkeySet.high: (float) Highest price
-   *  - MonkeySet.low: (float) Lowest price
-   *  - MonkeySet.close: (float) Closing price
-   *  - MonkeySet.volume: (float) Volume
-   *
-   * @example
-   * const MonkeySet = require('monkeyset')
-   * // Create only one set
-   * const monkeyset = new MonkeySet([1,2,3,4,5,6])
-   *
-   * // Or create a monkeyset with more sets
-   * const monkeyset = new MonkeySet(
-   *  [1,2,3,4,5,6],
-   *  [1,2,3,4,5,6],
-   *  [1,2,3,4,5,6],
-   * )
-   *
-   * @summary Represents a MonkeySet containing sets.
-   * @param {array[]} sets - Initial sets to add to the MonkeySet
-   * @constructor
-   */
-  constructor(...initialSets) {
-    this.projectRoot = path.resolve(path.dirname(__dirname))
-    this.sets = {
-      time: [],
-      open: [],
-      high: [],
-      low: [],
-      close: [],
-      volume: [],
-      index: 0
-    }
-    this.loadComponents()
-    this.Operation.clear()
+class Random extends component {
+	/**
+	 * @hideconstructor
+	 * @summary For creating random data in a MonkeySet
+	 * @augments component
+	 * @memberof MonkeySet
+	 * @augments Random
+	 */
+	constructor(...args) {
+		super(...args)
+	}
 
-    if (initialSets.length >= 1) {
-      this.add(...initialSets)
-    }
-  }
+	/**
+	 * Completely fills specified amount of sets in a MonkeySet
+	 * @summary Sets a components data
+	 * @example
+	 * const monkeyset = new MonkeySet()
+	 * monkeyset.Random.setsFill(200)
+	 * @param {number} - Amount of sets to create randomly
+	 * @returns {object} MonkeySet
+	 */
+	setsFill(amount) {
+		const startDate = new Date()
+		const baseVolume = Math.random() * (3000 - -200) + -200
+		const basePrice = Math.random() * (3000 - -200) + -200
+		let price = basePrice
+		let volume = baseVolume
 
-  /**
-   * @summary Loads all the core or extended components
-   * @ignore
-   */
-  loadComponents() {
-    // Read component files
-    const files = fs.readdirSync(path.join(this.projectRoot, 'src', 'components')).filter(item => {
-      return item.slice(-3, item.length) == '.js'
-    })
+		for (let i = 0; i &lt; amount; i++) {
+			let priceGoUp = Boolean(Math.random() &lt; 0.5)
 
-    // Load components
-    for (let file of files) {
-      const module = require(path.join(this.projectRoot, 'src', 'components', file))
-      this[module.name] = new module(this)
-    }
-  }
+			if (priceGoUp) {
+				price += Math.random() * (10 - 1) + 5
+			} else {
+				price -= Math.random() * (10 - 1) + 5
+			}
+
+			const highModifier = Math.random() * (30 - -30) - 30
+			const lowModifier = Math.random() * (30 - -30) - 30
+			const closeModifier = Math.random() * (30 - -30) - 30
+			const volumeModifer = Math.random() * (5 - -5) - 5
+
+			const open = price.toFixed(2)
+			const high = (price + highModifier).toFixed(2)
+			const low = (price + lowModifier).toFixed(2)
+			const close = (price + closeModifier).toFixed(2)
+			volume += parseFloat(volumeModifer)
+
+			this.monkeyset.Operation.add([startDate.setDate(startDate.getDate() + 0.1 * i), open, high, low, close, volume.toFixed(2)])
+		}
+
+		return this.monkeyset
+	}
 }
 
-module.exports = MonkeySet
+module.exports = Random
 </code></pre>
         </article>
     </section>
