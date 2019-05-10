@@ -36,7 +36,7 @@
         <ul></ul>
     </div>
     
-    <div class="lnb-api hidden"><h3>Classes</h3><ul><li><a href="MonkeySet.html">MonkeySet</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="MonkeySet_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="MonkeySet.html#add">add</a></li><li><a href="MonkeySet.html#export">export</a></li><li><a href="MonkeySet.html#fetch">fetch</a></li><li><a href="MonkeySet.html#file">file</a></li><li><a href="MonkeySet.html#first">first</a></li><li><a href="MonkeySet.html#import">import</a></li><li><a href="MonkeySet.html#last">last</a></li><li><a href="MonkeySet.html#load">load</a></li><li><a href="MonkeySet.html#reset">reset</a></li><li><a href="MonkeySet.html#row">row</a></li><li><a href="MonkeySet.html#rows">rows</a></li><li><a href="MonkeySet.html#save">save</a></li><li><a href="MonkeySet.html#sort">sort</a></li><li><a href="MonkeySet.html#validate">validate</a></li></ul></div></li></ul></div>
+    <div class="lnb-api hidden"><h3>Classes</h3><ul><li><a href="MonkeySet.html">MonkeySet</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="MonkeySet_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="MonkeySet.html#add">add</a></li><li><a href="MonkeySet.html#export">export</a></li><li><a href="MonkeySet.html#fetch">fetch</a></li><li><a href="MonkeySet.html#file">file</a></li><li><a href="MonkeySet.html#first">first</a></li><li><a href="MonkeySet.html#import">import</a></li><li><a href="MonkeySet.html#last">last</a></li><li><a href="MonkeySet.html#load">load</a></li><li><a href="MonkeySet.html#loadComponents">loadComponents</a></li><li><a href="MonkeySet.html#reset">reset</a></li><li><a href="MonkeySet.html#save">save</a></li><li><a href="MonkeySet.html#select">select</a></li><li><a href="MonkeySet.html#sort">sort</a></li><li><a href="MonkeySet.html#validate">validate</a></li></ul></div></li></ul></div>
 </nav>
 <div id="resizer"></div>
 
@@ -56,6 +56,15 @@ const stream = require('stream')
 
 class MonkeySet {
   /**
+    * A MonkeySet is a class object that holds OHLC data (a set) in the most important form which is:
+    *  - MonkeySet.time: (int) The time in unix timestamp when this candle was created
+    *  - MonkeySet.open: (float) Opening price
+    *  - MonkeySet.high: (float) Highest price
+    *  - MonkeySet.low: (float) Lowest price
+    *  - MonkeySet.close: (float) Closing price
+    *  - MonkeySet.volume: (float) Volume
+    *  - MonkeySet.index: (int) Determining index for adding new sets
+    *
     * @summary Represents a MonkeySet containing sets.
     * @param {array} sets - Initial sets to add to the MonkeySet
     * @constructor
@@ -68,12 +77,43 @@ class MonkeySet {
     if (initialSets.length >= 1) {
       this.add(...initialSets)
     }
+
+    this.loadComponents()
+  }
+
+  /**
+    * @summary Loads all the components, used internally
+  */
+  loadComponents() {
+    this.time = []
+    this.open = []
+    this.high = []
+    this.low = []
+    this.close = []
+    this.volume = []
+    this.index = 0
+  }
+
+  /**
+    * @summary Resets a MonkeySet object, clearing all data.
+    * @returns {class} MonkeySet class reference
+  */
+  reset() {
+    this.time = []
+    this.open = []
+    this.high = []
+    this.low = []
+    this.close = []
+    this.volume = []
+    this.index = 0
+
+    return this
   }
 
   /**
     * @summary Set a filename to work with
     * @param {string} - filename
-    * @returns {class} MonkeySet class
+    * @returns {class} MonkeySet class reference
   */
   file(filename = 'monkeyset') {
     this.filename = filename
@@ -120,7 +160,7 @@ class MonkeySet {
       let readHeader = true
       let monkeysetIndex = 0
       let lineIndex = 0
-      rl.on('line', function(line) {
+      rl.on('line', line => {
         if (readHeader) {
           monkeysetData.created = parseInt(line.split(':')[0])
           monkeysetData.monkeyset = []
@@ -129,7 +169,7 @@ class MonkeySet {
         } else {
           monkeysetIndex = lineIndex - 1
           monkeysetData.monkeyset[monkeysetIndex] = []
-          line.split(',').forEach(function (set, index) {
+          line.split(',').forEach((set, index) => {
             monkeysetData.monkeyset[monkeysetIndex][index] = parseFloat(set)
           })
         }
@@ -175,7 +215,7 @@ class MonkeySet {
         created: data.created,
         monkeyset: data.monkeyset,
       }
-      // TODO: instead of contents create a crc32
+      // TODO: instead of contents hmac, create a crc32 of file
       // const signature = crypto.createHmac('sha256', data.created.toString()).update(JSON.stringify(contents)).digest('hex')
       // if (signature != data.signature) {
       //   return reject('HMAC not verified for this import, monkeyset file has been tampered with')
@@ -188,7 +228,7 @@ class MonkeySet {
   /**
     * @summary Grabs the last amount of sets of a MonkeySet
     * @param {number} - Amount to grab
-    * @returns {class} MonkeySet class
+    * @returns {class} MonkeySet class reference
   */
   last(amount = 1) {
     this.chainSet = this.chainSet.slice(Math.max(this.chainSet.length - amount, 1))
@@ -198,7 +238,7 @@ class MonkeySet {
   /**
     * @summary Grabs the first amount of sets of a MonkeySet
     * @param {number} - Amount to grab
-    * @returns {class} MonkeySet class
+    * @returns {class} MonkeySet class reference
   */
   first(amount = 1) {
     this.chainSet = this.chainSet.slice(0, amount)
@@ -209,7 +249,7 @@ class MonkeySet {
     * @summary Sorts a MonkeySet based on order and column specified
     * @param {string} - Order to sort by
     * @param {string} - Column to sort on
-    * @returns {class} MonkeySet class
+    * @returns {class} MonkeySet class reference
   */
   sort(order = 'ascending', column = 'time') {
     // We are dealing with a array in array
@@ -243,7 +283,7 @@ class MonkeySet {
 
   /**
     * @summary Validates a MonkeySet
-    * @returns {class} MonkeySet class
+    * @returns {class} MonkeySet class reference
   */
   validate() {
     this.chainSetOld = this.chainSet
@@ -269,22 +309,6 @@ class MonkeySet {
   }
 
   /**
-    * @summary Resets a MonkeySet object, clearing all data.
-    * @returns {class} MonkeySet class
-  */
-  reset() {
-    this.time = []
-    this.open = []
-    this.high = []
-    this.low = []
-    this.close = []
-    this.volume = []
-    this.index = 0
-
-    return this
-  }
-
-  /**
     * @summary Usually called at the end of a chain method
     * @returns {array[]} The Monkey chain set that was worked with
   */
@@ -293,34 +317,33 @@ class MonkeySet {
   }
 
   /**
-    * @summary Starts the initial data feed for the chain methods, this gets sets as a whole
-    * @returns {class} MonkeySet class
+    * @summary Starts the initial data feed for the chain methods
+    * @returns {class} MonkeySet class reference
   */
-  rows() {
+  select(selector, ...args) {
     this.chainSet = []
-    for (let i = 0; i &lt; this.time.length; i++) {
+
+    if (selector == 'sets') {
+      for (let i = 0; i &lt; this.time.length; i++) {
+        this.chainSet[i] = [this.time[i], this.open[i], this.high[i], this.low[i], this.close[i], this.volume[i]]
+      }
+    } else if (selector == 'set') {
       this.chainSet[i] = [this.time[i], this.open[i], this.high[i], this.low[i], this.close[i], this.volume[i]]
+    } else if (selector == 'column') {
+      if (args.length != 1) {
+        throw new Error(`you need to specify 1 argument for the ${selector} selector`)
+      }
+      this.chainSet = this[args[0]]
+    } else {
+      throw new Error(`${selector} is not a valid selector for select`)
     }
-
-    return this
-  }
-
-
-  /**
-    * @summary Starts the initial data feed for the chain methods, this gets sets as a whole
-    * @param {string} - Column name to grab
-    * @returns {class} MonkeySet class
-  */
-  row(column) {
-    this.chainSet = this[column]
-
     return this
   }
 
   /**
     * @summary Starts the initial data feed for the chain methods, this gets sets as a whole
     * @param {array[]} - A set or a array of sets
-    * @returns {class} MonkeySet class
+    * @returns {class} MonkeySet class reference
   */
   add(...newSet) {
     for (let set of newSet) {

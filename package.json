@@ -13,9 +13,9 @@
     "coverage:report": "nyc report --reporter=html",
     "docs:create": "jsdoc -c docs.json",
     "docs:publish": "npm run docs:create && git add README.md docs && git commit -m \"docs update\" && git push origin development",
-    "release:major": "git add -A && git commit -m \"Version bump\" && npm version major && git tag \"%npm_package_version%\" && git push --tags && npm publish",
-    "release:minor": "git add -A && git commit -m \"Version bump\" && npm version minor && git tag \"%npm_package_version%\" && git push --tags && npm publish",
-    "release:patch": "git add -A && git commit -m \"Version bump\" && npm version patch && git tag \"%npm_package_version%\" && git push --tags && npm publish",
+    "release:major": "git add -A && git commit -m \"Version bump major\" && npm version major && git tag \"%npm_package_version%\" && git push --tags && npm publish",
+    "release:minor": "git add -A && git commit -m \"Version bump minor\" && npm version minor && git tag \"%npm_package_version%\" && git push --tags && npm publish",
+    "release:patch": "git add -A && git commit -m \"Version bump patch\" && npm version patch && git tag \"%npm_package_version%\" && git push --tags && npm publish",
     "release": "npm run release:patch"
   },
   "author": {
