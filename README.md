@@ -16,6 +16,8 @@
 [![Help us and star this project](https://img.shields.io/github/stars/michaeldegroot/monkeyset.svg?style=social)](https://github.com/michaeldegroot/MonkeySet)
 
 # MonkeySet
+When dealing with large sets of data in finance, you want to make sure your data is valid, quick and persistent, prototyping ideas should be fast and reliable, chances of failure due to faulty data should be eliminated. This module aims to solve those problems.
+
 *Designed for handling big amounts of data (time, open, high, low, close, volume) from any financial markets, capable of importing, exporting, csv parsing, special select queries and analyzes for your data in all kinds of ways*
 
 ## Warning
@@ -39,12 +41,9 @@ Checkout our [documentation](https://michaeldegroot.github.io/MonkeySet/)
 
  ```javascript
 const MonkeySet = require('monkeyset')
-// Create a Monkeyset
+// Create a MonkeySet
 const monkeyset = new MonkeySet([
-  // Add sets to the monkeyset
-  [new Date(), 120, 125, 130, 100, 20356],
-
-  // Data structure set:
+  // A MonkeySet holds sets, these are arrays that hold OHLC data:
   // [time (unix), open (float/int), high (float/int), low (float/int), close (float/int), volume (float/int)]
   [new Date(), 125, 127, 139, 105, 21252],
   [new Date(), 115, 117, 119, 105, 21352],
@@ -54,34 +53,17 @@ const monkeyset = new MonkeySet([
 // Fetch all rows
 monkeyset.rows().fetch()
 
-// You can chain fetch rows
-monkeyset.rows().sort().fetch()
-monkeyset.rows().sort('descending').fetch()
-monkeyset.rows().first(3).fetch()
-monkeyset.rows().last().fetch()
-
-// You can also chain fetch row
-monkeyset.row('time').last(3).fetch()
-monkeyset.row('time').last(3).sort('ascending').fetch()
-
-// Add new set
-monkeyset.add([new Date(), 125, 127, 139, 105, 21252])
-
-// Or add sets
-monkeyset.add([
-  [new Date(), 120, 125, 130, 100, 20356],
-  [new Date(), 125, 127, 139, 105, 21252],
-  [new Date(), 115, 117, 119, 105, 21352],
-  [new Date(), 115, 117, 119, 105, 21552],
-])
-
-// Save the whole monkeyset to file
-monkeyset.rows().file('myfile').save('C:/inthisfolder')
-
-// Or only save the last 150 results, while validating them and sorting
-monkeyset.rows().last(150).sort().validate().file('myfile').save('C:/inthisfolder')
-
-// Load the saved 'myfile'
-const newMonkeyset = new MonkeySet()
-newMonkeyset.file('myfile').load('C:/inthisfolder')
+// But wait! there is more :)
 ```
+
+## Querying data
+
+blablalba
+
+## Monkeyset files
+
+blablalbal
+
+## Validation
+
+balblablal

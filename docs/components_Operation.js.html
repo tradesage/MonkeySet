@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Source: monkeyset.js |  </title>
+    <title>Source: components/Operation.js |  </title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -48,73 +48,97 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>const path = require('path')
-const fs = require('fs')
+            <pre class="prettyprint source linenums"><code>const component = require('../classes/component')
 
-class MonkeySet {
+class Operation extends component {
   /**
-   * A MonkeySet is a class object that holds OHLC data (a set) in the most important form which is:
-   *  - MonkeySet.time: (int) The time in UNIX time stamp when this candle was created
-   *  - MonkeySet.open: (float) Opening price
-   *  - MonkeySet.high: (float) Highest price
-   *  - MonkeySet.low: (float) Lowest price
-   *  - MonkeySet.close: (float) Closing price
-   *  - MonkeySet.volume: (float) Volume
-   *
+   * @hideconstructor
+   * @summary For doing operations on data from a MonkeySet
+   * @augments component
+   * @memberof MonkeySet
+   * @augments Operation
+   */
+  constructor(...args) {
+    super(...args)
+  }
+
+  /**
+   * @summary Adds OHLC data to the MonkeySet
    * @example
-   * const MonkeySet = require('monkeyset')
-   * // Create only one set
-   * const monkeyset = new MonkeySet([1,2,3,4,5,6])
+   * // One add
+   * monkeyset.Operation.add([1,2,3,4,5,6])
    *
-   * // Or create a monkeyset with more sets
-   * const monkeyset = new MonkeySet(
+   * // Multiple adds
+   * monkeyset.Operation.add(
    *  [1,2,3,4,5,6],
    *  [1,2,3,4,5,6],
    *  [1,2,3,4,5,6],
    * )
-   *
-   * @summary Represents a MonkeySet containing sets.
-   * @param {array[]} sets - Initial sets to add to the MonkeySet
-   * @constructor
+   * @param {array[]} - A set or a array of sets
+   * @returns {object} MonkeySet class reference
    */
-  constructor(...initialSets) {
-    this.projectRoot = path.resolve(path.dirname(__dirname))
-    this.sets = {
-      time: [],
-      open: [],
-      high: [],
-      low: [],
-      close: [],
-      volume: [],
-      index: 0
+  add(...newSet) {
+    for (let set of newSet) {
+      if (set.length != 6) continue
+      this.monkeyset.time[this.monkeyset.index] = parseInt(set[0])
+      this.monkeyset.open[this.monkeyset.index] = parseFloat(set[1])
+      this.monkeyset.high[this.monkeyset.index] = parseFloat(set[2])
+      this.monkeyset.low[this.monkeyset.index] = parseFloat(set[3])
+      this.monkeyset.close[this.monkeyset.index] = parseFloat(set[4])
+      this.monkeyset.volume[this.monkeyset.index] = parseFloat(set[5])
+      this.monkeyset.index++
     }
-    this.loadComponents()
-    this.Operation.clear()
 
-    if (initialSets.length >= 1) {
-      this.add(...initialSets)
-    }
+    return this.monkeyset
   }
 
   /**
-   * @summary Loads all the core or extended components
-   * @ignore
+   * @summary Validates a MonkeySet
+   * @example
+   * monkeyset.Operation.validate()
+   * // All sets are validated now
+   * @returns {object} MonkeySet class reference
    */
-  loadComponents() {
-    // Read component files
-    const files = fs.readdirSync(path.join(this.projectRoot, 'src', 'components')).filter(item => {
-      return item.slice(-3, item.length) == '.js'
-    })
+  validate() {
+    // TODO: this will not work on chain, it will work with the real data
+    // this.chainSetOld = this.chainSet
+    // this.chainSet = []
+    // let chainIndex = 0
+    // loop1: for (let set of this.chainSetOld) {
+    //   if (typeof set == 'object') {
+    //     loop2: for (let i = 0; i &lt; 6; i++) {
+    //       if (isNaN(set[i])) continue loop1
+    //     }
+    //   } else {
+    //     if (isNaN(set)) continue loop1
+    //   }
+    //   this.chainSet[chainIndex] = set
+    //   chainIndex++
+    // }
+    // return this
+  }
 
-    // Load components
-    for (let file of files) {
-      const module = require(path.join(this.projectRoot, 'src', 'components', file))
-      this[module.name] = new module(this)
-    }
+  /**
+   * @summary clears a MonkeySet object, destroying all data.
+   * @example
+   * monkeyset.Operation.clear()
+   *
+   * @returns {object} MonkeySet class reference
+   */
+  clear() {
+    this.monkeyset.time = []
+    this.monkeyset.open = []
+    this.monkeyset.high = []
+    this.monkeyset.low = []
+    this.monkeyset.close = []
+    this.monkeyset.volume = []
+    this.monkeyset.index = []
+
+    return this.monkeyset
   }
 }
 
-module.exports = MonkeySet
+module.exports = Operation
 </code></pre>
         </article>
     </section>

@@ -1,4 +1,6 @@
 {
 "esversion": 8,
-"asi" : true
+"asi" : true,
+"undef": true,
+"node": true
 }

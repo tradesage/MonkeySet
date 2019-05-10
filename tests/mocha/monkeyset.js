@@ -13,28 +13,27 @@ describe('MonkeySet', function() {
       assert('low' in monkeyset)
       assert('close' in monkeyset)
       assert('volume' in monkeyset)
-      assert('rows' in monkeyset)
       assert('index' in monkeyset)
     })
     it('Creating correct data structure', () => {
       const monkeyset = new MonkeySet([1,2,3,4,5,6])
-      assert.equal(monkeyset.rows().fetch()[0][0], 1)
-      assert.equal(monkeyset.rows().fetch()[0][1], 2)
-      assert.equal(monkeyset.rows().fetch()[0][2], 3)
-      assert.equal(monkeyset.rows().fetch()[0][3], 4)
-      assert.equal(monkeyset.rows().fetch()[0][4], 5)
-      assert.equal(monkeyset.rows().fetch()[0][5], 6)
+      assert.equal(monkeyset.select().sets().fetch()[0][0], 1)
+      assert.equal(monkeyset.select().sets().fetch()[0][1], 2)
+      assert.equal(monkeyset.select().sets().fetch()[0][2], 3)
+      assert.equal(monkeyset.select().sets().fetch()[0][3], 4)
+      assert.equal(monkeyset.select().sets().fetch()[0][4], 5)
+      assert.equal(monkeyset.select().sets().fetch()[0][5], 6)
     })
   })
   describe('Basic operatons', () => {
     it('Can fetch single row', () => {
       const monkeyset = new MonkeySet([1,2,3,4,5,6])
-      assert.equal(monkeyset.row('time').fetch()[0], 1)
-      assert.equal(monkeyset.row('open').fetch()[0], 2)
-      assert.equal(monkeyset.row('high').fetch()[0], 3)
-      assert.equal(monkeyset.row('low').fetch()[0], 4)
-      assert.equal(monkeyset.row('close').fetch()[0], 5)
-      assert.equal(monkeyset.row('volume').fetch()[0], 6)
+      assert.equal(monkeyset.select().column('time').fetch()[0], 1)
+      assert.equal(monkeyset.select().column('open').fetch()[0], 2)
+      assert.equal(monkeyset.select().column('high').fetch()[0], 3)
+      assert.equal(monkeyset.select().column('low').fetch()[0], 4)
+      assert.equal(monkeyset.select().column('close').fetch()[0], 5)
+      assert.equal(monkeyset.select().column('volume').fetch()[0], 6)
     })
     it('Can fetch all rows', () => {
       const monkeyset = new MonkeySet([1,2,3,4,5,6], [7,8,9,10,11,12])
@@ -92,9 +91,9 @@ describe('MonkeySet', function() {
 
       const monkeyset2 = new MonkeySet(
         [1,2,3,4,5,6], // should be the only value that passed in the sets
-        ['a',2,3,4,5,6], // should be the only value that passed in the sets
-        [Infinity,2,3,4,5,6], // should be the only value that passed in the sets
-        [NaN,2,3,4,5,6], // should be the only value that passed in the sets
+        ['a',2,3,4,5,6],
+        [Infinity,2,3,4,5,6],
+        [NaN,2,3,4,5,6],
       )
       assert.equal(monkeyset2.row('time').validate().fetch().length, 1)
     })
@@ -102,7 +101,10 @@ describe('MonkeySet', function() {
   describe('File system', () => {
     it('Saving', done => {
       const monkeyset = new MonkeySet([1,2,3,4,5,6])
-      monkeyset.rows().file('test').save().then(done)
+      monkeyset.rows().file('test').save().then(() => {
+        fs.readFileSync(fileUrl)
+        done()
+      })
     })
     it('Loading', done => {
       const newmonkeyset = new MonkeySet()
