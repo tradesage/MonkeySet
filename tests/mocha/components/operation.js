@@ -11,5 +11,6 @@ describe('Operation', function() {
 		const monkeyset = new MonkeySet([1, 2, 3, 4, 5, 6])
 		monkeyset.Operation.clear()
 		assert.equal(monkeyset.Filter.get('sets').end().length, 0)
+		assert.deepEqual(monkeyset.Filter.get('sets').end(), [])
 	})
 })
