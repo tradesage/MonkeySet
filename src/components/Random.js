@@ -42,13 +42,14 @@ class Random extends component {
 			const closeModifier = Math.random() * (30 - -30) - 30
 			const volumeModifer = Math.random() * (5 - -5) - 5
 
-			const open = price.toFixed(2)
-			const high = (price + highModifier).toFixed(2)
-			const low = (price + lowModifier).toFixed(2)
-			const close = (price + closeModifier).toFixed(2)
+			const open = parseFloat(price.toFixed(2))
+			const high = parseFloat((price + highModifier).toFixed(2))
+			const low = parseFloat((price + lowModifier).toFixed(2))
+			const close = parseFloat((price + closeModifier).toFixed(2))
 			volume += parseFloat(volumeModifer)
+			volume = parseFloat(parseFloat(volume).toFixed(2))
 
-			this.monkeyset.Operation.add([startDate.setDate(startDate.getDate() + 1 * i), open, high, low, close, volume.toFixed(2)])
+			this.monkeyset.Operation.add([startDate.setDate(startDate.getDate() + 1), open, high, low, close, volume])
 		}
 
 		return this.monkeyset

@@ -4,6 +4,7 @@ const path = require('path')
 const MonkeySet = require('../../../src/monkeyset')
 
 let monkeyset
+let monkeysetexport
 
 const suite = new Benchmark.Suite('app')
 
@@ -20,9 +21,9 @@ suite.add({
 })
 
 suite.add({
-  name: 'monkeyset.File.save',
+  name: 'monkeyset.File.import',
   fn: async () => {
-    await monkeyset.File.save('./myfile')
+    monkeyset.File.import(monkeysetexport)
   },
   onStart: () => {},
   onError: e => {
@@ -47,7 +48,8 @@ suite.add({
 // called when the suite starts running
 suite.on('start', () => {
   monkeyset = new MonkeySet()
-  monkeyset.Random.setsFill(2000000)
+  monkeyset.Random.setsFill(1000000)
+  monkeysetexport = monkeyset.File.export()
 })
 
 // called between running benchmarks

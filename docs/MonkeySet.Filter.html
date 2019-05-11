@@ -177,7 +177,7 @@
             
             <div class="container-source members">
                 <code><a href="components_filter.js.html">components/filter.js</a></code>,
-                <code><a href="components_filter.js.html#line171">line 171</a></code>
+                <code><a href="components_filter.js.html#line137">line 137</a></code>
             </div>
             
         </h4>
@@ -292,7 +292,7 @@ calculated here, so promises are easy to implement.</p>
             
             <div class="container-source members">
                 <code><a href="components_filter.js.html">components/filter.js</a></code>,
-                <code><a href="components_filter.js.html#line112">line 112</a></code>
+                <code><a href="components_filter.js.html#line89">line 89</a></code>
             </div>
             
         </h4>
@@ -445,7 +445,7 @@ calculated here, so promises are easy to implement.</p>
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>monkeyset = new MonkeySet([1,2,3,4,5,6], [7,8,9,10,11,12])// Get only first 5 setsconst sets = monkeyset.Filter.get('sets').first(5).end()</code></pre>
+    <pre class="prettyprint"><code>monkeyset = new MonkeySet([1,2,3,4,5,6], [7,8,9,10,11,12])// Get only first 2 setsconst sets = monkeyset.Filter.get('sets').first(2).end()</code></pre>
 
     
 
@@ -469,7 +469,7 @@ calculated here, so promises are easy to implement.</p>
         </h4>
 
         
-        <p class="summary"><p>Starts the initial data feed for the chain methods</p></p>
+        <p class="summary"><p>Starts/resets the filter chain which stores the array to work with for the chain methods</p></p>
         
     
 </dt>
@@ -576,7 +576,7 @@ calculated here, so promises are easy to implement.</p>
             
             <div class="container-source members">
                 <code><a href="components_filter.js.html">components/filter.js</a></code>,
-                <code><a href="components_filter.js.html#line97">line 97</a></code>
+                <code><a href="components_filter.js.html#line74">line 74</a></code>
             </div>
             
         </h4>
@@ -729,7 +729,7 @@ calculated here, so promises are easy to implement.</p>
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>monkeyset = new MonkeySet([1,2,3,4,5,6], [7,8,9,10,11,12])// Get only 5 last setsconst sets = monkeyset.Filter.get('sets').last(5).end()</code></pre>
+    <pre class="prettyprint"><code>monkeyset = new MonkeySet([1,2,3,4,5,6], [7,8,9,10,11,12])// Get only 2 last setsconst sets = monkeyset.Filter.get('sets').last(2).end()</code></pre>
 
     
 
@@ -747,7 +747,7 @@ calculated here, so promises are easy to implement.</p>
             
             <div class="container-source members">
                 <code><a href="components_filter.js.html">components/filter.js</a></code>,
-                <code><a href="components_filter.js.html#line128">line 128</a></code>
+                <code><a href="components_filter.js.html#line105">line 105</a></code>
             </div>
             
         </h4>
@@ -929,7 +929,7 @@ calculated here, so promises are easy to implement.</p>
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>monkeyset = new MonkeySet([1,2,3,4,5,6], [7,8,9,10,11,12])// Get all sets and sort ascending on close priceconst sets = monkeyset.Filter.get('sets').sort('ascneding', 'close').end()</code></pre>
+    <pre class="prettyprint"><code>monkeyset = new MonkeySet([1,2,3,4,5,6], [7,8,9,10,11,12])// Get all sets and sort ascending on close priceconst sets = monkeyset.Filter.get('sets').sort('ascending', 'close').end()</code></pre>
 
     
 

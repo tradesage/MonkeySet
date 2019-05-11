@@ -68,8 +68,8 @@ class Filter extends component {
 	 * @example
 	 * monkeyset = new MonkeySet([1,2,3,4,5,6], [7,8,9,10,11,12])
 	 *
-	 * // Get only 5 last sets
-	 * const sets = monkeyset.Filter.get('sets').last(5).end()
+	 * // Get only 2 last sets
+	 * const sets = monkeyset.Filter.get('sets').last(2).end()
 	 */
 	last(amount = 1) {
 		this.filterChain = this.filterChain.slice(Math.max(this.filterChain.length - amount, 1))
@@ -83,8 +83,8 @@ class Filter extends component {
 	 * @example
 	 * monkeyset = new MonkeySet([1,2,3,4,5,6], [7,8,9,10,11,12])
 	 *
-	 * // Get only first 5 sets
-	 * const sets = monkeyset.Filter.get('sets').first(5).end()
+	 * // Get only first 2 sets
+	 * const sets = monkeyset.Filter.get('sets').first(2).end()
 	 */
 	first(amount = 1) {
 		this.filterChain = this.filterChain.slice(0, amount)

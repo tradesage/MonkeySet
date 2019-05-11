@@ -7,9 +7,47 @@ const suite = new Benchmark.Suite('app')
 
 const sets1 = new MonkeySet()
 sets1.Random.setsFill(1000)
+const sets1half = sets1.sets.length / 2
 
 const sets2 = new MonkeySet()
 sets2.Random.setsFill(1000000)
+const sets2half = sets2.sets.length / 2
+
+suite.add({
+  name: `monkeyset.Filter.get('sets').first(${sets1half}) (${sets1.sets.length} sets)`,
+  fn: done => {
+    sets1.Filter.get('sets')
+      .first(sets1half)
+      .end()
+  }
+})
+
+suite.add({
+  name: `monkeyset.Filter.get('sets').first(${sets2half}) (${sets2.sets.length} sets)`,
+  fn: done => {
+    sets2.Filter.get('sets')
+      .first(sets2half)
+      .end()
+  }
+})
+
+suite.add({
+  name: `monkeyset.Filter.get('sets').last(${sets1half}) (${sets1.sets.length} sets)`,
+  fn: done => {
+    sets1.Filter.get('sets')
+      .last(sets1half)
+      .end()
+  }
+})
+
+suite.add({
+  name: `monkeyset.Filter.get('sets').last(${sets2half}) (${sets2.sets.length} sets)`,
+  fn: done => {
+    sets2.Filter.get('sets')
+      .last(sets2half)
+      .end()
+  }
+})
 
 suite.add({
   name: `monkeyset.Filter.get('sets') (${sets1.sets.length} sets)`,
