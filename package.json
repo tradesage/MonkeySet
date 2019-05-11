@@ -1,6 +1,6 @@
 {
   "name": "monkeyset",
-  "version": "0.0.1",
+  "version": "0.3.0",
   "description": "A lightweight and performance based OHLCV data manager",
   "main": "src",
   "engines": {
@@ -8,7 +8,11 @@
   },
   "scripts": {
     "test": "npx nyc mocha tests/mocha/**/*.js",
-    "benchmark:save": "node tests/benchmark/save.js",
+    "benchmark:file": "node tests/benchmark/components/file.js",
+    "benchmark:filter": "node tests/benchmark/components/filter.js",
+    "benchmark:operation": "node tests/benchmark/components/operation.js",
+    "benchmark:random": "node tests/benchmark/components/random.js",
+    "benchmark": "node tests/benchmark/components/file.js && node tests/benchmark/components/filter.js && node tests/benchmark/components/operation.js && node tests/benchmark/components/random.js",
     "coveralls:export": "nyc report --reporter=text-lcov | coveralls",
     "coverage:report": "nyc report --reporter=html",
     "docs:create": "del docs /Q && jsdoc -c docs.json",

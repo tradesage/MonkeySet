@@ -1,5 +1,6 @@
 const path = require('path')
 const fs = require('fs')
+const events = require('events')
 
 class MonkeySet {
   /**
@@ -26,7 +27,12 @@ class MonkeySet {
    * @summary Represents a MonkeySet containing sets.
    * @param {array[]} sets - Initial sets to add to the MonkeySet
    * @constructor
+   * @class Monkeyset
    */
+
+  // TODO: Chain variable should be global across components, return this
+  // should be a return global chain set across components instead of component locally.
+  // if you don't know what I mena with this.. then omg
   constructor(...initialSets) {
     this.projectRoot = path.resolve(path.dirname(__dirname))
     this.sets = {
@@ -38,11 +44,12 @@ class MonkeySet {
       volume: [],
       index: 0
     }
+    this.event = new events.EventEmitter()
     this.loadComponents()
     this.Operation.clear()
 
     if (initialSets.length >= 1) {
-      this.add(...initialSets)
+      this.Operation.add(...initialSets)
     }
   }
 

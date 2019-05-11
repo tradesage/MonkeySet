@@ -1,15 +1,16 @@
 const component = require('../classes/component')
 const fs = require('fs')
 const path = require('path')
+const crypto = require('crypto')
 const readline = require('readline')
 
+/**
+ * @summary General file operations component for reading/writing MonkeySet data files
+ * @memberof MonkeySet
+ */
 class File extends component {
 	/**
 	 * @hideconstructor
-	 * @summary General file operations component for reading/writing MonkeySet data files
-	 * @augments component
-	 * @memberof MonkeySet
-	 * @augments File
 	 */
 	constructor(...args) {
 		super(...args)
@@ -18,10 +19,16 @@ class File extends component {
 	/**
 	 * @summary Saves a MonkeySet to filename
 	 * @param {string} - File to save
+	 * @fires MonkeySet#fileSave
+	 * @example
+	 * monkeyset = new MonkeySet([1,2,3,4,5,6])
+	 *
+	 * // Save the MonkeySet to file
+	 * await monkeyset.File.save('./afile')
 	 */
 	save(saveFile = path.join(this.projectRoot, 'export.monkeyset')) {
-		return new Promise(async (resolve, reject) => {
-			const monkeysetExport = await this.export()
+		return new Promise((resolve, reject) => {
+			const monkeysetExport = this.export()
 
 			const stream = fs.createWriteStream(saveFile, { flags: 'w' })
 			stream.write(`${monkeysetExport.created}:${monkeysetExport.signature}\n`)
@@ -31,17 +38,22 @@ class File extends component {
 			stream.close()
 
 			stream.on('error', reject)
-			stream.on('finish', resolve)
+			stream.on('finish', () => {
+				/** @event MonkeySet#fileSave */
+				this.monkeyset.event.emit('fileSave')
+				resolve()
+			})
 		})
 	}
 
 	/**
 	 * @summary Loads a MonkeySet from filename
+	 * @param {string} - File to load
+	 * @fires MonkeySet#fileLoad
 	 * @example
 	 * const monkeyset = new MonkeySet()
-	 * await monkeyset.File.load('./load.monkeyset')
+	 * await monkeyset.File.load('./afile')
 	 * // MonkeySet is now full of sets loaded from ./load.monkeyset file
-	 * @param {string} - File to load
 	 */
 	load(loadFile = path.join(this.projectRoot, 'export.monkeyset')) {
 		return new Promise((resolve, reject) => {
@@ -75,56 +87,56 @@ class File extends component {
 			rl.on('error', reject)
 			rl.on('close', () => {
 				this.import(monkeysetData)
+				/** @event MonkeySet#fileLoad */
+				this.monkeyset.event.emit('fileLoad')
 				resolve()
 			})
 		})
 	}
 
 	/**
-	 * It's important to notice that validate is called up export start
 	 * @summary Exports a MonkeySet data format
+	 * @returns {object} MonkeySet data format export object
 	 * @example
 	 * const monkeyset = new MonkeySet([1,2,3,4,5,6])
 	 * const monkeySetExport = await monkeyset.File.export()
-	 * @returns {object} MonkeySet data format export object
 	 */
 	export() {
-		return new Promise(async (resolve, reject) => {
-			this.validate()
-			const created = +new Date()
+		const created = +new Date()
 
-			const contents = {
-				created,
-				monkeyset: this.monkeyset.Select.get('rows')
-			}
-			resolve(contents)
-		})
+		const contents = {
+			created,
+			monkeyset: this.monkeyset.Filter.get('sets').end()
+		}
+
+		return contents
 	}
 
 	/**
 	 * @summary Imports a exported MonkeySet data format
+	 * @param {data} - MonkeySet data format to import
+	 * @throws Will reject promise with a error if .monkeyset file has been tampered with (failed HMAC authentication)
+	 * @returns {boolean} returns true if success
 	 * @example
 	 * const monkeyset = new MonkeySet()
 	 * const monkeySetExport = await monkeyset.File.export()
 	 * monkeyset.File.import(monkeySetExport)
-	 * @param {data} - MonkeySet data format to import
-	 * @throws Will reject promise with a error if .monkeyset file has been tampered with (failed HMAC authentication)
-	 * @returns {boolean} returns true if success
 	 */
 	import(data) {
-		return new Promise((resolve, reject) => {
-			const contents = {
-				created: data.created,
-				monkeyset: data.monkeyset
-			}
-			// TODO: instead of contents hmac, create a crc32 of file
-			// const signature = crypto.createHmac('sha256', data.created.toString()).update(JSON.stringify(contents)).digest('hex')
-			// if (signature != data.signature) {
-			//   return reject('HMAC not verified for this import, monkeyset file has been tampered with')
-			// }
-			this.add(...contents.monkeyset)
-			resolve()
-		})
+		const contents = {
+			created: data.created,
+			monkeyset: data.monkeyset
+		}
+		// TODO: instead of contents hmac, create a crc32 of file
+		// const signature = crypto
+		// 	.createHmac('sha256', data.created.toString())
+		// 	.update(JSON.stringify(contents))
+		// 	.digest('hex')
+		// if (signature != data.signature) {
+		// 	return 'HMAC not verified for this import, monkeyset file has been tampered with'
+		// }
+		this.monkeyset.Operation.add(...contents.monkeyset)
+		return true
 	}
 }
 

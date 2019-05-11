@@ -1,10 +1,8 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Source: components/operation.js |  </title>
+    <title>Class: Analyzer |  </title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -45,84 +43,133 @@
 
 
 
+
+<section>
+
+<header>
     
-    <section>
-        <article>
-            <pre class="prettyprint source linenums"><code>const component = require('../classes/component')
+        <h2><span class="attribs"><span class="type-signature"></span></span>
+            <span class="ancestors"><a href="MonkeySet.html">MonkeySet</a>~</span>Analyzer</h2>
+        
+    
+</header>
 
-/**
- * @summary For doing operations on data from a MonkeySet
- * @memberof MonkeySet
- */
-class Operation extends component {
-  /**
-   * @hideconstructor
-   */
-  constructor(...args) {
-    super(...args)
-  }
+<article>
+    
+        <div class="container-overview">
+        
+            
 
-  /**
-   * @summary Adds OHLC data to the MonkeySet
-   * @param {array[]} - A set or a array of sets
-   * @returns {object} MonkeySet class reference
-   * @fires MonkeySet#add
-   * @example
-   * // One add
-   * monkeyset.Operation.add([1,2,3,4,5,6])
-   *
-   * // Multiple adds
-   * monkeyset.Operation.add(
-   *  [1,2,3,4,5,6],
-   *  [1,2,3,4,5,6],
-   *  [1,2,3,4,5,6],
-   * )
-   */
-  add(...newSet) {
-    for (let set of newSet) {
-      if (set.length != 6) continue
-      if (isNaN(set[0]) || isNaN(set[1]) || isNaN(set[2]) || isNaN(set[3]) || isNaN(set[4]) || isNaN(set[5])) continue
-      this.monkeyset.sets.time[this.monkeyset.sets.index] = parseInt(set[0])
-      this.monkeyset.sets.open[this.monkeyset.sets.index] = parseFloat(set[1])
-      this.monkeyset.sets.high[this.monkeyset.sets.index] = parseFloat(set[2])
-      this.monkeyset.sets.low[this.monkeyset.sets.index] = parseFloat(set[3])
-      this.monkeyset.sets.close[this.monkeyset.sets.index] = parseFloat(set[4])
-      this.monkeyset.sets.volume[this.monkeyset.sets.index] = parseFloat(set[5])
-      /** @event MonkeySet#add */
-      this.monkeyset.event.emit('add', this.monkeyset.sets.index)
-      this.monkeyset.sets.index++
-    }
+<dt>
+    
+        <h4 class="name" id="Analyzer">
+            
+                Analyzer
+                
+            
+            <div class="container-source members">
+                <code><a href="components_analyzer.js.html">components/analyzer.js</a></code>,
+                <code><a href="components_analyzer.js.html#line11">line 11</a></code>
+            </div>
+            
+        </h4>
 
-    return this.monkeyset
-  }
+        
+        <p class="summary"><p>General analyzer component for composing interesting analyzes from a MonkeySet</p></p>
+        
+    
+</dt>
+<dd>
 
-  /**
-   * @summary clears a MonkeySet object, destroying all data.
-   * @fires MonkeySet#clear
-   * @example
-   * monkeyset.Operation.clear()
-   *
-   * @returns {object} MonkeySet class reference
-   */
-  clear() {
-    this.monkeyset.sets.time = []
-    this.monkeyset.sets.open = []
-    this.monkeyset.sets.high = []
-    this.monkeyset.sets.low = []
-    this.monkeyset.sets.close = []
-    this.monkeyset.sets.volume = []
-    this.monkeyset.sets.index = 0
-    /** @event MonkeySet#clear */
-    this.monkeyset.event.emit('clear')
+    
 
-    return this.monkeyset
-  }
-}
+    
 
-module.exports = Operation
-</code></pre>
-        </article>
-    </section>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+</dd>
+
+        
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
 
 
 
@@ -139,7 +186,7 @@ module.exports = Operation
 <script src="scripts/linenumber.js"></script>
 
     <script>
-        var id = '_sub'.replace(/"/g, '_');
+        var id = 'MonkeySet.Analyzer_sub'.replace(/"/g, '_');
         var selectedApi = document.getElementById(id); // do not use jquery selector
         var $selectedApi = $(selectedApi);
 

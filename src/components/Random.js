@@ -1,12 +1,12 @@
 const component = require('../classes/component')
 
+/**
+ * @summary For creating random data in a MonkeySet
+ * @memberof MonkeySet
+ */
 class Random extends component {
 	/**
 	 * @hideconstructor
-	 * @summary For creating random data in a MonkeySet
-	 * @augments component
-	 * @memberof MonkeySet
-	 * @augments Random
 	 */
 	constructor(...args) {
 		super(...args)
@@ -15,11 +15,11 @@ class Random extends component {
 	/**
 	 * Completely fills specified amount of sets in a MonkeySet
 	 * @summary Sets a components data
+	 * @param {number} - Amount of sets to create randomly
+	 * @returns {object} MonkeySet
 	 * @example
 	 * const monkeyset = new MonkeySet()
 	 * monkeyset.Random.setsFill(200)
-	 * @param {number} - Amount of sets to create randomly
-	 * @returns {object} MonkeySet
 	 */
 	setsFill(amount) {
 		const startDate = new Date()
@@ -48,7 +48,7 @@ class Random extends component {
 			const close = (price + closeModifier).toFixed(2)
 			volume += parseFloat(volumeModifer)
 
-			this.monkeyset.Operation.add([startDate.setDate(startDate.getDate() + 0.1 * i), open, high, low, close, volume.toFixed(2)])
+			this.monkeyset.Operation.add([startDate.setDate(startDate.getDate() + 1 * i), open, high, low, close, volume.toFixed(2)])
 		}
 
 		return this.monkeyset
