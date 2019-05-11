@@ -1,7 +1,5 @@
 const assert = require('assert')
-const fs = require('fs')
-const MonkeySet = require('../../src/monkeyset')
-const zlib = require('zlib')
+const MonkeySet = require('../../../src/monkeyset')
 
 describe('Random', function() {
 	it('monkeyset.Random.setsFill(200)', async () => {

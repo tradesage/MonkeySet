@@ -1,12 +1,12 @@
 const component = require('../classes/component')
 
+/**
+ * @summary For doing operations on data from a MonkeySet
+ * @memberof MonkeySet
+ */
 class Operation extends component {
   /**
    * @hideconstructor
-   * @summary For doing operations on data from a MonkeySet
-   * @augments component
-   * @memberof MonkeySet
-   * @augments Operation
    */
   constructor(...args) {
     super(...args)
@@ -16,6 +16,7 @@ class Operation extends component {
    * @summary Adds OHLC data to the MonkeySet
    * @param {array[]} - A set or a array of sets
    * @returns {object} MonkeySet class reference
+   * @fires MonkeySet#add
    * @example
    * // One add
    * monkeyset.Operation.add([1,2,3,4,5,6])
@@ -37,6 +38,8 @@ class Operation extends component {
       this.monkeyset.sets.low[this.monkeyset.sets.index] = parseFloat(set[3])
       this.monkeyset.sets.close[this.monkeyset.sets.index] = parseFloat(set[4])
       this.monkeyset.sets.volume[this.monkeyset.sets.index] = parseFloat(set[5])
+      /** @event MonkeySet#add */
+      this.monkeyset.event.emit('add', this.monkeyset.sets.index)
       this.monkeyset.sets.index++
     }
 
@@ -45,6 +48,7 @@ class Operation extends component {
 
   /**
    * @summary clears a MonkeySet object, destroying all data.
+   * @fires MonkeySet#clear
    * @example
    * monkeyset.Operation.clear()
    *
@@ -58,6 +62,8 @@ class Operation extends component {
     this.monkeyset.sets.close = []
     this.monkeyset.sets.volume = []
     this.monkeyset.sets.index = 0
+    /** @event MonkeySet#clear */
+    this.monkeyset.event.emit('clear')
 
     return this.monkeyset
   }

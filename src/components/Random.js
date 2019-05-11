@@ -1,12 +1,12 @@
 const component = require('../classes/component')
 
+/**
+ * @summary For creating random data in a MonkeySet
+ * @memberof MonkeySet
+ */
 class Random extends component {
 	/**
 	 * @hideconstructor
-	 * @summary For creating random data in a MonkeySet
-	 * @augments component
-	 * @memberof MonkeySet
-	 * @augments Random
 	 */
 	constructor(...args) {
 		super(...args)

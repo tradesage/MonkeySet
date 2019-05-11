@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Source: components/File.js |  </title>
+    <title>Source: components/file.js |  </title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -36,7 +36,7 @@
         <ul></ul>
     </div>
     
-    <div class="lnb-api hidden"><h3>Classes</h3><ul><li><a href="MonkeySet.html">MonkeySet</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="MonkeySet_sub"></div></li><li><a href="MonkeySet.Analyzer.html">Analyzer</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="MonkeySet.Analyzer_sub"></div></li><li><a href="MonkeySet.File.html">File</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="MonkeySet.File_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="MonkeySet.File.html#export">export</a></li><li><a href="MonkeySet.File.html#import">import</a></li><li><a href="MonkeySet.File.html#load">load</a></li><li><a href="MonkeySet.File.html#save">save</a></li></ul></div></li><li><a href="MonkeySet.Filter.html">Filter</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="MonkeySet.Filter_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="MonkeySet.Filter.html#end">end</a></li><li><a href="MonkeySet.Filter.html#first">first</a></li><li><a href="MonkeySet.Filter.html#get">get</a></li><li><a href="MonkeySet.Filter.html#last">last</a></li><li><a href="MonkeySet.Filter.html#sort">sort</a></li></ul></div></li><li><a href="MonkeySet.Operation.html">Operation</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="MonkeySet.Operation_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="MonkeySet.Operation.html#add">add</a></li><li><a href="MonkeySet.Operation.html#clear">clear</a></li></ul></div></li><li><a href="MonkeySet.Random.html">Random</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="MonkeySet.Random_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="MonkeySet.Random.html#setsFill">setsFill</a></li></ul></div></li></ul></div>
+    <div class="lnb-api hidden"><h3>Classes</h3><ul><li><a href="MonkeySet.html">MonkeySet</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="MonkeySet_sub"><div class="member-type">Events</div><ul class="inner"><li><a href="MonkeySet.html#event:add">add</a></li><li><a href="MonkeySet.html#event:clear">clear</a></li><li><a href="MonkeySet.html#event:fileLoad">fileLoad</a></li><li><a href="MonkeySet.html#event:fileSave">fileSave</a></li></ul></div></li><li><a href="MonkeySet.Analyzer.html">Analyzer</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="MonkeySet.Analyzer_sub"></div></li><li><a href="MonkeySet.File.html">File</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="MonkeySet.File_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="MonkeySet.File.html#export">export</a></li><li><a href="MonkeySet.File.html#import">import</a></li><li><a href="MonkeySet.File.html#load">load</a></li><li><a href="MonkeySet.File.html#save">save</a></li></ul></div></li><li><a href="MonkeySet.Filter.html">Filter</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="MonkeySet.Filter_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="MonkeySet.Filter.html#end">end</a></li><li><a href="MonkeySet.Filter.html#first">first</a></li><li><a href="MonkeySet.Filter.html#get">get</a></li><li><a href="MonkeySet.Filter.html#last">last</a></li><li><a href="MonkeySet.Filter.html#sort">sort</a></li></ul></div></li><li><a href="MonkeySet.Operation.html">Operation</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="MonkeySet.Operation_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="MonkeySet.Operation.html#add">add</a></li><li><a href="MonkeySet.Operation.html#clear">clear</a></li></ul></div></li><li><a href="MonkeySet.Random.html">Random</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="MonkeySet.Random_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="MonkeySet.Random.html#setsFill">setsFill</a></li></ul></div></li></ul></div>
 </nav>
 <div id="resizer"></div>
 
@@ -51,15 +51,16 @@
             <pre class="prettyprint source linenums"><code>const component = require('../classes/component')
 const fs = require('fs')
 const path = require('path')
+const crypto = require('crypto')
 const readline = require('readline')
 
+/**
+ * @summary General file operations component for reading/writing MonkeySet data files
+ * @memberof MonkeySet
+ */
 class File extends component {
 	/**
 	 * @hideconstructor
-	 * @summary General file operations component for reading/writing MonkeySet data files
-	 * @augments component
-	 * @memberof MonkeySet
-	 * @augments File
 	 */
 	constructor(...args) {
 		super(...args)
@@ -68,6 +69,7 @@ class File extends component {
 	/**
 	 * @summary Saves a MonkeySet to filename
 	 * @param {string} - File to save
+	 * @fires MonkeySet#fileSave
 	 * @example
 	 * monkeyset = new MonkeySet([1,2,3,4,5,6])
 	 *
@@ -86,13 +88,18 @@ class File extends component {
 			stream.close()
 
 			stream.on('error', reject)
-			stream.on('finish', resolve)
+			stream.on('finish', () => {
+				/** @event MonkeySet#fileSave */
+				this.monkeyset.event.emit('fileSave')
+				resolve()
+			})
 		})
 	}
 
 	/**
 	 * @summary Loads a MonkeySet from filename
 	 * @param {string} - File to load
+	 * @fires MonkeySet#fileLoad
 	 * @example
 	 * const monkeyset = new MonkeySet()
 	 * await monkeyset.File.load('./afile')
@@ -130,6 +137,8 @@ class File extends component {
 			rl.on('error', reject)
 			rl.on('close', () => {
 				this.import(monkeysetData)
+				/** @event MonkeySet#fileLoad */
+				this.monkeyset.event.emit('fileLoad')
 				resolve()
 			})
 		})
@@ -149,6 +158,7 @@ class File extends component {
 			created,
 			monkeyset: this.monkeyset.Filter.get('sets').end()
 		}
+
 		return contents
 	}
 
@@ -168,13 +178,13 @@ class File extends component {
 			monkeyset: data.monkeyset
 		}
 		// TODO: instead of contents hmac, create a crc32 of file
-		const signature = crypto
-			.createHmac('sha256', data.created.toString())
-			.update(JSON.stringify(contents))
-			.digest('hex')
-		if (signature != data.signature) {
-			return 'HMAC not verified for this import, monkeyset file has been tampered with'
-		}
+		// const signature = crypto
+		// 	.createHmac('sha256', data.created.toString())
+		// 	.update(JSON.stringify(contents))
+		// 	.digest('hex')
+		// if (signature != data.signature) {
+		// 	return 'HMAC not verified for this import, monkeyset file has been tampered with'
+		// }
 		this.monkeyset.Operation.add(...contents.monkeyset)
 		return true
 	}

@@ -1,5 +1,5 @@
 const assert = require('assert')
-const MonkeySet = require('../../src/monkeyset')
+const MonkeySet = require('../../../src/monkeyset')
 
 describe('Operation', function() {
 	it('monkeyset.Operation.add()', async () => {

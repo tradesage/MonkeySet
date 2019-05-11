@@ -1,12 +1,12 @@
 const component = require('../classes/component')
 
+/**
+ * @summary For selecting data from a MonkeySet
+ * @memberof MonkeySet
+ */
 class Filter extends component {
 	/**
 	 * @hideconstructor
-	 * @summary For selecting data from a MonkeySet
-	 * @augments component
-	 * @memberof MonkeySet
-	 * @augments Filter
 	 */
 	constructor(...args) {
 		super(...args)
@@ -30,7 +30,19 @@ class Filter extends component {
 	get(selector, ...args) {
 		this.filterChain = []
 
-		if (selector == 'sets') {
+		if (selector == 'setsmap') {
+			// Selecting sets: [[1,2,3,4,5,6], [1,2,3,4,5,6]]
+			this.filterChain = this.monkeyset.sets.time.map((v, i) => {
+				return [
+					v,
+					this.monkeyset.sets.open[i],
+					this.monkeyset.sets.high[i],
+					this.monkeyset.sets.low[i],
+					this.monkeyset.sets.close[i],
+					this.monkeyset.sets.volume[i]
+				]
+			})
+		} else if (selector == 'setsfor') {
 			// Selecting sets: [[1,2,3,4,5,6], [1,2,3,4,5,6]]
 			for (let i = 0; i < this.monkeyset.sets.time.length; i++) {
 				this.filterChain[i] = [

@@ -2,7 +2,7 @@ const assert = require('assert')
 const MonkeySet = require('../../src/monkeyset')
 
 describe('MonkeySet', function() {
-  it('Valid class object structure', function() {
+  it('Valid class object structure', () => {
     const monkeyset = new MonkeySet()
     assert('time' in monkeyset.sets)
     assert('open' in monkeyset.sets)

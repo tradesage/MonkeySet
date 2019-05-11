@@ -1,44 +1,44 @@
 const Benchmark = require('benchmark')
 const fs = require('fs')
 const path = require('path')
-const MonkeySet = require('../../src/monkeyset')
+const MonkeySet = require('../../../src/monkeyset')
 
 let monkeyset
 
 const suite = new Benchmark.Suite('app')
 
-// TODO: MEMORY ALLOCATION ERRORS :c EVEN WITH LOW AMOUNT OF SETS AND IDK WHY IM STILL HOLDING SHIFT TO TYPE THIS
 suite.add({
-  name: 'monkeyset.File.save',
-  fn: async () => {
-    await monkeyset.File.save('./myfile')
+  name: 'monkeyset.Operation.add',
+  fn: done => {
+    monkeyset.Operation.add([1, 2, 3, 4, 5, 6])
   },
-  onStart: () => {},
+  onStart: () => {
+    monkeyset = new MonkeySet()
+  },
   onError: e => {
     console.log(e)
     throw new Error(e)
+  },
+  onComplete: () => {
+    // console.log(monkeyset.Filter.get('sets').end().length)
   }
 })
 
 suite.add({
-  name: 'monkeyset.File.load',
-  fn: async () => {
-    await monkeyset.File.load('./myfile')
+  name: 'monkeyset.Operation.clear',
+  fn: done => {
+    monkeyset.Operation.clear()
   },
   onStart: () => {},
   onError: e => {
     console.log(e)
     throw new Error(e)
-  }
+  },
+  onComplete: () => {}
 })
 
 // called when the suite starts running
-suite.on('start', () => {
-  console.log('Generating garbage')
-  monkeyset = new MonkeySet()
-  monkeyset.Random.setsFill(2000000)
-  console.log('Starting File component benchmark')
-})
+suite.on('start', () => {})
 
 // called between running benchmarks
 suite.on('cycle', function(event) {
@@ -55,6 +55,8 @@ suite.on('error', e => {
   console.log('bench error', e)
 })
 
-suite.on('complete', () => {})
+suite.on('complete', () => {
+  process.exit()
+})
 
 suite.run({ async: false })

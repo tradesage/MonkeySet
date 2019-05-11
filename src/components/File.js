@@ -4,13 +4,13 @@ const path = require('path')
 const crypto = require('crypto')
 const readline = require('readline')
 
+/**
+ * @summary General file operations component for reading/writing MonkeySet data files
+ * @memberof MonkeySet
+ */
 class File extends component {
 	/**
 	 * @hideconstructor
-	 * @summary General file operations component for reading/writing MonkeySet data files
-	 * @augments component
-	 * @memberof MonkeySet
-	 * @augments File
 	 */
 	constructor(...args) {
 		super(...args)
@@ -19,6 +19,7 @@ class File extends component {
 	/**
 	 * @summary Saves a MonkeySet to filename
 	 * @param {string} - File to save
+	 * @fires MonkeySet#fileSave
 	 * @example
 	 * monkeyset = new MonkeySet([1,2,3,4,5,6])
 	 *
@@ -37,13 +38,18 @@ class File extends component {
 			stream.close()
 
 			stream.on('error', reject)
-			stream.on('finish', resolve)
+			stream.on('finish', () => {
+				/** @event MonkeySet#fileSave */
+				this.monkeyset.event.emit('fileSave')
+				resolve()
+			})
 		})
 	}
 
 	/**
 	 * @summary Loads a MonkeySet from filename
 	 * @param {string} - File to load
+	 * @fires MonkeySet#fileLoad
 	 * @example
 	 * const monkeyset = new MonkeySet()
 	 * await monkeyset.File.load('./afile')
@@ -81,6 +87,8 @@ class File extends component {
 			rl.on('error', reject)
 			rl.on('close', () => {
 				this.import(monkeysetData)
+				/** @event MonkeySet#fileLoad */
+				this.monkeyset.event.emit('fileLoad')
 				resolve()
 			})
 		})
@@ -100,6 +108,7 @@ class File extends component {
 			created,
 			monkeyset: this.monkeyset.Filter.get('sets').end()
 		}
+
 		return contents
 	}
 
@@ -119,13 +128,13 @@ class File extends component {
 			monkeyset: data.monkeyset
 		}
 		// TODO: instead of contents hmac, create a crc32 of file
-		const signature = crypto
-			.createHmac('sha256', data.created.toString())
-			.update(JSON.stringify(contents))
-			.digest('hex')
-		if (signature != data.signature) {
-			return 'HMAC not verified for this import, monkeyset file has been tampered with'
-		}
+		// const signature = crypto
+		// 	.createHmac('sha256', data.created.toString())
+		// 	.update(JSON.stringify(contents))
+		// 	.digest('hex')
+		// if (signature != data.signature) {
+		// 	return 'HMAC not verified for this import, monkeyset file has been tampered with'
+		// }
 		this.monkeyset.Operation.add(...contents.monkeyset)
 		return true
 	}
