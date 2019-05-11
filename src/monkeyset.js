@@ -33,17 +33,11 @@ class MonkeySet {
   // TODO: Chain variable should be global across components, return this
   // should be a return global chain set across components instead of component locally.
   // if you don't know what I mena with this.. then omg
+  // EDIT: I KNOW WHAT YOU MEAN SHUT THE FUCK UP BIATCH
   constructor(...initialSets) {
     this.projectRoot = path.resolve(path.dirname(__dirname))
-    this.sets = {
-      time: [],
-      open: [],
-      high: [],
-      low: [],
-      close: [],
-      volume: [],
-      index: 0
-    }
+    this.sets = {}
+    this.index = 0
     this.event = new events.EventEmitter()
     this.loadComponents()
     this.Operation.clear()

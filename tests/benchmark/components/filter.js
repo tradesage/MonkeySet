@@ -3,137 +3,55 @@ const fs = require('fs')
 const path = require('path')
 const MonkeySet = require('../../../src/monkeyset')
 
-let monkeyset
-
 const suite = new Benchmark.Suite('app')
 
+const sets1 = new MonkeySet()
+sets1.Random.setsFill(1000)
+
+const sets2 = new MonkeySet()
+sets2.Random.setsFill(1000000)
+
 suite.add({
-  name: "monkeyset.Filter.get('setsmap') (1000 setsmap)",
+  name: `monkeyset.Filter.get('sets') (${sets1.sets.length} sets)`,
   fn: done => {
-    monkeyset.Filter.get('setsmap').end()
-  },
-  onStart: () => {
-    monkeyset = new MonkeySet()
-    monkeyset.Random.setsFill(1000)
-  },
-  onError: e => {
-    console.log(e)
-    throw new Error(e)
-  },
-  onComplete: () => {}
+    sets1.Filter.get('sets').end()
+  }
 })
 
 suite.add({
-  name: "monkeyset.Filter.get('setsmap') (100000 setsmap)",
+  name: `monkeyset.Filter.get('sets') (${sets2.sets.length} sets)`,
   fn: done => {
-    monkeyset.Filter.get('setsmap').end()
-  },
-  onStart: () => {
-    monkeyset = new MonkeySet()
-    monkeyset.Random.setsFill(100000)
-  },
-  onError: e => {
-    console.log(e)
-    throw new Error(e)
-  },
-  onComplete: () => {}
+    sets2.Filter.get('sets').end()
+  }
 })
 
 suite.add({
-  name: "monkeyset.Filter.get('setsfor') (1000 setsfor)",
+  name: `monkeyset.Filter.get('set', 500) (${sets1.sets.length} set)`,
   fn: done => {
-    monkeyset.Filter.get('setsfor').end()
-  },
-  onStart: () => {
-    monkeyset = new MonkeySet()
-    monkeyset.Random.setsFill(1000)
-  },
-  onError: e => {
-    console.log(e)
-    throw new Error(e)
-  },
-  onComplete: () => {}
+    sets1.Filter.get('set', 500).end()
+  }
 })
 
 suite.add({
-  name: "monkeyset.Filter.get('setsfor') (100000 setsfor)",
+  name: `monkeyset.Filter.get('set', 500000) (${sets2.sets.length} sets)`,
   fn: done => {
-    monkeyset.Filter.get('setsfor').end()
-  },
-  onStart: () => {
-    monkeyset = new MonkeySet()
-    monkeyset.Random.setsFill(100000)
-  },
-  onError: e => {
-    console.log(e)
-    throw new Error(e)
-  },
-  onComplete: () => {}
+    sets2.Filter.get('set', 500000).end()
+  }
 })
 
-// suite.add({
-//   name: "monkeyset.Filter.get('set', 500) (1000 sets)",
-//   fn: done => {
-//     monkeyset.Filter.get('set', 500).end()
-//   },
-//   onStart: () => {
-//     monkeyset = new MonkeySet()
-//     monkeyset.Random.setsFill(1000)
-//   },
-//   onError: e => {
-//     console.log(e)
-//     throw new Error(e)
-//   },
-//   onComplete: () => {}
-// })
+suite.add({
+  name: `monkeyset.Filter.get('column', 'open') (${sets1.sets.length} sets)`,
+  fn: done => {
+    sets1.Filter.get('column', 'open').end()
+  }
+})
 
-// suite.add({
-//   name: "monkeyset.Filter.get('set', 50000) (100000 sets)",
-//   fn: done => {
-//     monkeyset.Filter.get('set', 50000).end()
-//   },
-//   onStart: () => {
-//     monkeyset = new MonkeySet()
-//     monkeyset.Random.setsFill(100000)
-//   },
-//   onError: e => {
-//     console.log(e)
-//     throw new Error(e)
-//   },
-//   onComplete: () => {}
-// })
-
-// suite.add({
-//   name: "monkeyset.Filter.get('column', 'open') (1000 sets)",
-//   fn: done => {
-//     monkeyset.Filter.get('column', 'open').end()
-//   },
-//   onStart: () => {
-//     monkeyset = new MonkeySet()
-//     monkeyset.Random.setsFill(1000)
-//   },
-//   onError: e => {
-//     console.log(e)
-//     throw new Error(e)
-//   },
-//   onComplete: () => {}
-// })
-
-// suite.add({
-//   name: "monkeyset.Filter.get('column', 'open') (100000 sets)",
-//   fn: done => {
-//     monkeyset.Filter.get('column', 'open').end()
-//   },
-//   onStart: () => {
-//     monkeyset = new MonkeySet()
-//     monkeyset.Random.setsFill(100000)
-//   },
-//   onError: e => {
-//     console.log(e)
-//     throw new Error(e)
-//   },
-//   onComplete: () => {}
-// })
+suite.add({
+  name: `monkeyset.Filter.get('column', 'open') (${sets2.sets.length} sets)`,
+  fn: done => {
+    sets2.Filter.get('column', 'open').end()
+  }
+})
 
 // called when the suite starts running
 suite.on('start', () => {})

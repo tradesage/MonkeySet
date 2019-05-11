@@ -29,19 +29,10 @@ class Operation extends component {
    * )
    */
   add(...newSet) {
-    for (let set of newSet) {
-      if (set.length != 6) continue
-      if (isNaN(set[0]) || isNaN(set[1]) || isNaN(set[2]) || isNaN(set[3]) || isNaN(set[4]) || isNaN(set[5])) continue
-      this.monkeyset.sets.time[this.monkeyset.sets.index] = parseInt(set[0])
-      this.monkeyset.sets.open[this.monkeyset.sets.index] = parseFloat(set[1])
-      this.monkeyset.sets.high[this.monkeyset.sets.index] = parseFloat(set[2])
-      this.monkeyset.sets.low[this.monkeyset.sets.index] = parseFloat(set[3])
-      this.monkeyset.sets.close[this.monkeyset.sets.index] = parseFloat(set[4])
-      this.monkeyset.sets.volume[this.monkeyset.sets.index] = parseFloat(set[5])
-      /** @event MonkeySet#add */
-      this.monkeyset.event.emit('add', this.monkeyset.sets.index)
-      this.monkeyset.sets.index++
-    }
+    this.monkeyset.index += newSet.length
+    this.monkeyset.sets.push(...newSet)
+    //   /** @event MonkeySet#add */
+    this.monkeyset.event.emit('add', this.monkeyset.index)
 
     return this.monkeyset
   }
@@ -55,13 +46,8 @@ class Operation extends component {
    * @returns {object} MonkeySet class reference
    */
   clear() {
-    this.monkeyset.sets.time = []
-    this.monkeyset.sets.open = []
-    this.monkeyset.sets.high = []
-    this.monkeyset.sets.low = []
-    this.monkeyset.sets.close = []
-    this.monkeyset.sets.volume = []
-    this.monkeyset.sets.index = 0
+    this.monkeyset.sets = []
+    this.monkeyset.index = 0
     /** @event MonkeySet#clear */
     this.monkeyset.event.emit('clear')
 
