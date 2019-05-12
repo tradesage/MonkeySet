@@ -34,24 +34,27 @@ const worksetMapping = {
   open: workset5
 }
 
-const ohlc = {
-  open: worksetMapping.open,
-  high: worksetMapping.high,
-  low: worksetMapping.low,
-  close: worksetMapping.close
-}
+for (let index in tulind.indicators) {
+  const indicator = tulind.indicators[index]
+  let analyzerData = {
+    options: {},
+    inputs: {}
+  }
 
-for (let pattern of monkeyset.Analyzer.candlePatterns) {
-  it('monkeyset.Analyzer.pattern(' + pattern + ')', async () => {
-    monkeyset.Analyzer.pattern(pattern, ohlc)
+  for (let i = indicator.options - 1; i >= 0; i--) {
+    let value = 10
+
+    if (indicator.option_names[i] == 'alpha') value = 0.2
+    if (indicator.option_names[i] == 'acceleration factor step') value = 0.2
+
+    analyzerData.options[indicator.option_names[i]] = value
+  }
+
+  for (let i = 0; i < indicator.inputs; i++) {
+    analyzerData.inputs[indicator.input_names[i]] = worksetMapping[indicator.input_names[i]]
+  }
+
+  it('monkeyset.indicator.' + index, async () => {
+    await monkeyset.Indicator[index](analyzerData)
   })
 }
-
-it('monkeyset.Analyzer.predict()', async () => {
-  const predict = await monkeyset.Analyzer.predict(
-    monkeyset.Filter.get('column', 'close')
-      .last(400)
-      .end()
-  )
-  console.log(predict)
-})

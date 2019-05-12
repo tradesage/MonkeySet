@@ -15,7 +15,7 @@
     "benchmark:analyzer": "mocha tests/mocha/components/analyzer.js && node tests/benchmark/components/analyzer.js",
     "benchmark": "npm run benchmark:file && npm run benchmark:filter && npm run benchmark:operation && npm run benchmark:random",
     "coveralls:export": "nyc report --reporter=text-lcov | coveralls",
-    "docs:create": "del docs /Q && jsdoc -c docs.json",
+    "docs:create": "node src/libs/generateDocs/generate.js && del docs /Q && jsdoc -c docs.json",
     "docs:publish": "npm run docs:create && git add README.md docs && git commit -m \"docs update\" && git push origin development"
   },
   "author": {
@@ -43,6 +43,7 @@
   "devDependencies": {
     "benchmark": "^2.1.4",
     "coveralls": "^3.0.3",
+    "draw-candlestick": "^2.0.3",
     "husky": "^2.2.0",
     "jsdoc": "^3.6.1",
     "mocha": "^6.1.4",
