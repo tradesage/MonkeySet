@@ -6,3 +6,5 @@ coverage
 .git
 package-lock.json
 realtest
+docs
+tests
