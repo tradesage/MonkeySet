@@ -12,6 +12,7 @@
     "benchmark:filter": "mocha tests/mocha/components/filter.js && node tests/benchmark/components/filter.js",
     "benchmark:operation": "mocha tests/mocha/components/operation.js && node tests/benchmark/components/operation.js",
     "benchmark:random": "mocha tests/mocha/components/random.js && node tests/benchmark/components/random.js",
+    "benchmark:analyzer": "mocha tests/mocha/components/analyzer.js && node tests/benchmark/components/analyzer.js",
     "benchmark": "npm run benchmark:file && npm run benchmark:filter && npm run benchmark:operation && npm run benchmark:random",
     "coveralls:export": "nyc report --reporter=text-lcov | coveralls",
     "docs:create": "del docs /Q && jsdoc -c docs.json",
@@ -34,7 +35,11 @@
     "statements": 90
   },
   "license": "MIT",
-  "dependencies": {},
+  "dependencies": {
+    "@tensorflow/tfjs": "^0.13.0",
+    "@tensorflow/tfjs-node": "^0.1.17",
+    "@types/node": "^6.0.96"
+  },
   "devDependencies": {
     "benchmark": "^2.1.4",
     "coveralls": "^3.0.3",

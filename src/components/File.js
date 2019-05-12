@@ -20,13 +20,14 @@ class File extends component {
 	 * @summary Saves a MonkeySet to filename
 	 * @param {string} - File to save
 	 * @fires MonkeySet#fileSave
+	 * @returns {promise}
 	 * @example
 	 * monkeyset = new MonkeySet([1,2,3,4,5,6])
 	 *
 	 * // Save the MonkeySet to file
 	 * await monkeyset.File.save('./afile')
 	 */
-	save(saveFile = path.join(this.projectRoot, 'export.monkeyset')) {
+	save(saveFile = path.join(this.monkeyset.projectRoot, 'export.monkeyset')) {
 		return new Promise((resolve, reject) => {
 			const monkeysetExport = this.export()
 
@@ -50,12 +51,13 @@ class File extends component {
 	 * @summary Loads a MonkeySet from filename
 	 * @param {string} - File to load
 	 * @fires MonkeySet#fileLoad
+	 * @returns {promise}
 	 * @example
 	 * const monkeyset = new MonkeySet()
 	 * await monkeyset.File.load('./afile')
 	 * // MonkeySet is now full of sets loaded from ./load.monkeyset file
 	 */
-	load(loadFile = path.join(this.projectRoot, 'export.monkeyset')) {
+	load(loadFile = path.join(this.monkeyset.projectRoot, 'export.monkeyset')) {
 		return new Promise((resolve, reject) => {
 			const instream = fs.createReadStream(loadFile)
 			const rl = readline.createInterface({
@@ -106,7 +108,7 @@ class File extends component {
 
 		const contents = {
 			created,
-			monkeyset: this.monkeyset.Filter.get('sets').end()
+			monkeyset: this.monkeyset.sets
 		}
 
 		return contents

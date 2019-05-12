@@ -73,8 +73,11 @@
 <a href="https://github.com/michaeldegroot/MonkeySet"><img src="https://img.shields.io/github/languages/top/badges/shields.svg" alt="Top language of repo"></a>
 <a href="https://github.com/michaeldegroot/MonkeySet"><img src="https://img.shields.io/github/stars/michaeldegroot/monkeyset.svg?style=social" alt="Help us and star this project"></a></p>
 <h1>MonkeySet</h1>
+<h2>Intro</h2>
 <p>When dealing with large sets of data in finance, you want to make sure your data is valid, quick and persistent, prototyping ideas should be fast and reliable, chances of failure due to faulty data should be eliminated. This module aims to solve those problems.</p>
-<p><em>Designed for handling big amounts of data (time, open, high, low, close, volume) from any financial markets, capable of importing, exporting, csv parsing, special select queries and analyzes for your data in all kinds of ways</em></p>
+<p>The idea behind MonkeySet is that at it's core it's really just a simple javascript multidimensional array. To maximize speed of course, there is little to no overhead for your existing data to transform into a MonkeySet format.</p>
+<p>On top of that you have an extensive operations, analyzes, validations, and filters components you can apply on your data.</p>
+<p>It's core components are designed with performance in mind to maximize your results in for example back testing of your crypto currency bot :)</p>
 <h2>Warning</h2>
 <p><strong>Warning: this project is not finished yet, do not use it in your project</strong></p>
 <h2>Features</h2>
@@ -94,11 +97,11 @@
 <pre class="prettyprint source lang-javascript"><code>const MonkeySet = require('monkeyset')
 // Create a MonkeySet
 const monkeyset = new MonkeySet([
- // A MonkeySet holds sets, these are arrays that hold OHLC data:
- // [time (unix), open (float/int), high (float/int), low (float/int), close (float/int), volume (float/int)]
- [new Date(), 125, 127, 139, 105, 21252],
- [new Date(), 115, 117, 119, 105, 21352],
- [new Date(), 115, 117, 119, 105, 21552],
+	// A MonkeySet holds sets, these are arrays that hold OHLC data:
+	// [time (unix), open (float/int), high (float/int), low (float/int), close (float/int), volume (float/int)]
+	[new Date(), 125, 127, 139, 105, 21252],
+	[new Date(), 115, 117, 119, 105, 21352],
+	[new Date(), 115, 117, 119, 105, 21552]
 ])
 
 // Fetch all rows
