@@ -13,8 +13,8 @@ class Random extends component {
 	}
 
 	/**
-	 * Completely fills specified amount of sets in a MonkeySet
-	 * @summary Sets a components data
+	 * Completely fills specified amount of sets in a MonkeySet with random fake OHLC data
+	 * @summary Fills a MonkeySet with fake data
 	 * @param {number} - Amount of sets to create randomly
 	 * @returns {object} MonkeySet
 	 * @example
@@ -24,14 +24,12 @@ class Random extends component {
 	setsFill(amount) {
 		const startDate = new Date()
 		const baseVolume = Math.random() * (3000 - -200) + -200
-		const basePrice = Math.random() * (3000 - -200) + -200
+		const basePrice = Math.random() * (8000 - -200) + -200
 		let price = basePrice
 		let volume = baseVolume
 
 		for (let i = 0; i < amount; i++) {
-			let priceGoUp = Boolean(Math.random() < 0.5)
-
-			if (priceGoUp) {
+			if (Boolean(Math.random() < 0.5)) {
 				price += Math.random() * (10 - 1) + 5
 			} else {
 				price -= Math.random() * (10 - 1) + 5
@@ -42,13 +40,14 @@ class Random extends component {
 			const closeModifier = Math.random() * (30 - -30) - 30
 			const volumeModifer = Math.random() * (5 - -5) - 5
 
-			const open = price.toFixed(2)
-			const high = (price + highModifier).toFixed(2)
-			const low = (price + lowModifier).toFixed(2)
-			const close = (price + closeModifier).toFixed(2)
+			const open = parseFloat(price.toFixed(2))
+			const high = parseFloat((price + highModifier).toFixed(2))
+			const low = parseFloat((price + lowModifier).toFixed(2))
+			const close = parseFloat((price + closeModifier).toFixed(2))
 			volume += parseFloat(volumeModifer)
+			volume = parseFloat(parseFloat(volume).toFixed(2))
 
-			this.monkeyset.Operation.add([startDate.setDate(startDate.getDate() + 1 * i), open, high, low, close, volume.toFixed(2)])
+			this.monkeyset.Operation.add([startDate.setDate(startDate.getDate() + 1), open, high, low, close, volume])
 		}
 
 		return this.monkeyset

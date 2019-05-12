@@ -16,38 +16,47 @@
 [![Help us and star this project](https://img.shields.io/github/stars/michaeldegroot/monkeyset.svg?style=social)](https://github.com/michaeldegroot/MonkeySet)
 
 # MonkeySet
+
+## Intro
+
 When dealing with large sets of data in finance, you want to make sure your data is valid, quick and persistent, prototyping ideas should be fast and reliable, chances of failure due to faulty data should be eliminated. This module aims to solve those problems.
 
-*Designed for handling big amounts of data (time, open, high, low, close, volume) from any financial markets, capable of importing, exporting, csv parsing, special select queries and analyzes for your data in all kinds of ways*
+The idea behind MonkeySet is that at it's core it's really just a simple javascript multidimensional array. To maximize speed of course, there is little to no overhead for your existing data to transform into a MonkeySet format.
+
+On top of that you have an extensive operations, analyzes, validations, and filters components you can apply on your data.
+
+It's core components are designed with performance in mind to maximize your results in for example back testing of your crypto currency bot :)
 
 ## Warning
+
 **Warning: this project is not finished yet, do not use it in your project**
 
 ## Features
- - Chain style based queries: ```monkeyset.rows().sort('ascending', 'open').analyze('RSI', { period: 5}).fetch()```
- - Low memory footprint
- - Max Performance (3,582 adds m/s, 5,714 lookups m/s for 10,000,000 sets)
- - Capable of technical analyze of candles (trend analyze, machine learning pattern detections, etc.)
- - Technical indicators (RSI, SMA, etc.)
- - Can parse OHLCV data in CSV, json, txt, etc. files to a MonkeySet
- - Selecting your data between time column: ```monkeyset.rows().between('1 day dago').and('now').fetch()```
- - Data integrity and validation (save/load HMAC, ensuring validity of sets during inserts)
+
+- Chain style based queries: `monkeyset.rows().sort('ascending', 'open').analyze('RSI', { period: 5}).fetch()`
+- Low memory footprint
+- Max Performance (3,582 adds m/s, 5,714 lookups m/s for 10,000,000 sets)
+- Capable of technical analyze of candles (trend analyze, machine learning pattern detections, etc.)
+- Technical indicators (RSI, SMA, etc.)
+- Can parse OHLCV data in CSV, json, txt, etc. files to a MonkeySet
+- Selecting your data between time column: `monkeyset.rows().between('1 day dago').and('now').fetch()`
+- Data integrity and validation (save/load HMAC, ensuring validity of sets during inserts)
 
 ## Documentation
-Checkout our [documentation](https://michaeldegroot.github.io/MonkeySet/)
 
+Checkout our [documentation](https://michaeldegroot.github.io/MonkeySet/)
 
 ## Getting Started
 
- ```javascript
+```javascript
 const MonkeySet = require('monkeyset')
 // Create a MonkeySet
 const monkeyset = new MonkeySet([
-  // A MonkeySet holds sets, these are arrays that hold OHLC data:
-  // [time (unix), open (float/int), high (float/int), low (float/int), close (float/int), volume (float/int)]
-  [new Date(), 125, 127, 139, 105, 21252],
-  [new Date(), 115, 117, 119, 105, 21352],
-  [new Date(), 115, 117, 119, 105, 21552],
+	// A MonkeySet holds sets, these are arrays that hold OHLC data:
+	// [time (unix), open (float/int), high (float/int), low (float/int), close (float/int), volume (float/int)]
+	[new Date(), 125, 127, 139, 105, 21252],
+	[new Date(), 115, 117, 119, 105, 21352],
+	[new Date(), 115, 117, 119, 105, 21552]
 ])
 
 // Fetch all rows

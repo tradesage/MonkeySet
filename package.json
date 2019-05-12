@@ -4,17 +4,18 @@
   "description": "A lightweight and performance based OHLCV data manager",
   "main": "src",
   "engines": {
-    "node": ">=12.1.0"
+    "node": ">=11.0.0 <12.0.0"
   },
   "scripts": {
     "test": "npx nyc mocha tests/mocha/**/*.js && nyc report --reporter=html",
-    "benchmark:file": "node tests/benchmark/components/file.js",
-    "benchmark:filter": "node tests/benchmark/components/filter.js",
-    "benchmark:operation": "node tests/benchmark/components/operation.js",
-    "benchmark:random": "node tests/benchmark/components/random.js",
-    "benchmark": "node tests/benchmark/components/file.js && node tests/benchmark/components/filter.js && node tests/benchmark/components/operation.js && node tests/benchmark/components/random.js",
+    "benchmark:file": "mocha tests/mocha/components/file.js && node tests/benchmark/components/file.js",
+    "benchmark:filter": "mocha tests/mocha/components/filter.js && node tests/benchmark/components/filter.js",
+    "benchmark:operation": "mocha tests/mocha/components/operation.js && node tests/benchmark/components/operation.js",
+    "benchmark:random": "mocha tests/mocha/components/random.js && node tests/benchmark/components/random.js",
+    "benchmark:analyzer": "mocha tests/mocha/components/analyzer.js && node tests/benchmark/components/analyzer.js",
+    "benchmark": "npm run benchmark:file && npm run benchmark:filter && npm run benchmark:operation && npm run benchmark:random",
     "coveralls:export": "nyc report --reporter=text-lcov | coveralls",
-    "docs:create": "del docs /Q && jsdoc -c docs.json",
+    "docs:create": "node src/libs/generateDocs/generate.js && del docs /Q && jsdoc -c docs.json",
     "docs:publish": "npm run docs:create && git add README.md docs && git commit -m \"docs update\" && git push origin development"
   },
   "author": {
@@ -28,16 +29,21 @@
     }
   },
   "nyc": {
-    "branches": 95,
-    "lines": 95,
-    "functions": 95,
-    "statements": 95
+    "branches": 80,
+    "lines": 90,
+    "functions": 100,
+    "statements": 90,
+    "exclude": "src/libs"
   },
   "license": "MIT",
-  "dependencies": {},
+  "dependencies": {
+    "technicalindicators": "^2.0.8",
+    "tulind": "^0.8.15"
+  },
   "devDependencies": {
     "benchmark": "^2.1.4",
     "coveralls": "^3.0.3",
+    "draw-candlestick": "^2.0.3",
     "husky": "^2.2.0",
     "jsdoc": "^3.6.1",
     "mocha": "^6.1.4",

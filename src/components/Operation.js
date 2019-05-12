@@ -29,10 +29,9 @@ class Operation extends component {
    * )
    */
   add(...newSet) {
-    this.monkeyset.index += newSet.length
     this.monkeyset.sets.push(...newSet)
-    //   /** @event MonkeySet#add */
-    this.monkeyset.event.emit('add', this.monkeyset.index)
+    /** @event MonkeySet#add */
+    this.monkeyset.event.emit('add')
 
     return this.monkeyset
   }

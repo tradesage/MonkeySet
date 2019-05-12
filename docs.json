@@ -5,8 +5,7 @@
   },
   "source": {
     "include": ["src"],
-    "excludePattern": "(^|\\/|\\\\)_",
-    "exclude": ["src/libs"]
+    "excludePattern": "(^|\\/|\\\\)_"
   },
   "plugins": ["plugins/markdown"],
   "templates": {

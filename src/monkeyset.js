@@ -24,10 +24,11 @@ class MonkeySet {
    *  [1,2,3,4,5,6],
    * )
    *
+   * @author GiveMeAllYourCats <specamps@gmail.com>
    * @summary Represents a MonkeySet containing sets.
    * @param {array[]} sets - Initial sets to add to the MonkeySet
    * @constructor
-   * @class Monkeyset
+   * @class MonkeySet
    */
 
   // TODO: Chain variable should be global across components, return this

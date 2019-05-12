@@ -1,8 +1,10 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Class: Operation |  </title>
+    <title>Source: components/indicator.js |  </title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -43,435 +45,71 @@
 
 
 
-
-<section>
-
-<header>
-    
-        <h2><span class="attribs"><span class="type-signature"></span></span>
-            <span class="ancestors"><a href="MonkeySet.html">MonkeySet</a>~</span>Operation</h2>
-        
-    
-</header>
-
-<article>
-    
-        <div class="container-overview">
-        
-            
-
-<dt>
-    
-        <h4 class="name" id="Operation">
-            
-                Operation
-                
-            
-            <div class="container-source members">
-                <code><a href="components_operation.js.html">components/operation.js</a></code>,
-                <code><a href="components_operation.js.html#line11">line 11</a></code>
-            </div>
-            
-        </h4>
-
-        
-        <p class="summary"><p>For doing operations on data from a MonkeySet</p></p>
-        
-    
-</dt>
-<dd>
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-    
-
-</dd>
-
-        
-        </div>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-        <h3 class="subsection-title">Methods</h3>
-
-        <dl>
-                
-
-<dt>
-    
-        <h4 class="name" id="add">
-            
-                <span class="type-signature"></span>add<span class="signature">(&hellip;newSet)</span><span class="type-signature"> &rarr; {object}</span>
-                
-            
-            <div class="container-source members">
-                <code><a href="components_operation.js.html">components/operation.js</a></code>,
-                <code><a href="components_operation.js.html#line31">line 31</a></code>
-            </div>
-            
-        </h4>
-
-        
-        <p class="summary"><p>Adds OHLC data to the MonkeySet</p></p>
-        
-    
-</dt>
-<dd>
-
-    
-
-    
-
-    
-
-    
-
-    
-    <div class="container-params">
-        <h5>Parameters:</h5>
-        
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-        <th>Attributes</th>
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>newSet</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Array.&lt;array></span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                    &lt;repeatable><br>
-                
-                </td>
-            
-
-            
-
-            <td class="description last"><p>A set or a array of sets</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    </div>
-    
-
-    
-
-    
-    <h5>Fires:</h5>
-    <ul>
-        <li><a href="MonkeySet.html#event:add">MonkeySet#event:add</a></li>
-    </ul>
-    
-
-    
-
-    
-
-    
-
-    
-    <div class="container-returns">
-        <h5>Returns:</h5>
-        
-                
-
-
-
-<span class="param-type">object</span>
-
-
-
-
-
-- <p>MonkeySet class reference</p>
-
-
-
-
-            
-    </div>
-    
-
-    
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-    
-        <h5>Example</h5>
-        
-    <pre class="prettyprint"><code>// One addmonkeyset.Operation.add([1,2,3,4,5,6])// Multiple addsmonkeyset.Operation.add( [1,2,3,4,5,6], [1,2,3,4,5,6], [1,2,3,4,5,6],)</code></pre>
-
-    
-
-</dd>
-
-            
-                
-
-<dt>
-    
-        <h4 class="name" id="clear">
-            
-                <span class="type-signature"></span>clear<span class="signature">()</span><span class="type-signature"> &rarr; {object}</span>
-                
-            
-            <div class="container-source members">
-                <code><a href="components_operation.js.html">components/operation.js</a></code>,
-                <code><a href="components_operation.js.html#line47">line 47</a></code>
-            </div>
-            
-        </h4>
-
-        
-        <p class="summary"><p>clears a MonkeySet object, destroying all data.</p></p>
-        
-    
-</dt>
-<dd>
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
     
-    <h5>Fires:</h5>
-    <ul>
-        <li><a href="MonkeySet.html#event:clear">MonkeySet#event:clear</a></li>
-    </ul>
-    
-
-    
-
-    
-
-    
-
-    
-    <div class="container-returns">
-        <h5>Returns:</h5>
-        
-                
-
-
-
-<span class="param-type">object</span>
-
-
-
-
-
-- <p>MonkeySet class reference</p>
-
-
-
-
-            
-    </div>
-    
-
-    
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-    
-        <h5>Example</h5>
-        
-    <pre class="prettyprint"><code>monkeyset.Operation.clear()</code></pre>
-
-    
-
-</dd>
-
-            </dl>
-    
-
-    
-
-    
-</article>
-
-</section>
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>const component = require('../classes/component')
+const tulind = require('tulind')
+class Indicator extends component {
+  /**
+   * Indicator component houses all indicators to use on MonkeySets, please
+   * note that if you are missing any inputs or options the script will throw
+   * a error and let you know what it needs
+   * @summary Creating indicators from a MonkeySet
+   * @class Indicator
+   * @memberof MonkeySet
+   * @hideconstructor
+   * @example
+   * const rsi = await monkeyset.Indicator.rsi({
+   *   options: {
+   *     period: 5
+   *   },
+   *   inputs: {
+   *     real: monkeyset.Filter.get('column', 'close').last(10).end()
+   *   }
+   * })
+   */
+  constructor(...args) {
+    super(...args)
+
+    // Load all tulip indicators
+    for (let indicator in tulind.indicators) {
+      this[indicator] = async data => {
+        const indicatorFunction = tulind.indicators[indicator]
+        if ('inputs' in data == false) throw new Error(`You need to specify the inputs parameter for this indicator`)
+        const inputs = []
+        const options = []
+        for (let inputName of indicatorFunction.input_names) {
+          if (data.inputs[inputName]) inputs.push(data.inputs[inputName])
+        }
+
+        for (let optionName of indicatorFunction.option_names) {
+          if (data.options[optionName]) options.push(data.options[optionName])
+        }
+
+        if (indicatorFunction.options != options.length)
+          throw new Error(`${indicatorFunction.name} expects ${indicatorFunction.option_names} to be required in options`)
+
+        if (indicatorFunction.inputs != inputs.length)
+          throw new Error(`${indicatorFunction.name} expects ${indicatorFunction.input_names} to be required in inputs`)
+
+        const result = await indicatorFunction.indicator(inputs, options)
+
+        const returnObject = {}
+        for (let outputName of indicatorFunction.output_names) {
+          returnObject[outputName] = result.splice(0, 1)[0]
+        }
+
+        return returnObject
+      }
+    }
+  }
+}
+
+module.exports = Indicator
+</code></pre>
+        </article>
+    </section>
 
 
 
@@ -488,7 +126,7 @@
 <script src="scripts/linenumber.js"></script>
 
     <script>
-        var id = 'MonkeySet.Operation_sub'.replace(/"/g, '_');
+        var id = '_sub'.replace(/"/g, '_');
         var selectedApi = document.getElementById(id); // do not use jquery selector
         var $selectedApi = $(selectedApi);
 
