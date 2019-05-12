@@ -51,6 +51,9 @@
         <h2><span class="attribs"><span class="type-signature"></span></span>
             <span class="ancestors"><a href="MonkeySet.html">MonkeySet</a>~</span>Analyzer</h2>
         
+            <div class="class-description"><p>The Analyzer component houses technical indicators,
+check the see more link to see a whole range of indicators you can use</p></div>
+        
     
 </header>
 
@@ -69,7 +72,7 @@
             
             <div class="container-source members">
                 <code><a href="components_analyzer.js.html">components/analyzer.js</a></code>,
-                <code><a href="components_analyzer.js.html#line13">line 13</a></code>
+                <code><a href="components_analyzer.js.html#line27">line 27</a></code>
             </div>
             
         </h4>
@@ -135,10 +138,30 @@
     
 
     
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="https://tulipindicators.org/list">https://tulipindicators.org/list</a></li>
+        </ul>
+    </dd>
+    
 
     
 </dl>
 
+
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>// See this list for all analyzers you can use: https://tulipindicators.org/list
+const rsi = await monkeyset.Analyzer.rsi({
+  options: {
+    period: 5
+  },
+  inputs: {
+    real: monkeyset.Filter.get('column', 'close').last(10).end()
+  }
+})</code></pre>
 
     
 

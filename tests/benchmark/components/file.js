@@ -33,17 +33,29 @@ suite.add({
 })
 
 // TODO: MEMORY ALLOCATION ERRORS :c EVEN WITH LOW AMOUNT OF SETS AND IDK WHY IM STILL HOLDING SHIFT TO TYPE THIS
-// suite.add({
-//   name: 'monkeyset.File.load',
-//   fn: async () => {
-//     await monkeyset.File.load('./myfile')
-//   },
-//   onStart: () => {},
-//   onError: e => {
-//     console.log(e)
-//     throw new Error(e)
-//   }
-// })
+suite.add({
+  name: 'monkeyset.File.load',
+  fn: async () => {
+    await monkeyset.File.load('./myfile')
+  },
+  onStart: () => {},
+  onError: e => {
+    console.log(e)
+    throw new Error(e)
+  }
+})
+
+suite.add({
+  name: 'monkeyset.File.save',
+  fn: async () => {
+    await monkeyset.File.save('./myfile')
+  },
+  onStart: () => {},
+  onError: e => {
+    console.log(e)
+    throw new Error(e)
+  }
+})
 
 // called when the suite starts running
 suite.on('start', () => {
@@ -71,4 +83,4 @@ suite.on('complete', () => {
   process.exit()
 })
 
-suite.run({ async: false })
+suite.run({ async: true })

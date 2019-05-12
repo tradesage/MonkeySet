@@ -4,33 +4,61 @@ const path = require('path')
 const MonkeySet = require('../../../src/monkeyset')
 
 let monkeyset = new MonkeySet()
-monkeyset.Random.setsFill(20000)
+monkeyset.Random.setsFill(200000)
 
-const workset = monkeyset.Filter.get('column', 'close')
-	.last(30)
+const workset1 = monkeyset.Filter.get('column', 'high')
+	.last(50)
+	.end()
+
+const workset2 = monkeyset.Filter.get('column', 'low')
+	.last(50)
+	.end()
+
+const workset3 = monkeyset.Filter.get('column', 'close')
+	.last(50)
+	.end()
+
+const workset4 = monkeyset.Filter.get('column', 'volume')
+	.last(50)
+	.end()
+
+const workset5 = monkeyset.Filter.get('column', 'open')
+	.last(50)
 	.end()
 
 const suite = new Benchmark.Suite('app')
 
-suite.add({
-	name: 'monkeyset.Analyzer.RSI',
-	fn: done => {
-		const sma = monkeyset.Analyzer.RSI({
-			period: 20,
-			values: workset
-		})
-	}
-})
+const worksetMapping = {
+	real: workset1,
+	high: workset1,
+	low: workset2,
+	close: workset3,
+	volume: workset4,
+	open: workset5
+}
 
-suite.add({
-	name: 'monkeyset.Analyzer.SMA',
-	fn: done => {
-		const sma = monkeyset.Analyzer.SMA({
-			period: 20,
-			values: workset
-		})
+for (let index in monkeyset.Analyzer.tulind.indicators) {
+	const indicator = monkeyset.Analyzer.tulind.indicators[index]
+	let analyzerData = {
+		options: {},
+		inputs: {}
 	}
-})
+
+	for (var i = indicator.options - 1; i >= 0; i--) {
+		analyzerData.options[indicator.option_names[i]] = 10
+	}
+
+	for (var i = 0; i < indicator.inputs; i++) {
+		analyzerData.inputs[indicator.input_names[i]] = worksetMapping[indicator.input_names[i]]
+	}
+
+	suite.add({
+		name: 'monkeyset.Analyzer.' + index,
+		fn: async () => {
+			await monkeyset.Analyzer[index](analyzerData)
+		}
+	})
+}
 
 // called when the suite starts running
 suite.on('start', () => {})
@@ -54,4 +82,4 @@ suite.on('complete', () => {
 	process.exit()
 })
 
-suite.run({ async: false })
+suite.run({ async: true })

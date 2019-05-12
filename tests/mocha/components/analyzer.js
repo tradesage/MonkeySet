@@ -1,48 +1,59 @@
 const assert = require('assert')
 const MonkeySet = require('../../../src/monkeyset')
 
-const monkeyset = new MonkeySet(
-	[1564568329165, 6250.94, 6239.68, 6233.73, 6263.22, 946.12],
-	[1564654729165, 6239.12, 6253.82, 6214.7, 6245.91, 947.27],
-	[1564741129165, 6228.51, 6242.31, 6238.42, 6256.2, 949.85],
-	[1564827529165, 6236.74, 6250.87, 6245.27, 6258.51, 952.82],
-	[1564913929165, 6229.21, 6236.19, 6240.85, 6235.73, 955.76],
-	[1565000329165, 6219.27, 6217.88, 6243.43, 6189.31, 951.67],
-	[1565086729165, 6208.34, 6236.55, 6183.28, 6215.79, 951.1],
-	[1565173129165, 6221.67, 6224.62, 6192.43, 6212.45, 955.08],
-	[1565259529165, 6211.7, 6236.16, 6207.24, 6189.76, 951.08],
-	[1565345929165, 6222.13, 6215.07, 6241.88, 6211.12, 949.44],
-	[1565432329165, 6213.1, 6213.65, 6236.08, 6222.22, 945.17],
-	[1565518729165, 6202.97, 6220.81, 6193.34, 6178.9, 942.88],
-	[1565605129165, 6196.38, 6183.93, 6201.39, 6170.57, 945.85],
-	[1565691529165, 6207.7, 6188.4, 6190.82, 6230.11, 946.4],
-	[1565777929165, 6197.12, 6188.06, 6206.15, 6189.87, 945.24],
-	[1565864329165, 6204.95, 6195.61, 6178.39, 6215.05, 946.68],
-	[1565950729165, 6198.05, 6220.22, 6177.88, 6190.16, 947.46],
-	[1566037129165, 6209.57, 6206.89, 6236.94, 6185.82, 945.04],
-	[1566123529165, 6197.57, 6193.29, 6178.4, 6191.77, 948.41],
-	[1566209929165, 6210.12, 6234.49, 6207.14, 6217.52, 944.46],
-	[1566296329165, 6205.04, 6189.79, 6229.17, 6205.04, 949.37]
-)
+let monkeyset = new MonkeySet()
+monkeyset.Random.setsFill(200000)
 
-describe('Analyzer', () => {
-	it('RSI', () => {
-		const rsi = monkeyset.Analyzer.RSI({
-			period: 5,
-			values: monkeyset.Filter.get('column', 'close')
-				.last(10)
-				.end()
-		})
-		assert.deepEqual(rsi, [53.56, 51.78, 54.38, 64.66, 56.89])
-	})
+const workset1 = monkeyset.Filter.get('column', 'high')
+  .last(50)
+  .end()
 
-	it('SMA', () => {
-		const sma = monkeyset.Analyzer.SMA({
-			period: 5,
-			values: monkeyset.Filter.get('column', 'close')
-				.last(10)
-				.end()
-		})
-		assert.deepEqual(sma, [6196.9, 6199.152, 6202.201999999999, 6194.534, 6200.064, 6198.062])
-	})
-})
+const workset2 = monkeyset.Filter.get('column', 'low')
+  .last(50)
+  .end()
+
+const workset3 = monkeyset.Filter.get('column', 'close')
+  .last(50)
+  .end()
+
+const workset4 = monkeyset.Filter.get('column', 'volume')
+  .last(50)
+  .end()
+
+const workset5 = monkeyset.Filter.get('column', 'open')
+  .last(50)
+  .end()
+
+const worksetMapping = {
+  real: workset1,
+  high: workset1,
+  low: workset2,
+  close: workset3,
+  volume: workset4,
+  open: workset5
+}
+
+for (let index in monkeyset.Analyzer.tulind.indicators) {
+  const indicator = monkeyset.Analyzer.tulind.indicators[index]
+  let analyzerData = {
+    options: {},
+    inputs: {}
+  }
+
+  for (let i = indicator.options - 1; i >= 0; i--) {
+    let value = 10
+
+    if (indicator.option_names[i] == 'alpha') value = 0.2
+    if (indicator.option_names[i] == 'acceleration factor step') value = 0.2
+
+    analyzerData.options[indicator.option_names[i]] = value
+  }
+
+  for (let i = 0; i < indicator.inputs; i++) {
+    analyzerData.inputs[indicator.input_names[i]] = worksetMapping[indicator.input_names[i]]
+  }
+
+  it('monkeyset.Analyzer.' + index + '()', async () => {
+    await monkeyset.Analyzer[index](analyzerData)
+  })
+}

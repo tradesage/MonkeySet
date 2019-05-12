@@ -4,7 +4,7 @@
   "description": "A lightweight and performance based OHLCV data manager",
   "main": "src",
   "engines": {
-    "node": ">=12.1.0"
+    "node": ">=11.0.0 <12.0.0"
   },
   "scripts": {
     "test": "npx nyc mocha tests/mocha/**/*.js && nyc report --reporter=html",
@@ -32,13 +32,12 @@
     "branches": 80,
     "lines": 90,
     "functions": 100,
-    "statements": 90
+    "statements": 90,
+    "exclude": "src/libs"
   },
   "license": "MIT",
   "dependencies": {
-    "@tensorflow/tfjs": "^0.13.0",
-    "@tensorflow/tfjs-node": "^0.1.17",
-    "@types/node": "^6.0.96"
+    "tulind": "^0.8.15"
   },
   "devDependencies": {
     "benchmark": "^2.1.4",
