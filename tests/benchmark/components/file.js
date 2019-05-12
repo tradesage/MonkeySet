@@ -22,10 +22,12 @@ suite.add({
 
 suite.add({
   name: 'monkeyset.File.import',
-  fn: async () => {
+  fn: deferred => {
     monkeyset.File.import(monkeysetexport)
+    deferred.resolve()
   },
   onStart: () => {},
+  defer: true,
   onError: e => {
     console.log(e)
     throw new Error(e)
@@ -34,10 +36,13 @@ suite.add({
 
 // TODO: MEMORY ALLOCATION ERRORS :c EVEN WITH LOW AMOUNT OF SETS AND IDK WHY IM STILL HOLDING SHIFT TO TYPE THIS
 suite.add({
-  name: 'monkeyset.File.load',
-  fn: async () => {
-    await monkeyset.File.load('./myfile')
+  name: 'monkeyset.File.save',
+  fn: deffered => {
+    monkeyset.File.save('./myfile').then(() => {
+      deffered.resolve()
+    })
   },
+  defer: true,
   onStart: () => {},
   onError: e => {
     console.log(e)
@@ -46,11 +51,14 @@ suite.add({
 })
 
 suite.add({
-  name: 'monkeyset.File.save',
-  fn: async () => {
-    await monkeyset.File.save('./myfile')
+  name: 'monkeyset.File.load',
+  fn: deffered => {
+    monkeyset.File.load('./myfile').then(() => {
+      deffered.resolve()
+    })
   },
   onStart: () => {},
+  defer: true,
   onError: e => {
     console.log(e)
     throw new Error(e)

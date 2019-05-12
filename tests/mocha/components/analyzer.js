@@ -1,5 +1,6 @@
 const assert = require('assert')
 const MonkeySet = require('../../../src/monkeyset')
+const tulind = require('tulind')
 
 let monkeyset = new MonkeySet()
 monkeyset.Random.setsFill(200000)
@@ -33,8 +34,21 @@ const worksetMapping = {
   open: workset5
 }
 
-for (let index in monkeyset.Analyzer.tulind.indicators) {
-  const indicator = monkeyset.Analyzer.tulind.indicators[index]
+const ohlc = {
+  open: worksetMapping.open,
+  high: worksetMapping.high,
+  low: worksetMapping.low,
+  close: worksetMapping.close
+}
+
+for (let pattern of monkeyset.Analyzer.candlePatterns) {
+  it('monkeyset.Analyzer.candlePattern(' + pattern + ')', async () => {
+    monkeyset.Analyzer.candlePattern(pattern, ohlc)
+  })
+}
+
+for (let index in tulind.indicators) {
+  const indicator = tulind.indicators[index]
   let analyzerData = {
     options: {},
     inputs: {}
@@ -53,7 +67,7 @@ for (let index in monkeyset.Analyzer.tulind.indicators) {
     analyzerData.inputs[indicator.input_names[i]] = worksetMapping[indicator.input_names[i]]
   }
 
-  it('monkeyset.Analyzer.' + index + '()', async () => {
-    await monkeyset.Analyzer[index](analyzerData)
+  it('monkeyset.Analyzer.indicator(' + index + ')', async () => {
+    await monkeyset.Analyzer.indicator[index](analyzerData)
   })
 }
