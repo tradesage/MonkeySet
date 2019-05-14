@@ -5,25 +5,25 @@ const tulind = require('tulind')
 let monkeyset = new MonkeySet()
 monkeyset.Random.setsFill(200000)
 
-const workset1 = monkeyset.Filter.get('column', 'high')
+const workset1 = monkeyset.Filter.fetch('column', 'high')
   .last(50)
-  .end()
+  .result()
 
-const workset2 = monkeyset.Filter.get('column', 'low')
+const workset2 = monkeyset.Filter.fetch('column', 'low')
   .last(50)
-  .end()
+  .result()
 
-const workset3 = monkeyset.Filter.get('column', 'close')
+const workset3 = monkeyset.Filter.fetch('column', 'close')
   .last(50)
-  .end()
+  .result()
 
-const workset4 = monkeyset.Filter.get('column', 'volume')
+const workset4 = monkeyset.Filter.fetch('column', 'volume')
   .last(50)
-  .end()
+  .result()
 
-const workset5 = monkeyset.Filter.get('column', 'open')
+const workset5 = monkeyset.Filter.fetch('column', 'open')
   .last(50)
-  .end()
+  .result()
 
 const worksetMapping = {
   real: workset1,
@@ -49,9 +49,9 @@ for (let pattern of monkeyset.Analyzer.candlePatterns) {
 
 it('monkeyset.Analyzer.predict()', async () => {
   const predict = await monkeyset.Analyzer.predict(
-    monkeyset.Filter.get('column', 'close')
+    monkeyset.Filter.fetch('column', 'close')
       .last(400)
-      .end()
+      .result()
   )
   console.log(predict)
 })

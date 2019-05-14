@@ -10,6 +10,6 @@ describe('File', function() {
   // it('monkeyset.File.load()', async () => {
   //  const monkeyset = new MonkeySet()
   //  await monkeyset.File.load('./testfile.monkeyset')
-  //  assert.deepEqual(monkeyset.Filter.get('sets').end(), [[1, 2, 3, 4, 5, 6]])
+  //  assert.deepEqual(monkeyset.Filter.fetch('sets').result(), [[1, 2, 3, 4, 5, 6]])
   // })
 })

@@ -1,8 +1,9 @@
 const component = require('../classes/component')
 const tulind = require('tulind')
+
 class Indicator extends component {
   /**
-   * Indicator component houses all indicators to use on MonkeySets, please
+   * Indicator component houses all indicators to use on a MonkeySet, please
    * note that if you are missing any inputs or options the script will throw
    * a error and let you know what it needs
    * @summary Creating indicators from a MonkeySet
@@ -10,40 +11,55 @@ class Indicator extends component {
    * @memberof MonkeySet
    * @hideconstructor
    * @example
-   * const rsi = await monkeyset.Indicator.rsi({
-   *   options: {
+   * const rsi = await monkeyset.fetch('sets').last(50).rsi({
    *     period: 5
-   *   },
-   *   inputs: {
-   *     real: monkeyset.Filter.get('column', 'close').last(10).end()
-   *   }
+   *     real: 'close'
+   * })
+   *
+   * const rsi = await monkeyset.fetch('column', 'close').last(50).rsi({
+   *     period: 5
    * })
    */
   constructor(...args) {
     super(...args)
 
     // Load all tulip indicators
+    this.tulind = tulind
     for (let indicator in tulind.indicators) {
       this[indicator] = async data => {
         const indicatorFunction = tulind.indicators[indicator]
-        if ('inputs' in data == false) throw new Error(`You need to specify the inputs parameter for this indicator`)
-        const inputs = []
+        if (!data) throw new Error('This function expects a argument as data input')
         const options = []
-        for (let inputName of indicatorFunction.input_names) {
-          if (data.inputs[inputName]) inputs.push(data.inputs[inputName])
-        }
+        let inputs = []
 
         for (let optionName of indicatorFunction.option_names) {
-          if (data.options[optionName]) options.push(data.options[optionName])
+          if (data[optionName]) options.push(data[optionName])
         }
 
         if (indicatorFunction.options != options.length)
           throw new Error(`${indicatorFunction.name} expects ${indicatorFunction.option_names} to be required in options`)
 
-        if (indicatorFunction.inputs != inputs.length)
-          throw new Error(`${indicatorFunction.name} expects ${indicatorFunction.input_names} to be required in inputs`)
+        if (this.monkeyset.chain.selector == 'set') {
+          throw new Error(`indicators don't work when fetching set data`)
+        }
 
-        const result = await indicatorFunction.indicator(inputs, options)
+        for (let inputName of indicatorFunction.input_names) {
+          let input = data[inputName]
+          if (this.monkeyset.chain.selector == 'sets') {
+            if (this.monkeyset.chain.dataformat != 'ohlc')
+              throw new Error(`indicators only work on ohlc data format when fetching sets data, not on a ${this.monkeyset.chain.dataformat} one`)
+            inputs = this.monkeyset.chain.sets[input]
+          }
+        }
+
+        if (this.monkeyset.chain.selector == 'column') {
+          if (this.monkeyset.chain.dataformat != 'native')
+            throw new Error(`indicators only work on native data format when fetching column data, not on a ${this.monkeyset.chain.dataformat} one`)
+          inputs = this.monkeyset.chain.sets
+        }
+
+        if (inputs.length == 0) throw new Error(`inputs is empty for ${indicatorFunction.name}`)
+        const result = await indicatorFunction.indicator([inputs], options)
 
         const returnObject = {}
         for (let outputName of indicatorFunction.output_names) {
@@ -52,6 +68,8 @@ class Indicator extends component {
 
         return returnObject
       }
+
+      this.monkeyset.chain[indicator] = this[indicator]
     }
   }
 }

@@ -6,25 +6,25 @@ const MonkeySet = require('../../../src/monkeyset')
 let monkeyset = new MonkeySet()
 monkeyset.Random.setsFill(200000)
 
-const workset1 = monkeyset.Filter.get('column', 'high')
+const workset1 = monkeyset.Filter.fetch('column', 'high')
   .last(50)
-  .end()
+  .result()
 
-const workset2 = monkeyset.Filter.get('column', 'low')
+const workset2 = monkeyset.Filter.fetch('column', 'low')
   .last(50)
-  .end()
+  .result()
 
-const workset3 = monkeyset.Filter.get('column', 'close')
+const workset3 = monkeyset.Filter.fetch('column', 'close')
   .last(50)
-  .end()
+  .result()
 
-const workset4 = monkeyset.Filter.get('column', 'volume')
+const workset4 = monkeyset.Filter.fetch('column', 'volume')
   .last(50)
-  .end()
+  .result()
 
-const workset5 = monkeyset.Filter.get('column', 'open')
+const workset5 = monkeyset.Filter.fetch('column', 'open')
   .last(50)
-  .end()
+  .result()
 
 const suite = new Benchmark.Suite('app')
 
@@ -37,43 +37,11 @@ const worksetMapping = {
   open: workset5
 }
 
-const ohlc = {
-  open: worksetMapping.open,
-  high: worksetMapping.high,
-  low: worksetMapping.low,
-  close: worksetMapping.close
-}
-
 for (let pattern of monkeyset.Analyzer.candlePatterns) {
   suite.add({
-    name: 'monkeyset.Analyzer.candlePattern.' + pattern,
+    name: 'monkeyset.Analyzer.pattern.' + pattern,
     fn: deffered => {
-      monkeyset.Analyzer.candlePattern(pattern, ohlc)
-      deffered.resolve()
-    },
-    defer: true
-  })
-}
-
-for (let index in monkeyset.Analyzer.tulind.indicators) {
-  const indicator = monkeyset.Analyzer.tulind.indicators[index]
-  let analyzerData = {
-    options: {},
-    inputs: {}
-  }
-
-  for (var i = indicator.options - 1; i >= 0; i--) {
-    analyzerData.options[indicator.option_names[i]] = 10
-  }
-
-  for (var i = 0; i < indicator.inputs; i++) {
-    analyzerData.inputs[indicator.input_names[i]] = worksetMapping[indicator.input_names[i]]
-  }
-
-  suite.add({
-    name: 'monkeyset.Analyzer.' + index,
-    fn: async deffered => {
-      await monkeyset.Analyzer[index](analyzerData)
+      monkeyset.Analyzer.pattern(pattern)
       deffered.resolve()
     },
     defer: true

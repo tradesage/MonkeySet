@@ -3,39 +3,29 @@ const fs = require('fs')
 const path = require('path')
 const MonkeySet = require('../../../src/monkeyset')
 
-let monkeyset
+let monkeyset = new MonkeySet()
+monkeyset.Random.setsFill(200000)
 
 const suite = new Benchmark.Suite('app')
 
-suite.add({
-  name: 'monkeyset.Operation.add',
-  fn: done => {
-    monkeyset.Operation.add([1, 2, 3, 4, 5, 6])
-  },
-  onStart: () => {
-    monkeyset = new MonkeySet()
-  },
-  onError: e => {
-    console.log(e)
-    throw new Error(e)
-  },
-  onComplete: () => {
-    // console.log(monkeyset.Filter.fetch('sets').result().length)
-  }
-})
+for (let index in monkeyset.Indicator.tulind.indicators) {
+  if (index != 'rsi') continue
+  const indicator = monkeyset.Indicator.tulind.indicators[index]
+  const options = {}
 
-suite.add({
-  name: 'monkeyset.Operation.clear',
-  fn: done => {
-    monkeyset.Operation.clear()
-  },
-  onStart: () => {},
-  onError: e => {
-    console.log(e)
-    throw new Error(e)
-  },
-  onComplete: () => {}
-})
+  for (var i = indicator.options - 1; i >= 0; i--) {
+    options[indicator.option_names[i]] = 10
+  }
+
+  suite.add({
+    name: "monkeyset.Filter.get('sets')." + index,
+    fn: async deffered => {
+      await monkeyset.Filter.fetch('sets')[index](options)
+      deffered.resolve()
+    },
+    defer: true
+  })
+}
 
 // called when the suite starts running
 suite.on('start', () => {})
@@ -59,4 +49,4 @@ suite.on('complete', () => {
   process.exit()
 })
 
-suite.run({ async: false })
+suite.run({ async: true })

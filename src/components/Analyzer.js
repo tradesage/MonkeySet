@@ -53,6 +53,9 @@ class Analyzer extends component {
       'tweezerbottom',
       'fibonacciretracement'
     ]
+
+    this.monkeyset.chain.pattern = this.pattern
+    this.monkeyset.chain.predictPattern = this.predictPattern
   }
 
   /**
@@ -61,37 +64,37 @@ class Analyzer extends component {
    * @param {object} - OHLC data to test on
    * @example
    * const isAbandonedBaby = monkeyset.Analyzer.pattern('threeblackcrows', {
-   *   open: monkeyset.Filter.get('column', 'open').end(),
-   *   high: monkeyset.Filter.get('column', 'high').end(),
-   *   low: monkeyset.Filter.get('column', 'low').end(),
-   *   close: monkeyset.Filter.get('column', 'close').end()
+   *   open: monkeyset.Filter.fetch('column', 'open').result(),
+   *   high: monkeyset.Filter.fetch('column', 'high').result(),
+   *   low: monkeyset.Filter.fetch('column', 'low').result(),
+   *   close: monkeyset.Filter.fetch('column', 'close').result()
    * })
    *
    */
-  pattern(pattern, data) {
+  pattern(pattern) {
     if (this.candlePatterns.includes(pattern) == false) throw new Error(`${pattern} is not a valid candlestick detection pattern`)
-    return technicalindicators[pattern](data)
+    return technicalindicators[pattern](this.monkeyset.chain.sets)
   }
 
   /**
    * @summary Pattern predict detection via a tensorflow trained model
    * @param {float[]} - column data from a MonkeySet
    * @example
-   * const predict = await monkeyset.Analyzer.predict(
-   *  monkeyset.Filter.get('column', 'close').last(400).end()
+   * const predictPattern = await monkeyset.Analyzer.predictPattern(
+   *  monkeyset.Filter.fetch('column', 'close').last(400).result()
    * )
    *
-   * console.log(predict)
+   * console.log(predictPattern)
    */
-  async predict(columnData) {
-    const predictPattern = await technicalindicators.predictPattern({ values: columnData })
+  async predictPattern() {
+    const predictPattern = await technicalindicators.predictPattern({ values: this.monkeyset.chain.sets })
     const probability = predictPattern.probability
-    const hs = await technicalindicators.hasHeadAndShoulder({ values: columnData })
-    const ihs = await technicalindicators.hasInverseHeadAndShoulder({ values: columnData })
-    const db = await technicalindicators.hasDoubleBottom({ values: columnData })
-    const dt = await technicalindicators.hasDoubleTop({ values: columnData })
-    const tu = await technicalindicators.isTrendingUp({ values: columnData })
-    const td = await technicalindicators.isTrendingDown({ values: columnData })
+    const hs = await technicalindicators.hasHeadAndShoulder({ values: this.monkeyset.chain.sets })
+    const ihs = await technicalindicators.hasInverseHeadAndShoulder({ values: this.monkeyset.chain.sets })
+    const db = await technicalindicators.hasDoubleBottom({ values: this.monkeyset.chain.sets })
+    const dt = await technicalindicators.hasDoubleTop({ values: this.monkeyset.chain.sets })
+    const tu = await technicalindicators.isTrendingUp({ values: this.monkeyset.chain.sets })
+    const td = await technicalindicators.isTrendingDown({ values: this.monkeyset.chain.sets })
 
     let pattern = false
     if (hs) pattern = 'HeadAndShoulder'
