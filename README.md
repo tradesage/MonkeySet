@@ -1,5 +1,6 @@
 [![MonkeySet Logo](https://i.imgur.com/eganiA2.png)](https://github.com/michaeldegroot/MonkeySet)
 
+[![Package quality](https://packagequality.com/shield/monkeyset.svg)](https://packagequality.com/#?package=monkeyset)
 [![NPM Version](https://img.shields.io/npm/v/monkeyset.svg)](https://www.npmjs.com/package/monkeyset)
 [![Build Status](https://travis-ci.org/michaeldegroot/MonkeySet.png?branch=master)](https://travis-ci.org/michaeldegroot/MonkeySet)
 [![Coverage Status](https://coveralls.io/repos/github/michaeldegroot/MonkeySet/badge.svg?branch=master)](https://coveralls.io/github/michaeldegroot/MonkeySet?branch=master)

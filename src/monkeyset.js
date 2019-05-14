@@ -31,10 +31,6 @@ class MonkeySet {
    * @class MonkeySet
    */
 
-  // TODO: Chain variable should be global across components, return this
-  // should be a return global chain set across components instead of component locally.
-  // if you don't know what I mena with this.. then omg
-  // EDIT: I KNOW WHAT YOU MEAN SHUT THE FUCK UP BIATCH
   constructor(...initialSets) {
     this.projectRoot = path.resolve(path.dirname(__dirname))
     this.sets = {}
@@ -49,10 +45,65 @@ class MonkeySet {
   }
 
   /**
+   * @summary Starts/resets the filter chain which stores the array to work with for the chain methods
+   * @returns {object} MonkeySet class reference
+   * @example
+   * monkeyset = new MonkeySet([1,2,3,4,5,6], [7,8,9,10,11,12])
+   *
+   * // Get all sets
+   * const sets = monkeyset.Filter.fetch('sets').result()
+   *
+   * // Get a set by index
+   * const sets = monkeyset.Filter.fetch('set', 420).result()
+   *
+   * // Get all column values from a sets
+   * const sets = monkeyset.Filter.fetch('column', 'open').result()
+   */
+  fetch(selector, ...args) {
+    this.chain.sets = []
+    this.chain.selector = selector
+    this.chain.dataformat = 'native'
+
+    // Given sets are: [[1,2,3,4,5,6], [7,8,9,10,11,12]]
+    if (selector == 'sets') {
+      // Sets: [[1,2,3,4,5,6], [7,8,9,10,11,12]]
+      this.chain.sets = this.sets
+    } else if (selector == 'set') {
+      if (args.length != 1) throw new Error(`you need to specify 1 argument for the ${selector} selector`)
+      // set: [[1,2,3,4,5,6]]
+      this.chain.sets = [this.sets[args[0]]]
+    } else if (selector == 'column') {
+      // Column: [[1], [7]]
+      if (args.length != 1) throw new Error(`you need to specify 1 argument for the ${selector} selector`)
+      let columnSelector = false
+      if (args[0] == 'time') columnSelector = 0
+      if (args[0] == 'open') columnSelector = 1
+      if (args[0] == 'high') columnSelector = 2
+      if (args[0] == 'low') columnSelector = 3
+      if (args[0] == 'close') columnSelector = 4
+      if (args[0] == 'volume') columnSelector = 5
+      if (columnSelector === false) throw new Error(`${args[0]} is not a valid column`)
+
+      // TODO: This function is very slow, can it be optimized?
+      this.chain.sets = this.sets.map(set => {
+        return set[columnSelector]
+      })
+    } else {
+      throw new Error(`${selector} is not a valid selector for select`)
+    }
+
+    return this.chain
+  }
+
+  /**
    * @summary Loads all the core or extended components
    * @ignore
    */
   loadComponents() {
+    // Setup the the chain that will be used across components to work with
+    this.chain = {}
+    this.chain.sets = []
+
     // Read component files
     const files = fs.readdirSync(path.join(this.projectRoot, 'src', 'components')).filter(item => {
       return item.slice(-3, item.length) == '.js'

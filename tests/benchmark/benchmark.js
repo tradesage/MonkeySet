@@ -8,9 +8,9 @@
 // const suite = new Benchmark.Suite('app')
 
 // suite.add({
-//   name: "monkeyset.Filter.get('sets') (1000 sets)",
+//   name: "monkeyset.Filter.fetch('sets') (1000 sets)",
 //   fn: done => {
-//     monkeyset.Filter.get('sets').end()
+//     monkeyset.Filter.fetch('sets').result()
 //   },
 //   onStart: () => {
 //     monkeyset = new MonkeySet()

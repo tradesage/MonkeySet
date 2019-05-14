@@ -3,6 +3,17 @@
   "version": "0.3.2",
   "description": "A lightweight and performance based OHLCV data manager",
   "main": "src",
+  "homepage": "https://github.com/michaeldegroot/MonkeySet#readme",
+  "url": "https://github.com/michaeldegroot/MonkeySet/issues",
+  "license": {
+    "type": "MIT",
+    "url": "https://opensource.org/licenses/MIT"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/michaeldegroot/MonkeySet.git"
+  },
+  "email": "specamps@gmail.com",
   "engines": {
     "node": ">=11.0.0 <12.0.0"
   },
@@ -35,8 +46,10 @@
     "statements": 90,
     "exclude": "src/libs"
   },
-  "license": "MIT",
   "dependencies": {
+    "lodash": "^4.17.11",
+    "open": "^6.3.0",
+    "random-ohlc-data-server": "^1.5.0",
     "technicalindicators": "^2.0.8",
     "tulind": "^0.8.15"
   },
