@@ -333,7 +333,7 @@
     <pre class="prettyprint"><code>monkeyset = new MonkeySet([1,2,3,4,5,6], [7,8,9,10,11,12])
 
 // Get only first 2 sets
-const sets = monkeyset.Filter.fetch('sets').first(2).result()</code></pre>
+const sets = monkeyset.fetch('sets').first(2).result()</code></pre>
 
     
 
@@ -507,7 +507,7 @@ const sets = monkeyset.Filter.fetch('sets').first(2).result()</code></pre>
     <pre class="prettyprint"><code>monkeyset = new MonkeySet([1,2,3,4,5,6], [7,8,9,10,11,12])
 
 // Get only 2 last sets
-const sets = monkeyset.Filter.fetch('sets').last(2).result()</code></pre>
+const sets = monkeyset.fetch('sets').last(2).result()</code></pre>
 
     
 
@@ -625,7 +625,7 @@ calculated here, so promises are easy to implement.</p>
     <pre class="prettyprint"><code>monkeyset = new MonkeySet([1,2,3,4,5,6], [7,8,9,10,11,12])
 
 // Get all sets
-const sets = monkeyset.Filter.fetch('sets').result()</code></pre>
+const sets = monkeyset.fetch('sets').result()</code></pre>
 
     
 
@@ -828,7 +828,7 @@ const sets = monkeyset.Filter.fetch('sets').result()</code></pre>
     <pre class="prettyprint"><code>monkeyset = new MonkeySet([1,2,3,4,5,6], [7,8,9,10,11,12])
 
 // Get all sets and sort ascending on close price
-const sets = monkeyset.Filter.fetch('sets').sort('ascending', 'close').result()</code></pre>
+const sets = monkeyset.fetch('sets').sort('ascending', 'close').result()</code></pre>
 
     
 

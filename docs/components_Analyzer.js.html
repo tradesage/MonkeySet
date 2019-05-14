@@ -104,6 +104,7 @@ class Analyzer extends component {
       'fibonacciretracement'
     ]
 
+    this.monkeyset.chain.candlePatterns = this.candlePatterns
     this.monkeyset.chain.pattern = this.pattern
     this.monkeyset.chain.predictPattern = this.predictPattern
   }
@@ -114,16 +115,20 @@ class Analyzer extends component {
    * @param {object} - OHLC data to test on
    * @example
    * const isAbandonedBaby = monkeyset.Analyzer.pattern('threeblackcrows', {
-   *   open: monkeyset.Filter.fetch('column', 'open').result(),
-   *   high: monkeyset.Filter.fetch('column', 'high').result(),
-   *   low: monkeyset.Filter.fetch('column', 'low').result(),
-   *   close: monkeyset.Filter.fetch('column', 'close').result()
+   *   open: monkeyset.fetch('column', 'open').result(),
+   *   high: monkeyset.fetch('column', 'high').result(),
+   *   low: monkeyset.fetch('column', 'low').result(),
+   *   close: monkeyset.fetch('column', 'close').result()
    * })
    *
    */
   pattern(pattern) {
+    if (this.dataformat != 'ohlc') {
+      throw new Error(`analyzers only work on ohlc data format when fetching sets data, not on a ${this.dataformat} one`)
+    }
+
     if (this.candlePatterns.includes(pattern) == false) throw new Error(`${pattern} is not a valid candlestick detection pattern`)
-    return technicalindicators[pattern](this.monkeyset.chain.sets)
+    return technicalindicators[pattern](this.sets)
   }
 
   /**
@@ -131,20 +136,24 @@ class Analyzer extends component {
    * @param {float[]} - column data from a MonkeySet
    * @example
    * const predictPattern = await monkeyset.Analyzer.predictPattern(
-   *  monkeyset.Filter.fetch('column', 'close').last(400).result()
+   *  monkeyset.fetch('column', 'close').last(400).result()
    * )
    *
    * console.log(predictPattern)
    */
   async predictPattern() {
-    const predictPattern = await technicalindicators.predictPattern({ values: this.monkeyset.chain.sets })
+    if (this.selector != 'column') {
+      throw new Error(`predictPattern only works on column data, not on a ${this.selector} one`)
+    }
+
+    const predictPattern = await technicalindicators.predictPattern({ values: this.sets })
     const probability = predictPattern.probability
-    const hs = await technicalindicators.hasHeadAndShoulder({ values: this.monkeyset.chain.sets })
-    const ihs = await technicalindicators.hasInverseHeadAndShoulder({ values: this.monkeyset.chain.sets })
-    const db = await technicalindicators.hasDoubleBottom({ values: this.monkeyset.chain.sets })
-    const dt = await technicalindicators.hasDoubleTop({ values: this.monkeyset.chain.sets })
-    const tu = await technicalindicators.isTrendingUp({ values: this.monkeyset.chain.sets })
-    const td = await technicalindicators.isTrendingDown({ values: this.monkeyset.chain.sets })
+    const hs = await technicalindicators.hasHeadAndShoulder({ values: this.sets })
+    const ihs = await technicalindicators.hasInverseHeadAndShoulder({ values: this.sets })
+    const db = await technicalindicators.hasDoubleBottom({ values: this.sets })
+    const dt = await technicalindicators.hasDoubleTop({ values: this.sets })
+    const tu = await technicalindicators.isTrendingUp({ values: this.sets })
+    const td = await technicalindicators.isTrendingDown({ values: this.sets })
 
     let pattern = false
     if (hs) pattern = 'HeadAndShoulder'
