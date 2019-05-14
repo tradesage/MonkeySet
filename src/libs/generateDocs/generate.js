@@ -32,7 +32,7 @@ for (let indicator in tulind.indicators) {
   for (let inputName of indicatorFunction.input_names) {
     jsdoc += ` * @param options.inputs.${inputName} The input ${inputName}
 `
-    if (inputName == 'real') options.push('real: close')
+    if (inputName == 'real') options.push("real: 'close'")
   }
 
   for (let outputName of indicatorFunction.output_names) {
