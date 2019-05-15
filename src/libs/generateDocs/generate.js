@@ -2,6 +2,9 @@ const tulind = require('tulind')
 const fs = require('fs')
 const _ = require('lodash')
 const path = require('path')
+const MonkeySet = require('../../monkeyset')
+const monkeyset = new MonkeySet()
+monkeyset.Random.setsFill(12)
 
 let jsdoc = ``
 for (let indicator in tulind.indicators) {
@@ -41,8 +44,11 @@ for (let indicator in tulind.indicators) {
   }
 
   if (options.length >= 1) options = `{${options.join(', ')}}`
-
-  example += ` * monkeyset.fetch('sets').last(20).convert('ohlc').${tulind.indicators[indicator].name}(${options})`
+  const run = eval(`monkeyset.fetch('sets').last(20).convert('ohlc').${tulind.indicators[indicator].name}(${options})`)
+  example += ` * const result = monkeyset.fetch('sets').last(20).convert('ohlc').${tulind.indicators[indicator].name}(${options})`
+  example += ` * `
+  example += ` * console.log(result)`
+  example += ` * // returns: ${JSON.stringify(run)}`
   jsdoc += example
   jsdoc += ` */`
 }
