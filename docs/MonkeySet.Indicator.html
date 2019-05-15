@@ -377,7 +377,7 @@ const rsi = await monkeyset.fetch('column', 'close').last(50).rsi({
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').abs({real: close})</code></pre>
+    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').abs({real: 'close'})</code></pre>
 
     
 
@@ -583,7 +583,7 @@ const rsi = await monkeyset.fetch('column', 'close').last(50).rsi({
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').acos({real: close})</code></pre>
+    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').acos({real: 'close'})</code></pre>
 
     
 
@@ -1067,7 +1067,7 @@ const rsi = await monkeyset.fetch('column', 'close').last(50).rsi({
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').add({real: close, real: close})</code></pre>
+    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').add({real: 'close', real: 'close'})</code></pre>
 
     
 
@@ -1363,7 +1363,7 @@ const rsi = await monkeyset.fetch('column', 'close').last(50).rsi({
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').adosc({'short period': 5, 'long period': 5})</code></pre>
+    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').adosc({'short period': 4, 'long period': 5})</code></pre>
 
     
 
@@ -2349,7 +2349,7 @@ const rsi = await monkeyset.fetch('column', 'close').last(50).rsi({
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').apo({'short period': 3, 'long period': 3, real: close})</code></pre>
+    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').apo({'short period': 5, 'long period': 6, real: 'close'})</code></pre>
 
     
 
@@ -2849,7 +2849,7 @@ const rsi = await monkeyset.fetch('column', 'close').last(50).rsi({
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').aroonosc({period: 6})</code></pre>
+    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').aroonosc({period: 3})</code></pre>
 
     
 
@@ -3055,7 +3055,7 @@ const rsi = await monkeyset.fetch('column', 'close').last(50).rsi({
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').asin({real: close})</code></pre>
+    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').asin({real: 'close'})</code></pre>
 
     
 
@@ -3261,7 +3261,7 @@ const rsi = await monkeyset.fetch('column', 'close').last(50).rsi({
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').atan({real: close})</code></pre>
+    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').atan({real: 'close'})</code></pre>
 
     
 
@@ -3521,7 +3521,7 @@ const rsi = await monkeyset.fetch('column', 'close').last(50).rsi({
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').atr({period: 4})</code></pre>
+    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').atr({period: 3})</code></pre>
 
     
 
@@ -4055,7 +4055,7 @@ const rsi = await monkeyset.fetch('column', 'close').last(50).rsi({
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').bbands({period: 4, stddev: 4, real: close})</code></pre>
+    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').bbands({period: 3, stddev: 4, real: 'close'})</code></pre>
 
     
 
@@ -4781,7 +4781,7 @@ const rsi = await monkeyset.fetch('column', 'close').last(50).rsi({
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').ceil({real: close})</code></pre>
+    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').ceil({real: 'close'})</code></pre>
 
     
 
@@ -5005,7 +5005,7 @@ const rsi = await monkeyset.fetch('column', 'close').last(50).rsi({
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').cmo({period: 6, real: close})</code></pre>
+    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').cmo({period: 6, real: 'close'})</code></pre>
 
     
 
@@ -5211,7 +5211,7 @@ const rsi = await monkeyset.fetch('column', 'close').last(50).rsi({
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').cos({real: close})</code></pre>
+    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').cos({real: 'close'})</code></pre>
 
     
 
@@ -5417,7 +5417,7 @@ const rsi = await monkeyset.fetch('column', 'close').last(50).rsi({
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').cosh({real: close})</code></pre>
+    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').cosh({real: 'close'})</code></pre>
 
     
 
@@ -5641,7 +5641,7 @@ const rsi = await monkeyset.fetch('column', 'close').last(50).rsi({
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').crossany({real: close, real: close})</code></pre>
+    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').crossany({real: 'close', real: 'close'})</code></pre>
 
     
 
@@ -5865,7 +5865,7 @@ const rsi = await monkeyset.fetch('column', 'close').last(50).rsi({
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').crossover({real: close, real: close})</code></pre>
+    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').crossover({real: 'close', real: 'close'})</code></pre>
 
     
 
@@ -6107,7 +6107,7 @@ const rsi = await monkeyset.fetch('column', 'close').last(50).rsi({
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').cvi({period: 3})</code></pre>
+    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').cvi({period: 4})</code></pre>
 
     
 
@@ -6331,7 +6331,7 @@ const rsi = await monkeyset.fetch('column', 'close').last(50).rsi({
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').decay({period: 6, real: close})</code></pre>
+    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').decay({period: 3, real: 'close'})</code></pre>
 
     
 
@@ -6555,7 +6555,7 @@ const rsi = await monkeyset.fetch('column', 'close').last(50).rsi({
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').dema({period: 3, real: close})</code></pre>
+    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').dema({period: 4, real: 'close'})</code></pre>
 
     
 
@@ -6831,7 +6831,7 @@ const rsi = await monkeyset.fetch('column', 'close').last(50).rsi({
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').di({period: 3})</code></pre>
+    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').di({period: 5})</code></pre>
 
     
 
@@ -7055,7 +7055,7 @@ const rsi = await monkeyset.fetch('column', 'close').last(50).rsi({
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').div({real: close, real: close})</code></pre>
+    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').div({real: 'close', real: 'close'})</code></pre>
 
     
 
@@ -7537,7 +7537,7 @@ const rsi = await monkeyset.fetch('column', 'close').last(50).rsi({
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').dpo({period: 3, real: close})</code></pre>
+    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').dpo({period: 4, real: 'close'})</code></pre>
 
     
 
@@ -8021,7 +8021,7 @@ const rsi = await monkeyset.fetch('column', 'close').last(50).rsi({
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').edecay({period: 6, real: close})</code></pre>
+    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').edecay({period: 4, real: 'close'})</code></pre>
 
     
 
@@ -8245,7 +8245,7 @@ const rsi = await monkeyset.fetch('column', 'close').last(50).rsi({
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').ema({period: 4, real: close})</code></pre>
+    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').ema({period: 4, real: 'close'})</code></pre>
 
     
 
@@ -8693,7 +8693,7 @@ const rsi = await monkeyset.fetch('column', 'close').last(50).rsi({
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').exp({real: close})</code></pre>
+    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').exp({real: 'close'})</code></pre>
 
     
 
@@ -9157,7 +9157,7 @@ const rsi = await monkeyset.fetch('column', 'close').last(50).rsi({
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').floor({real: close})</code></pre>
+    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').floor({real: 'close'})</code></pre>
 
     
 
@@ -9381,7 +9381,7 @@ const rsi = await monkeyset.fetch('column', 'close').last(50).rsi({
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').fosc({period: 4, real: close})</code></pre>
+    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').fosc({period: 6, real: 'close'})</code></pre>
 
     
 
@@ -9605,7 +9605,7 @@ const rsi = await monkeyset.fetch('column', 'close').last(50).rsi({
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').hma({period: 4, real: close})</code></pre>
+    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').hma({period: 6, real: 'close'})</code></pre>
 
     
 
@@ -9829,7 +9829,7 @@ const rsi = await monkeyset.fetch('column', 'close').last(50).rsi({
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').kama({period: 3, real: close})</code></pre>
+    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').kama({period: 5, real: 'close'})</code></pre>
 
     
 
@@ -10125,7 +10125,7 @@ const rsi = await monkeyset.fetch('column', 'close').last(50).rsi({
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').kvo({'short period': 4, 'long period': 4})</code></pre>
+    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').kvo({'short period': 5, 'long period': 5})</code></pre>
 
     
 
@@ -10349,7 +10349,7 @@ const rsi = await monkeyset.fetch('column', 'close').last(50).rsi({
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').lag({period: 5, real: close})</code></pre>
+    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').lag({period: 3, real: 'close'})</code></pre>
 
     
 
@@ -10573,7 +10573,7 @@ const rsi = await monkeyset.fetch('column', 'close').last(50).rsi({
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').linreg({period: 5, real: close})</code></pre>
+    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').linreg({period: 3, real: 'close'})</code></pre>
 
     
 
@@ -10797,7 +10797,7 @@ const rsi = await monkeyset.fetch('column', 'close').last(50).rsi({
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').linregintercept({period: 5, real: close})</code></pre>
+    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').linregintercept({period: 6, real: 'close'})</code></pre>
 
     
 
@@ -11021,7 +11021,7 @@ const rsi = await monkeyset.fetch('column', 'close').last(50).rsi({
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').linregslope({period: 4, real: close})</code></pre>
+    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').linregslope({period: 3, real: 'close'})</code></pre>
 
     
 
@@ -11227,7 +11227,7 @@ const rsi = await monkeyset.fetch('column', 'close').last(50).rsi({
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').ln({real: close})</code></pre>
+    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').ln({real: 'close'})</code></pre>
 
     
 
@@ -11433,7 +11433,7 @@ const rsi = await monkeyset.fetch('column', 'close').last(50).rsi({
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').log10({real: close})</code></pre>
+    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').log10({real: 'close'})</code></pre>
 
     
 
@@ -11725,7 +11725,7 @@ const rsi = await monkeyset.fetch('column', 'close').last(50).rsi({
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').macd({'short period': 4, 'long period': 4, 'signal period': 5, real: close})</code></pre>
+    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').macd({'short period': 5, 'long period': 5, 'signal period': 6, real: 'close'})</code></pre>
 
     
 
@@ -12433,7 +12433,7 @@ const rsi = await monkeyset.fetch('column', 'close').last(50).rsi({
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').max({period: 5, real: close})</code></pre>
+    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').max({period: 5, real: 'close'})</code></pre>
 
     
 
@@ -12657,7 +12657,7 @@ const rsi = await monkeyset.fetch('column', 'close').last(50).rsi({
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').md({period: 5, real: close})</code></pre>
+    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').md({period: 3, real: 'close'})</code></pre>
 
     
 
@@ -13383,7 +13383,7 @@ const rsi = await monkeyset.fetch('column', 'close').last(50).rsi({
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').min({period: 6, real: close})</code></pre>
+    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').min({period: 3, real: 'close'})</code></pre>
 
     
 
@@ -13607,7 +13607,7 @@ const rsi = await monkeyset.fetch('column', 'close').last(50).rsi({
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').mom({period: 3, real: close})</code></pre>
+    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').mom({period: 5, real: 'close'})</code></pre>
 
     
 
@@ -13847,7 +13847,7 @@ const rsi = await monkeyset.fetch('column', 'close').last(50).rsi({
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').msw({period: 3, real: close})</code></pre>
+    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').msw({period: 6, real: 'close'})</code></pre>
 
     
 
@@ -14071,7 +14071,7 @@ const rsi = await monkeyset.fetch('column', 'close').last(50).rsi({
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').mul({real: close, real: close})</code></pre>
+    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').mul({real: 'close', real: 'close'})</code></pre>
 
     
 
@@ -14331,7 +14331,7 @@ const rsi = await monkeyset.fetch('column', 'close').last(50).rsi({
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').natr({period: 3})</code></pre>
+    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').natr({period: 6})</code></pre>
 
     
 
@@ -15021,7 +15021,7 @@ const rsi = await monkeyset.fetch('column', 'close').last(50).rsi({
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').ppo({'short period': 3, 'long period': 3, real: close})</code></pre>
+    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').ppo({'short period': 3, 'long period': 4, real: 'close'})</code></pre>
 
     
 
@@ -15281,7 +15281,7 @@ const rsi = await monkeyset.fetch('column', 'close').last(50).rsi({
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').psar({'acceleration factor step': 5.3919388582020105, 'acceleration factor maximum': 5.742413895201344})</code></pre>
+    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').psar({'acceleration factor step': 4.155103912752575, 'acceleration factor maximum': 3.965032881832781})</code></pre>
 
     
 
@@ -15971,7 +15971,7 @@ const rsi = await monkeyset.fetch('column', 'close').last(50).rsi({
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').roc({period: 6, real: close})</code></pre>
+    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').roc({period: 6, real: 'close'})</code></pre>
 
     
 
@@ -16195,7 +16195,7 @@ const rsi = await monkeyset.fetch('column', 'close').last(50).rsi({
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').rocr({period: 4, real: close})</code></pre>
+    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').rocr({period: 6, real: 'close'})</code></pre>
 
     
 
@@ -16401,7 +16401,7 @@ const rsi = await monkeyset.fetch('column', 'close').last(50).rsi({
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').round({real: close})</code></pre>
+    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').round({real: 'close'})</code></pre>
 
     
 
@@ -16625,7 +16625,7 @@ const rsi = await monkeyset.fetch('column', 'close').last(50).rsi({
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').rsi({period: 5, real: close})</code></pre>
+    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').rsi({period: 5, real: 'close'})</code></pre>
 
     
 
@@ -16831,7 +16831,7 @@ const rsi = await monkeyset.fetch('column', 'close').last(50).rsi({
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').sin({real: close})</code></pre>
+    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').sin({real: 'close'})</code></pre>
 
     
 
@@ -17037,7 +17037,7 @@ const rsi = await monkeyset.fetch('column', 'close').last(50).rsi({
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').sinh({real: close})</code></pre>
+    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').sinh({real: 'close'})</code></pre>
 
     
 
@@ -17261,7 +17261,7 @@ const rsi = await monkeyset.fetch('column', 'close').last(50).rsi({
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').sma({period: 6, real: close})</code></pre>
+    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').sma({period: 3, real: 'close'})</code></pre>
 
     
 
@@ -17467,7 +17467,7 @@ const rsi = await monkeyset.fetch('column', 'close').last(50).rsi({
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').sqrt({real: close})</code></pre>
+    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').sqrt({real: 'close'})</code></pre>
 
     
 
@@ -17691,7 +17691,7 @@ const rsi = await monkeyset.fetch('column', 'close').last(50).rsi({
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').stddev({period: 5, real: close})</code></pre>
+    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').stddev({period: 5, real: 'close'})</code></pre>
 
     
 
@@ -17915,7 +17915,7 @@ const rsi = await monkeyset.fetch('column', 'close').last(50).rsi({
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').stderr({period: 5, real: close})</code></pre>
+    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').stderr({period: 5, real: 'close'})</code></pre>
 
     
 
@@ -18227,7 +18227,7 @@ const rsi = await monkeyset.fetch('column', 'close').last(50).rsi({
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').stoch({'%k period': 6, '%k slowing period': 4, '%d period': 5})</code></pre>
+    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').stoch({'%k period': 4, '%k slowing period': 6, '%d period': 4})</code></pre>
 
     
 
@@ -18451,7 +18451,7 @@ const rsi = await monkeyset.fetch('column', 'close').last(50).rsi({
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').stochrsi({period: 5, real: close})</code></pre>
+    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').stochrsi({period: 6, real: 'close'})</code></pre>
 
     
 
@@ -18675,7 +18675,7 @@ const rsi = await monkeyset.fetch('column', 'close').last(50).rsi({
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').sub({real: close, real: close})</code></pre>
+    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').sub({real: 'close', real: 'close'})</code></pre>
 
     
 
@@ -18899,7 +18899,7 @@ const rsi = await monkeyset.fetch('column', 'close').last(50).rsi({
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').sum({period: 3, real: close})</code></pre>
+    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').sum({period: 4, real: 'close'})</code></pre>
 
     
 
@@ -19105,7 +19105,7 @@ const rsi = await monkeyset.fetch('column', 'close').last(50).rsi({
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').tan({real: close})</code></pre>
+    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').tan({real: 'close'})</code></pre>
 
     
 
@@ -19311,7 +19311,7 @@ const rsi = await monkeyset.fetch('column', 'close').last(50).rsi({
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').tanh({real: close})</code></pre>
+    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').tanh({real: 'close'})</code></pre>
 
     
 
@@ -19535,7 +19535,7 @@ const rsi = await monkeyset.fetch('column', 'close').last(50).rsi({
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').tema({period: 4, real: close})</code></pre>
+    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').tema({period: 4, real: 'close'})</code></pre>
 
     
 
@@ -19741,7 +19741,7 @@ const rsi = await monkeyset.fetch('column', 'close').last(50).rsi({
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').todeg({real: close})</code></pre>
+    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').todeg({real: 'close'})</code></pre>
 
     
 
@@ -19947,7 +19947,7 @@ const rsi = await monkeyset.fetch('column', 'close').last(50).rsi({
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').torad({real: close})</code></pre>
+    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').torad({real: 'close'})</code></pre>
 
     
 
@@ -20413,7 +20413,7 @@ const rsi = await monkeyset.fetch('column', 'close').last(50).rsi({
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').trima({period: 6, real: close})</code></pre>
+    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').trima({period: 5, real: 'close'})</code></pre>
 
     
 
@@ -20637,7 +20637,7 @@ const rsi = await monkeyset.fetch('column', 'close').last(50).rsi({
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').trix({period: 6, real: close})</code></pre>
+    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').trix({period: 3, real: 'close'})</code></pre>
 
     
 
@@ -20843,7 +20843,7 @@ const rsi = await monkeyset.fetch('column', 'close').last(50).rsi({
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').trunc({real: close})</code></pre>
+    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').trunc({real: 'close'})</code></pre>
 
     
 
@@ -21067,7 +21067,7 @@ const rsi = await monkeyset.fetch('column', 'close').last(50).rsi({
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').tsf({period: 5, real: close})</code></pre>
+    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').tsf({period: 4, real: 'close'})</code></pre>
 
     
 
@@ -21605,7 +21605,7 @@ const rsi = await monkeyset.fetch('column', 'close').last(50).rsi({
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').ultosc({'short period': 5, 'medium period': 6, 'long period': 4})</code></pre>
+    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').ultosc({'short period': 5, 'medium period': 5, 'long period': 4})</code></pre>
 
     
 
@@ -21829,7 +21829,7 @@ const rsi = await monkeyset.fetch('column', 'close').last(50).rsi({
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').var({period: 4, real: close})</code></pre>
+    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').var({period: 3, real: 'close'})</code></pre>
 
     
 
@@ -22053,7 +22053,7 @@ const rsi = await monkeyset.fetch('column', 'close').last(50).rsi({
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').vhf({period: 3, real: close})</code></pre>
+    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').vhf({period: 6, real: 'close'})</code></pre>
 
     
 
@@ -22313,7 +22313,7 @@ const rsi = await monkeyset.fetch('column', 'close').last(50).rsi({
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').vidya({'short period': 6, 'long period': 4, alpha: 6.5531848733509985, real: close})</code></pre>
+    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').vidya({'short period': 3, 'long period': 3, alpha: 6.063526040116617, real: 'close'})</code></pre>
 
     
 
@@ -22537,7 +22537,7 @@ const rsi = await monkeyset.fetch('column', 'close').last(50).rsi({
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').volatility({period: 3, real: close})</code></pre>
+    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').volatility({period: 3, real: 'close'})</code></pre>
 
     
 
@@ -22779,7 +22779,7 @@ const rsi = await monkeyset.fetch('column', 'close').last(50).rsi({
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').vosc({'short period': 6, 'long period': 6})</code></pre>
+    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').vosc({'short period': 6, 'long period': 5})</code></pre>
 
     
 
@@ -23021,7 +23021,7 @@ const rsi = await monkeyset.fetch('column', 'close').last(50).rsi({
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').vwma({period: 6})</code></pre>
+    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').vwma({period: 4})</code></pre>
 
     
 
@@ -23729,7 +23729,7 @@ const rsi = await monkeyset.fetch('column', 'close').last(50).rsi({
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').wilders({period: 5, real: close})</code></pre>
+    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').wilders({period: 6, real: 'close'})</code></pre>
 
     
 
@@ -23989,7 +23989,7 @@ const rsi = await monkeyset.fetch('column', 'close').last(50).rsi({
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').willr({period: 3})</code></pre>
+    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').willr({period: 4})</code></pre>
 
     
 
@@ -24213,7 +24213,7 @@ const rsi = await monkeyset.fetch('column', 'close').last(50).rsi({
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').wma({period: 5, real: close})</code></pre>
+    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').wma({period: 6, real: 'close'})</code></pre>
 
     
 
@@ -24437,7 +24437,7 @@ const rsi = await monkeyset.fetch('column', 'close').last(50).rsi({
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').zlema({period: 3, real: close})</code></pre>
+    <pre class="prettyprint"><code>monkeyset.fetch('sets').last(20).convert('ohlc').zlema({period: 6, real: 'close'})</code></pre>
 
     
 

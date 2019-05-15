@@ -2,144 +2,154 @@ const assert = require('assert')
 const MonkeySet = require('../../../src/monkeyset')
 
 describe('Filter', function() {
-  it("monkeyset.Filter.fetch('sets').result()", () => {
+  it("monkeyset.fetch('sets').result()", () => {
     const monkeyset = new MonkeySet([1, 2, 3, 4, 5, 6], [1, 2, 3, 4, 5, 6])
-    assert.deepEqual(monkeyset.Filter.fetch('sets').result(), [[1, 2, 3, 4, 5, 6], [1, 2, 3, 4, 5, 6]])
+    assert.deepEqual(monkeyset.fetch('sets').result(), [[1, 2, 3, 4, 5, 6], [1, 2, 3, 4, 5, 6]])
   })
-  it("monkeyset.Filter.fetch('set', 0).result()", () => {
+  it("monkeyset.fetch('set', 0).result()", () => {
     const monkeyset = new MonkeySet([1, 2, 3, 4, 5, 6], [2, 3, 4, 5, 6, 7])
-    assert.deepEqual(monkeyset.Filter.fetch('set', 1).result(), [[2, 3, 4, 5, 6, 7]])
+    assert.deepEqual(monkeyset.fetch('set', 1).result(), [[2, 3, 4, 5, 6, 7]])
   })
-  it("monkeyset.Filter.fetch('column', 'time').result()", () => {
+  it("monkeyset.fetch('column', 'time').result()", () => {
     const monkeyset = new MonkeySet([1, 2, 3, 4, 5, 6], [2, 3, 4, 5, 6, 7])
-    assert.deepEqual(monkeyset.Filter.fetch('column', 'time').result(), [1, 2])
+    assert.deepEqual(monkeyset.fetch('column', 'time').result(), [1, 2])
   })
-  it("monkeyset.Filter.fetch('column', 'open').result()", () => {
+  it("monkeyset.fetch('column', 'open').result()", () => {
     const monkeyset = new MonkeySet([1, 2, 3, 4, 5, 6], [2, 3, 4, 5, 6, 7])
-    assert.deepEqual(monkeyset.Filter.fetch('column', 'open').result(), [2, 3])
+    assert.deepEqual(monkeyset.fetch('column', 'open').result(), [2, 3])
   })
-  it("monkeyset.Filter.fetch('column', 'high').result()", () => {
+  it("monkeyset.fetch('column', 'high').result()", () => {
     const monkeyset = new MonkeySet([1, 2, 3, 4, 5, 6], [2, 3, 4, 5, 6, 7])
-    assert.deepEqual(monkeyset.Filter.fetch('column', 'high').result(), [3, 4])
+    assert.deepEqual(monkeyset.fetch('column', 'high').result(), [3, 4])
   })
-  it("monkeyset.Filter.fetch('column', 'low').result()", () => {
+  it("monkeyset.fetch('column', 'low').result()", () => {
     const monkeyset = new MonkeySet([1, 2, 3, 4, 5, 6], [2, 3, 4, 5, 6, 7])
-    assert.deepEqual(monkeyset.Filter.fetch('column', 'low').result(), [4, 5])
+    assert.deepEqual(monkeyset.fetch('column', 'low').result(), [4, 5])
   })
-  it("monkeyset.Filter.fetch('column', 'close').result()", () => {
+  it("monkeyset.fetch('column', 'close').result()", () => {
     const monkeyset = new MonkeySet([1, 2, 3, 4, 5, 6], [2, 3, 4, 5, 6, 7])
-    assert.deepEqual(monkeyset.Filter.fetch('column', 'close').result(), [5, 6])
+    assert.deepEqual(monkeyset.fetch('column', 'close').result(), [5, 6])
   })
-  it("monkeyset.Filter.fetch('column', 'volume').result()", () => {
+  it("monkeyset.fetch('column', 'volume').result()", () => {
     const monkeyset = new MonkeySet([1, 2, 3, 4, 5, 6], [2, 3, 4, 5, 6, 7])
-    assert.deepEqual(monkeyset.Filter.fetch('column', 'volume').result(), [6, 7])
+    assert.deepEqual(monkeyset.fetch('column', 'volume').result(), [6, 7])
   })
-  it("monkeyset.Filter.fetch('set').result()", () => {
-    const monkeyset = new MonkeySet([1, 2, 3, 4, 5, 6], [2, 3, 4, 5, 6, 7])
-    assert.throws(() => {
-      monkeyset.Filter.fetch('set').result()
-    }, Error)
-  })
-  it("monkeyset.Filter.fetch('column').result()", () => {
+  it("monkeyset.fetch('set').result()", () => {
     const monkeyset = new MonkeySet([1, 2, 3, 4, 5, 6], [2, 3, 4, 5, 6, 7])
     assert.throws(() => {
-      monkeyset.Filter.fetch('column').result()
+      monkeyset.fetch('set').result()
     }, Error)
   })
-  it("monkeyset.Filter.fetch('column', 'nonexistingcolumn').result()", () => {
+  it("monkeyset.fetch('column').result()", () => {
     const monkeyset = new MonkeySet([1, 2, 3, 4, 5, 6], [2, 3, 4, 5, 6, 7])
     assert.throws(() => {
-      monkeyset.Filter.fetch('column', 'nonexistingcolumn').result()
+      monkeyset.fetch('column').result()
     }, Error)
   })
-  it("monkeyset.Filter.fetch('nonexistingselector').result()", () => {
+  it("monkeyset.fetch('column', 'nonexistingcolumn').result()", () => {
     const monkeyset = new MonkeySet([1, 2, 3, 4, 5, 6], [2, 3, 4, 5, 6, 7])
     assert.throws(() => {
-      monkeyset.Filter.fetch('nonexistingselector').result()
+      monkeyset.fetch('column', 'nonexistingcolumn').result()
     }, Error)
   })
-  it("monkeyset.Filter.fetch('sets').sort().result()", () => {
+  it("monkeyset.fetch('nonexistingselector').result()", () => {
+    const monkeyset = new MonkeySet([1, 2, 3, 4, 5, 6], [2, 3, 4, 5, 6, 7])
+    assert.throws(() => {
+      monkeyset.fetch('nonexistingselector').result()
+    }, Error)
+  })
+  it("monkeyset.fetch('sets').sort().result()", () => {
     const monkeyset = new MonkeySet([1, 2, 3, 4, 5, 6], [2, 3, 4, 5, 6, 7])
     assert.deepEqual(
-      monkeyset.Filter.fetch('sets')
+      monkeyset
+        .fetch('sets')
         .sort()
         .result(),
       [[1, 2, 3, 4, 5, 6], [2, 3, 4, 5, 6, 7]]
     )
   })
-  it("monkeyset.Filter.fetch('sets').sort('descending').result()", () => {
+  it("monkeyset.fetch('sets').sort('descending').result()", () => {
     const monkeyset = new MonkeySet([1, 2, 3, 4, 5, 6], [2, 3, 4, 5, 6, 7])
     assert.deepEqual(
-      monkeyset.Filter.fetch('sets')
+      monkeyset
+        .fetch('sets')
         .sort('descending')
         .result(),
       [[2, 3, 4, 5, 6, 7], [1, 2, 3, 4, 5, 6]]
     )
   })
-  it("monkeyset.Filter.fetch('sets').sort('ascending', 'open').result()", () => {
+  it("monkeyset.fetch('sets').sort('ascending', 'open').result()", () => {
     const monkeyset = new MonkeySet([1, 2, 3, 4, 5, 6], [2, 3, 4, 5, 6, 7])
     assert.deepEqual(
-      monkeyset.Filter.fetch('sets')
+      monkeyset
+        .fetch('sets')
         .sort('ascending', 'open')
         .result(),
       [[1, 2, 3, 4, 5, 6], [2, 3, 4, 5, 6, 7]]
     )
   })
-  it("monkeyset.Filter.fetch('sets').sort('ascending', 'high').result()", () => {
+  it("monkeyset.fetch('sets').sort('ascending', 'high').result()", () => {
     const monkeyset = new MonkeySet([1, 2, 3, 4, 5, 6], [2, 3, 4, 5, 6, 7])
     assert.deepEqual(
-      monkeyset.Filter.fetch('sets')
+      monkeyset
+        .fetch('sets')
         .sort('ascending', 'high')
         .result(),
       [[1, 2, 3, 4, 5, 6], [2, 3, 4, 5, 6, 7]]
     )
   })
-  it("monkeyset.Filter.fetch('sets').sort('ascending', 'low').result()", () => {
+  it("monkeyset.fetch('sets').sort('ascending', 'low').result()", () => {
     const monkeyset = new MonkeySet([1, 2, 3, 4, 5, 6], [2, 3, 4, 5, 6, 7])
     assert.deepEqual(
-      monkeyset.Filter.fetch('sets')
+      monkeyset
+        .fetch('sets')
         .sort('ascending', 'low')
         .result(),
       [[1, 2, 3, 4, 5, 6], [2, 3, 4, 5, 6, 7]]
     )
   })
-  it("monkeyset.Filter.fetch('sets').sort('ascending', 'close').result()", () => {
+  it("monkeyset.fetch('sets').sort('ascending', 'close').result()", () => {
     const monkeyset = new MonkeySet([1, 2, 3, 4, 5, 6], [2, 3, 4, 5, 6, 7])
     assert.deepEqual(
-      monkeyset.Filter.fetch('sets')
+      monkeyset
+        .fetch('sets')
         .sort('ascending', 'close')
         .result(),
       [[1, 2, 3, 4, 5, 6], [2, 3, 4, 5, 6, 7]]
     )
   })
-  it("monkeyset.Filter.fetch('sets').sort('ascending', 'volume').result()", () => {
+  it("monkeyset.fetch('sets').sort('ascending', 'volume').result()", () => {
     const monkeyset = new MonkeySet([1, 2, 3, 4, 5, 6], [2, 3, 4, 5, 6, 7])
     assert.deepEqual(
-      monkeyset.Filter.fetch('sets')
+      monkeyset
+        .fetch('sets')
         .sort('ascending', 'volume')
         .result(),
       [[1, 2, 3, 4, 5, 6], [2, 3, 4, 5, 6, 7]]
     )
   })
-  it("monkeyset.Filter.fetch('sets').sort('ascending', 'nonexistingsort').result()", () => {
+  it("monkeyset.fetch('sets').sort('ascending', 'nonexistingsort').result()", () => {
     const monkeyset = new MonkeySet([1, 2, 3, 4, 5, 6], [2, 3, 4, 5, 6, 7])
     assert.throws(() => {
-      monkeyset.Filter.fetch('sets')
+      monkeyset
+        .fetch('sets')
         .sort('ascending', 'nonexistingsort')
         .result()
     }, Error)
   })
-  it("monkeyset.Filter.fetch('sets').first(2).result()", () => {
+  it("monkeyset.fetch('sets').first(2).result()", () => {
     const monkeyset = new MonkeySet([1, 2, 3, 4, 5, 6], [2, 3, 4, 5, 6, 7], [3, 4, 5, 6, 7, 8], [4, 5, 6, 7, 8, 9])
-    const sets = monkeyset.Filter.fetch('sets')
+    const sets = monkeyset
+      .fetch('sets')
       .first(2)
       .result()
 
     assert.deepEqual(sets, [[1, 2, 3, 4, 5, 6], [2, 3, 4, 5, 6, 7]])
   })
-  it("monkeyset.Filter.fetch('sets').last(2).result()", () => {
+  it("monkeyset.fetch('sets').last(2).result()", () => {
     const monkeyset = new MonkeySet([1, 2, 3, 4, 5, 6], [2, 3, 4, 5, 6, 7], [3, 4, 5, 6, 7, 8], [4, 5, 6, 7, 8, 9])
-    const sets = monkeyset.Filter.fetch('sets')
+    const sets = monkeyset
+      .fetch('sets')
       .last(2)
       .result()
 

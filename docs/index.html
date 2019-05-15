@@ -72,6 +72,7 @@
 <a href="https://www.npmjs.com/package/monkeyset"><img src="https://img.shields.io/npm/dw/monkeyset.svg" alt="Downloads per week"></a>
 <a href="https://www.npmjs.com/package/monkeyset"><img src="https://img.shields.io/node/v/monkeyset.svg" alt="Node version"></a>
 <a href="https://github.com/michaeldegroot/MonkeySet"><img src="https://img.shields.io/github/languages/top/badges/shields.svg" alt="Top language of repo"></a>
+<a href="https://liberapay.com/GiveMeAllYourCats/"><img src="https://img.shields.io/liberapay/receives/givemeallyourcats.svg" alt="Help me pay for a beer :)"></a>
 <a href="https://github.com/michaeldegroot/MonkeySet"><img src="https://img.shields.io/github/stars/michaeldegroot/monkeyset.svg?style=social" alt="Help us and star this project"></a></p>
 <h1>MonkeySet</h1>
 <h2>Intro</h2>
@@ -83,9 +84,9 @@
 <p><strong>Warning: this project is not finished yet, do not use it in your project</strong></p>
 <h2>Features</h2>
 <ul>
-<li>Chain style based queries: <code>monkeyset.rows().sort('ascending', 'open').analyze('RSI', { period: 5}).fetch()</code></li>
+<li>Chain style based queries: <code>const bollingerbands = await monkeyset.fetch('sets').last(20).convert('ohlc').bbands({period: 3, stddev: 6, real: 'close'})</code></li>
 <li>Low memory footprint</li>
-<li>Max Performance (3,582 adds m/s, 5,714 lookups m/s for 10,000,000 sets)</li>
+<li>Maximum performance thanks to constant benchmarking and bottleneck testing</li>
 <li>Capable of technical analyze of candles (trend analyze, machine learning pattern detections, etc.)</li>
 <li>Technical indicators (RSI, SMA, etc.)</li>
 <li>Can parse OHLCV data in CSV, json, txt, etc. files to a MonkeySet</li>

@@ -14,6 +14,7 @@
 [![Downloads per week](https://img.shields.io/npm/dw/monkeyset.svg)](https://www.npmjs.com/package/monkeyset)
 [![Node version](https://img.shields.io/node/v/monkeyset.svg)](https://www.npmjs.com/package/monkeyset)
 [![Top language of repo](https://img.shields.io/github/languages/top/badges/shields.svg)](https://github.com/michaeldegroot/MonkeySet)
+[![Help me pay for a beer :)](https://img.shields.io/liberapay/receives/givemeallyourcats.svg)](https://liberapay.com/GiveMeAllYourCats/)
 [![Help us and star this project](https://img.shields.io/github/stars/michaeldegroot/monkeyset.svg?style=social)](https://github.com/michaeldegroot/MonkeySet)
 
 # MonkeySet
@@ -34,9 +35,9 @@ It's core components are designed with performance in mind to maximize your resu
 
 ## Features
 
-- Chain style based queries: `monkeyset.rows().sort('ascending', 'open').analyze('RSI', { period: 5}).fetch()`
+- Chain style based queries: `const bollingerbands = await monkeyset.fetch('sets').last(20).convert('ohlc').bbands({period: 3, stddev: 6, real: 'close'})`
 - Low memory footprint
-- Max Performance (3,582 adds m/s, 5,714 lookups m/s for 10,000,000 sets)
+- Maximum performance thanks to constant benchmarking and bottleneck testing
 - Capable of technical analyze of candles (trend analyze, machine learning pattern detections, etc.)
 - Technical indicators (RSI, SMA, etc.)
 - Can parse OHLCV data in CSV, json, txt, etc. files to a MonkeySet

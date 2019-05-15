@@ -6,23 +6,28 @@ const MonkeySet = require('../../../src/monkeyset')
 let monkeyset = new MonkeySet()
 monkeyset.Random.setsFill(200000)
 
-const workset1 = monkeyset.Filter.fetch('column', 'high')
+const workset1 = monkeyset
+  .fetch('column', 'high')
   .last(50)
   .result()
 
-const workset2 = monkeyset.Filter.fetch('column', 'low')
+const workset2 = monkeyset
+  .fetch('column', 'low')
   .last(50)
   .result()
 
-const workset3 = monkeyset.Filter.fetch('column', 'close')
+const workset3 = monkeyset
+  .fetch('column', 'close')
   .last(50)
   .result()
 
-const workset4 = monkeyset.Filter.fetch('column', 'volume')
+const workset4 = monkeyset
+  .fetch('column', 'volume')
   .last(50)
   .result()
 
-const workset5 = monkeyset.Filter.fetch('column', 'open')
+const workset5 = monkeyset
+  .fetch('column', 'open')
   .last(50)
   .result()
 

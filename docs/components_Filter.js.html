@@ -77,7 +77,7 @@ class Filter extends component {
    * monkeyset = new MonkeySet([1,2,3,4,5,6], [7,8,9,10,11,12])
    *
    * // Get only 2 last sets
-   * const sets = monkeyset.Filter.fetch('sets').last(2).result()
+   * const sets = monkeyset.fetch('sets').last(2).result()
    */
   last(amount = 1) {
     this.sets = this.sets.slice(Math.max(this.sets.length - amount, 1))
@@ -92,7 +92,7 @@ class Filter extends component {
    * monkeyset = new MonkeySet([1,2,3,4,5,6], [7,8,9,10,11,12])
    *
    * // Get only first 2 sets
-   * const sets = monkeyset.Filter.fetch('sets').first(2).result()
+   * const sets = monkeyset.fetch('sets').first(2).result()
    */
   first(amount = 1) {
     this.sets = this.sets.slice(0, amount)
@@ -108,7 +108,7 @@ class Filter extends component {
    * monkeyset = new MonkeySet([1,2,3,4,5,6], [7,8,9,10,11,12])
    *
    * // Get all sets and sort ascending on close price
-   * const sets = monkeyset.Filter.fetch('sets').sort('ascending', 'close').result()
+   * const sets = monkeyset.fetch('sets').sort('ascending', 'close').result()
    */
   sort(order = 'ascending', column = 'time') {
     let columnIndex = false
@@ -170,7 +170,7 @@ class Filter extends component {
    * monkeyset = new MonkeySet([1,2,3,4,5,6], [7,8,9,10,11,12])
    *
    * // Get all sets
-   * const sets = monkeyset.Filter.fetch('sets').result()
+   * const sets = monkeyset.fetch('sets').result()
    */
   result() {
     return this.sets

@@ -51,13 +51,13 @@ class MonkeySet {
    * monkeyset = new MonkeySet([1,2,3,4,5,6], [7,8,9,10,11,12])
    *
    * // Get all sets
-   * const sets = monkeyset.Filter.fetch('sets').result()
+   * const sets = monkeyset.fetch('sets').result()
    *
    * // Get a set by index
-   * const sets = monkeyset.Filter.fetch('set', 420).result()
+   * const sets = monkeyset.fetch('set', 420).result()
    *
    * // Get all column values from a sets
-   * const sets = monkeyset.Filter.fetch('column', 'open').result()
+   * const sets = monkeyset.fetch('column', 'open').result()
    */
   fetch(selector, ...args) {
     this.chain.sets = []
@@ -85,6 +85,7 @@ class MonkeySet {
       if (columnSelector === false) throw new Error(`${args[0]} is not a valid column`)
 
       // TODO: This function is very slow, can it be optimized?
+      // EDIT: NOOOOOOOOOPEEEEEEEEE
       this.chain.sets = this.sets.map(set => {
         return set[columnSelector]
       })

@@ -5,6 +5,6 @@ describe('Random', function() {
   it('monkeyset.Random.setsFill(200)', async () => {
     const monkeyset = new MonkeySet()
     monkeyset.Random.setsFill(200)
-    assert.equal(monkeyset.Filter.fetch('sets').result().length, 200)
+    assert.equal(monkeyset.fetch('sets').result().length, 200)
   })
 })

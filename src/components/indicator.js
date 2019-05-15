@@ -26,9 +26,8 @@ class Indicator extends component {
     // Load all tulip indicators
     this.tulind = tulind
     for (let indicator in tulind.indicators) {
-      this[indicator] = async data => {
+      this[indicator] = async (data = {}) => {
         const indicatorFunction = tulind.indicators[indicator]
-        if (!data) throw new Error('This function expects a argument as data input')
         const options = []
         let inputs = []
 
@@ -45,21 +44,31 @@ class Indicator extends component {
 
         for (let inputName of indicatorFunction.input_names) {
           let input = data[inputName]
-          if (this.monkeyset.chain.selector == 'sets') {
-            if (this.monkeyset.chain.dataformat != 'ohlc')
-              throw new Error(`indicators only work on ohlc data format when fetching sets data, not on a ${this.monkeyset.chain.dataformat} one`)
-            inputs = this.monkeyset.chain.sets[input]
+          if (!input) {
+            if (!this.monkeyset.chain.sets[inputName]) throw new Error(`expecting ${inputName} in options of indicator or monkeyset`)
+            inputs.push(this.monkeyset.chain.sets[inputName])
+          } else {
+            if (this.monkeyset.chain.selector == 'sets') {
+              if (this.monkeyset.chain.dataformat != 'ohlc')
+                throw new Error(`indicators only work on ohlc data format when fetching sets data, not on a ${this.monkeyset.chain.dataformat} one`)
+              inputs.push(this.monkeyset.chain.sets[input])
+            }
           }
         }
 
         if (this.monkeyset.chain.selector == 'column') {
           if (this.monkeyset.chain.dataformat != 'native')
             throw new Error(`indicators only work on native data format when fetching column data, not on a ${this.monkeyset.chain.dataformat} one`)
-          inputs = this.monkeyset.chain.sets
+          inputs.push(this.monkeyset.chain.sets)
         }
 
         if (inputs.length == 0) throw new Error(`inputs is empty for ${indicatorFunction.name}`)
-        const result = await indicatorFunction.indicator([inputs], options)
+        let result
+        try {
+          result = await indicatorFunction.indicator(inputs, options)
+        } catch (e) {
+          throw new Error(e)
+        }
 
         const returnObject = {}
         for (let outputName of indicatorFunction.output_names) {

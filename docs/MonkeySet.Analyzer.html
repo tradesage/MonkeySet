@@ -177,7 +177,7 @@
             
             <div class="container-source members">
                 <code><a href="components_analyzer.js.html">components/analyzer.js</a></code>,
-                <code><a href="components_analyzer.js.html#line74">line 74</a></code>
+                <code><a href="components_analyzer.js.html#line75">line 75</a></code>
             </div>
             
         </h4>
@@ -325,10 +325,10 @@
         <h5>Example</h5>
         
     <pre class="prettyprint"><code>const isAbandonedBaby = monkeyset.Analyzer.pattern('threeblackcrows', {
-  open: monkeyset.Filter.fetch('column', 'open').result(),
-  high: monkeyset.Filter.fetch('column', 'high').result(),
-  low: monkeyset.Filter.fetch('column', 'low').result(),
-  close: monkeyset.Filter.fetch('column', 'close').result()
+  open: monkeyset.fetch('column', 'open').result(),
+  high: monkeyset.fetch('column', 'high').result(),
+  low: monkeyset.fetch('column', 'low').result(),
+  close: monkeyset.fetch('column', 'close').result()
 })</code></pre>
 
     
@@ -347,7 +347,7 @@
             
             <div class="container-source members">
                 <code><a href="components_analyzer.js.html">components/analyzer.js</a></code>,
-                <code><a href="components_analyzer.js.html#line89">line 89</a></code>
+                <code><a href="components_analyzer.js.html#line94">line 94</a></code>
             </div>
             
         </h4>
@@ -468,7 +468,7 @@
         <h5>Example</h5>
         
     <pre class="prettyprint"><code>const predictPattern = await monkeyset.Analyzer.predictPattern(
- monkeyset.Filter.fetch('column', 'close').last(400).result()
+ monkeyset.fetch('column', 'close').last(400).result()
 )
 
 console.log(predictPattern)</code></pre>

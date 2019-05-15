@@ -20,7 +20,7 @@ for (let index in monkeyset.Indicator.tulind.indicators) {
   suite.add({
     name: "monkeyset.Filter.get('sets')." + index,
     fn: async deffered => {
-      await monkeyset.Filter.fetch('sets')[index](options)
+      await monkeyset.fetch('sets')[index](options)
       deffered.resolve()
     },
     defer: true

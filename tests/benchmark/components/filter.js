@@ -14,80 +14,84 @@ sets2.Random.setsFill(1000000)
 const sets2half = sets2.sets.length / 2
 
 suite.add({
-  name: `monkeyset.Filter.fetch('sets').first(${sets1half}) (${sets1.sets.length} sets)`,
+  name: `monkeyset.fetch('sets').first(${sets1half}) (${sets1.sets.length} sets)`,
   fn: done => {
-    sets1.Filter.fetch('sets')
+    sets1
+      .fetch('sets')
       .first(sets1half)
       .result()
   }
 })
 
 suite.add({
-  name: `monkeyset.Filter.fetch('sets').first(${sets2half}) (${sets2.sets.length} sets)`,
+  name: `monkeyset.fetch('sets').first(${sets2half}) (${sets2.sets.length} sets)`,
   fn: done => {
-    sets2.Filter.fetch('sets')
+    sets2
+      .fetch('sets')
       .first(sets2half)
       .result()
   }
 })
 
 suite.add({
-  name: `monkeyset.Filter.fetch('sets').last(${sets1half}) (${sets1.sets.length} sets)`,
+  name: `monkeyset.fetch('sets').last(${sets1half}) (${sets1.sets.length} sets)`,
   fn: done => {
-    sets1.Filter.fetch('sets')
+    sets1
+      .fetch('sets')
       .last(sets1half)
       .result()
   }
 })
 
 suite.add({
-  name: `monkeyset.Filter.fetch('sets').last(${sets2half}) (${sets2.sets.length} sets)`,
+  name: `monkeyset.fetch('sets').last(${sets2half}) (${sets2.sets.length} sets)`,
   fn: done => {
-    sets2.Filter.fetch('sets')
+    sets2
+      .fetch('sets')
       .last(sets2half)
       .result()
   }
 })
 
 suite.add({
-  name: `monkeyset.Filter.fetch('sets') (${sets1.sets.length} sets)`,
+  name: `monkeyset.fetch('sets') (${sets1.sets.length} sets)`,
   fn: done => {
-    sets1.Filter.fetch('sets').result()
+    sets1.fetch('sets').result()
   }
 })
 
 suite.add({
-  name: `monkeyset.Filter.fetch('sets') (${sets2.sets.length} sets)`,
+  name: `monkeyset.fetch('sets') (${sets2.sets.length} sets)`,
   fn: done => {
-    sets2.Filter.fetch('sets').result()
+    sets2.fetch('sets').result()
   }
 })
 
 suite.add({
-  name: `monkeyset.Filter.fetch('set', 500) (${sets1.sets.length} set)`,
+  name: `monkeyset.fetch('set', 500) (${sets1.sets.length} set)`,
   fn: done => {
-    sets1.Filter.fetch('set', 500).result()
+    sets1.fetch('set', 500).result()
   }
 })
 
 suite.add({
-  name: `monkeyset.Filter.fetch('set', 500000) (${sets2.sets.length} sets)`,
+  name: `monkeyset.fetch('set', 500000) (${sets2.sets.length} sets)`,
   fn: done => {
-    sets2.Filter.fetch('set', 500000).result()
+    sets2.fetch('set', 500000).result()
   }
 })
 
 suite.add({
-  name: `monkeyset.Filter.fetch('column', 'open') (${sets1.sets.length} sets)`,
+  name: `monkeyset.fetch('column', 'open') (${sets1.sets.length} sets)`,
   fn: done => {
-    sets1.Filter.fetch('column', 'open').result()
+    sets1.fetch('column', 'open').result()
   }
 })
 
 suite.add({
-  name: `monkeyset.Filter.fetch('column', 'open') (${sets2.sets.length} sets)`,
+  name: `monkeyset.fetch('column', 'open') (${sets2.sets.length} sets)`,
   fn: done => {
-    sets2.Filter.fetch('column', 'open').result()
+    sets2.fetch('column', 'open').result()
   }
 })
 

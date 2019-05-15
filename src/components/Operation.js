@@ -15,7 +15,6 @@ class Operation extends component {
   /**
    * @summary Adds OHLC data to the MonkeySet
    * @param {array[]} - A set or a array of sets
-   * @returns {object} MonkeySet class reference
    * @fires MonkeySet#add
    * @example
    * // One add
@@ -32,8 +31,6 @@ class Operation extends component {
     this.monkeyset.sets.push(...newSet)
     /** @event MonkeySet#add */
     this.monkeyset.event.emit('add')
-
-    return this.monkeyset
   }
 
   /**
@@ -41,16 +38,13 @@ class Operation extends component {
    * @fires MonkeySet#clear
    * @example
    * monkeyset.Operation.clear()
-   *
-   * @returns {object} MonkeySet class reference
    */
   clear() {
+    this.monkeyset.chain.sets = []
     this.monkeyset.sets = []
     this.monkeyset.index = 0
     /** @event MonkeySet#clear */
     this.monkeyset.event.emit('clear')
-
-    return this.monkeyset
   }
 }
 
