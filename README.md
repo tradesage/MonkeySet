@@ -15,7 +15,7 @@
 [![Node version](https://img.shields.io/node/v/monkeyset.svg)](https://www.npmjs.com/package/monkeyset)
 [![Top language of repo](https://img.shields.io/github/languages/top/badges/shields.svg)](https://github.com/michaeldegroot/MonkeySet)
 [![Help me pay for a beer :)](https://img.shields.io/liberapay/receives/givemeallyourcats.svg)](https://liberapay.com/GiveMeAllYourCats/)
-[![Help us and star this project](https://img.shields.io/github/stars/michaeldegroot/monkeyset.svg?style=social)](https://github.com/michaeldegroot/MonkeySet)
+[![Help us and star this project](https://img.shields.io/github/stars/michaeldegroot/monkeyset.svg?style=social)](https://github.com/michaeldegroot/MonkeySet) [![Greenkeeper badge](https://badges.greenkeeper.io/michaeldegroot/MonkeySet.svg)](https://greenkeeper.io/)
 
 # MonkeySet
 
