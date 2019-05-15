@@ -1,6 +1,6 @@
 {
   "name": "monkeyset",
-  "version": "0.3.4",
+  "version": "0.3.5",
   "description": "A lightweight and performance based OHLCV data manager",
   "main": "src/monkeyset.js",
   "homepage": "https://github.com/michaeldegroot/MonkeySet#readme",
@@ -48,8 +48,6 @@
   },
   "dependencies": {
     "lodash": "^4.17.11",
-    "open": "^6.3.0",
-    "random-ohlc-data-server": "^1.5.0",
     "technicalindicators": "^2.0.8",
     "tulind": "^0.8.15"
   },

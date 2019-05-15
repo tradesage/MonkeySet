@@ -14,7 +14,8 @@ const workset = monkeyset
 for (let index in tulind.indicators) {
   const indicator = tulind.indicators[index]
   let options = {
-    real: 'close'
+    input1: 'close',
+    input2: 'open'
   }
 
   for (let i = indicator.options - 1; i >= 0; i--) {
