@@ -11,13 +11,14 @@ class Indicator extends component {
    * @memberof MonkeySet
    * @hideconstructor
    * @example
-   * const rsi = await monkeyset.fetch('sets').last(50).rsi({
+   * const rsi = await monkeyset.fetch('sets').last(50).convert('ohlc').rsi({
    *     period: 5
    *     real: 'close'
    * })
    *
    * const rsi = await monkeyset.fetch('column', 'close').last(50).rsi({
-   *     period: 5
+   *     period: 5,
+   *     real: 'close',
    * })
    */
   constructor(...args) {
@@ -42,7 +43,10 @@ class Indicator extends component {
           throw new Error(`indicators don't work when fetching set data`)
         }
 
+        let inputIndex = 1
         for (let inputName of indicatorFunction.input_names) {
+          if (inputName == 'real') inputName = 'input' + inputIndex
+          inputIndex++
           let input = data[inputName]
           if (!input) {
             if (!this.monkeyset.chain.sets[inputName]) throw new Error(`expecting ${inputName} in options of indicator or monkeyset`)
@@ -66,8 +70,8 @@ class Indicator extends component {
         let result
         try {
           result = await indicatorFunction.indicator(inputs, options)
-        } catch (e) {
-          throw new Error(e)
+        } catch (error) {
+          throw new Error(`${indicatorFunction.name} error: ${error}`)
         }
 
         const returnObject = {}

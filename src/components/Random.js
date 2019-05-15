@@ -33,9 +33,9 @@ class Random extends component {
       const intensity = _.random(1, 9) + _.random(1, 9)
       const priceIntensity = _.random(-intensity, intensity)
       if (Boolean(Math.random() < 0.5)) {
-        price += Math.random() * (30 - 30)
+        price += _.random(1.123456789, 32.123456789)
       } else {
-        price -= Math.random() * (30 - 30)
+        price -= _.random(1.123456789, 32.123456789)
       }
       const closeModifier = _.random(-intensity, intensity)
       const volumeModifer = _.random(-intensity, intensity)
