@@ -1,8 +1,8 @@
 {
   "name": "monkeyset",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "description": "A lightweight and performance based OHLCV data manager",
-  "main": "src",
+  "main": "src/monkeyset.js",
   "homepage": "https://github.com/michaeldegroot/MonkeySet#readme",
   "url": "https://github.com/michaeldegroot/MonkeySet/issues",
   "license": {
@@ -18,7 +18,7 @@
     "node": ">=11.0.0 <12.0.0"
   },
   "scripts": {
-    "test": "npx nyc mocha tests/mocha/**/*.js && nyc report --reporter=html",
+    "test": "npx nyc mocha tests/mocha/**/*.js --slow 1 && nyc report --reporter=html",
     "benchmark:file": "mocha tests/mocha/components/file.js && node tests/benchmark/components/file.js",
     "benchmark:filter": "mocha tests/mocha/components/filter.js && node tests/benchmark/components/filter.js",
     "benchmark:operation": "mocha tests/mocha/components/operation.js && node tests/benchmark/components/operation.js",

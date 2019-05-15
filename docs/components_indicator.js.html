@@ -76,9 +76,8 @@ class Indicator extends component {
     // Load all tulip indicators
     this.tulind = tulind
     for (let indicator in tulind.indicators) {
-      this[indicator] = async data => {
+      this[indicator] = async (data = {}) => {
         const indicatorFunction = tulind.indicators[indicator]
-        if (!data) throw new Error('This function expects a argument as data input')
         const options = []
         let inputs = []
 

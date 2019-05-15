@@ -3,7 +3,7 @@ const MonkeySet = require('../../../src/monkeyset')
 const tulind = require('tulind')
 
 let monkeyset = new MonkeySet()
-monkeyset.Random.setsFill(400)
+monkeyset.Random.setsFill(300)
 
 for (let pattern of monkeyset.Analyzer.candlePatterns) {
   it('monkeyset.Analyzer.pattern(' + pattern + ')', async () => {

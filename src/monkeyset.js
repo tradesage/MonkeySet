@@ -85,6 +85,7 @@ class MonkeySet {
       if (columnSelector === false) throw new Error(`${args[0]} is not a valid column`)
 
       // TODO: This function is very slow, can it be optimized?
+      // EDIT: NOOOOOOOOOPEEEEEEEEE
       this.chain.sets = this.sets.map(set => {
         return set[columnSelector]
       })

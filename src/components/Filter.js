@@ -11,12 +11,35 @@ class Filter extends component {
   constructor(...args) {
     super(...args)
 
-    this.monkeyset.chain.fetch = this.fetch
     this.monkeyset.chain.first = this.first
     this.monkeyset.chain.last = this.last
     this.monkeyset.chain.sort = this.sort
     this.monkeyset.chain.result = this.result
+    this.monkeyset.chain.between = this.between
     this.monkeyset.chain.convert = this.convert
+  }
+
+  /**
+   * @summary Grabs sets from a specified date
+   * @param {number} - Amount to grab
+   * @returns {object} MonkeySet class reference
+   * @example
+   * monkeyset = new MonkeySet([1,2,3,4,5,6], [7,8,9,10,11,12])
+   *
+   * // Get only first 2 sets
+   * const sets = monkeyset.fetch('sets').first(2).result()
+   */
+  between(startDate, endDate = 'now') {
+    // start 1557960932110
+    // end   1560466532110
+    if (typeof startDate == 'string') {
+      console.log('string yeet')
+    }
+    if (typeof startDate == 'number') {
+      console.log('number yeet')
+    }
+    gdfs
+    return this
   }
 
   /**
@@ -80,10 +103,22 @@ class Filter extends component {
     return this
   }
 
+  /**
+   * @summary Converts a MonkeySet data to a specific data format
+   * @param {string} - what to convert the MonkeySet to
+   * @returns {object} MonkeySet class reference
+   * @example
+   * monkeyset = new MonkeySet([1,2,3,4,5,6], [7,8,9,10,11,12])
+   *
+   * // Get all sets in ohlc data format
+   * const ohlc = monkeyset.fetch('sets').convert('ohlc').result()
+   */
   convert(to) {
     if (to == 'ohlc') {
       if (this.selector == 'column' && this.dataformat)
         throw new Error(`Cannot convert ${this.dataformat} format to ohlc in a ${this.selector} fetch`)
+
+      this.dataformat = to
       this.sets = {
         time: this.sets.map(set => {
           return set[0]
@@ -104,7 +139,6 @@ class Filter extends component {
           return set[5]
         })
       }
-      this.dataformat = 'ohlc'
     }
 
     return this
@@ -116,6 +150,7 @@ class Filter extends component {
    *
    * TODO: would be cool if the filter chain could be
    * calculated here, so promises are easy to implement.
+   * EDIT: Not possible BYE!!
    * @example
    * monkeyset = new MonkeySet([1,2,3,4,5,6], [7,8,9,10,11,12])
    *
