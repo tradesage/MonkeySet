@@ -23,8 +23,6 @@ const generate = async () => {
    * @param options {object} Options to pass along to the ${indicatorFunction.type} function
   `
     for (let optionName of indicatorFunction.option_names) {
-      jsdoc += ` * @param options.${optionName} The option ${optionName}
-  `
       let newOption = 6
       if (optionName == 'short period') newOption = 2
       if (optionName == 'medium period') newOption = 4
@@ -51,6 +49,9 @@ const generate = async () => {
         newOption = 5.351
       }
 
+      jsdoc += ` * @param options.${optionName} {${typeof newOption}} The option ${optionName}
+  `
+
       if (indicator == 'macd') {
         // {'short period': 6, 'long period': 6, 'signal period': 6, real: 'close'}
         if (optionName == 'short period') newOption = 2
@@ -64,6 +65,11 @@ const generate = async () => {
 
     let inputIndex = 1
     for (let inputName of indicatorFunction.input_names) {
+      if (inputName == 'open') continue
+      if (inputName == 'high') continue
+      if (inputName == 'low') continue
+      if (inputName == 'close') continue
+      if (inputName == 'volume') continue
       let value = 'close'
       if (inputIndex == 2) value = 'open'
       if (inputName == 'real') options.push(`input${inputIndex}: '${value}'`)
