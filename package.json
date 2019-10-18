@@ -57,7 +57,7 @@
     "draw-candlestick": "^2.0.3",
     "husky": "^2.2.0",
     "jsdoc": "^3.6.1",
-    "mocha": "^6.1.4",
+    "mocha": "^6.2.2",
     "mocha-lcov-reporter": "^1.3.0",
     "mocha-logger": "^1.0.6",
     "moment": "^2.24.0",
